@@ -1,0 +1,346 @@
+/* ============================================================
+   SARAH-JANE CROWSON — PORTFOLIO DESIGN SYSTEM
+   Shared tokens, type scale, and base components.
+   Built once against the Magic Lantern case study;
+   every other page draws from this file rather than
+   re-deciding colour, type, or spacing from scratch.
+   ============================================================ */
+
+:root {
+  /* ---- Colour: landing / botanical register ---- */
+  --cream:        #F5EFE4;
+  --magenta:      #7B1750;  /* silk lining, the Botanica sewing box — site-wide accent */
+  --mauve-pink:   #C4A0A8;
+  --sage:         #8A9A7E;
+  --olive:        #6B7654;
+  --navy:         #1C2B3A;  /* primary body text on cream */
+  --warm-grey:    #9B8E82;
+
+  /* ---- Colour: nocturnal register (Magic Lantern departure) ---- */
+  --near-black:   #15110E;
+  --deep-warm-grey: #2A211A; /* image sections sit here, not pure black, so slides glow as in projection */
+  --slide-gold:   #C99A4B;
+  --slide-amber:  #E8B978;
+
+  /* ---- Type families ---- */
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body:    'EB Garamond', Georgia, serif;
+  --font-sans:    'Inter', -apple-system, sans-serif;
+
+  /* ---- Type scale ---- */
+  --text-xs:   0.8rem;
+  --text-sm:   0.95rem;
+  --text-base: 1.125rem;
+  --text-md:   1.4rem;
+  --text-lg:   1.9rem;
+  --text-xl:   2.8rem;
+  --text-2xl:  4rem;
+  --text-3xl:  5.5rem;
+
+  /* ---- Spacing ---- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+  --space-6: 8rem;
+  --space-7: 12rem;
+
+  /* ---- Layout ---- */
+  --measure: 38rem;       /* comfortable reading width for body prose */
+  --measure-wide: 56rem;
+  --radius-slide: 4px;
+}
+
+/* ---- Reset ---- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p { margin: 0 0 1.2em 0; }
+p:last-child { margin-bottom: 0; }
+
+/* ---- Reduced motion: respected site-wide ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Focus states: visible everywhere, styled to fit the register ---- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--slide-gold);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   SHARED NAVIGATION
+   ============================================================ */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  color: #F5EFE4;
+  pointer-events: none;
+}
+.site-nav a { pointer-events: auto; }
+.site-nav__name { font-family: var(--font-display); font-size: var(--text-md); text-transform: none; letter-spacing: 0.01em; }
+.site-nav__links { display: flex; gap: var(--space-3); }
+.site-nav__links a { text-decoration: none; opacity: 0.85; transition: opacity 0.2s ease; }
+.site-nav__links a:hover { opacity: 1; }
+
+/* ============================================================
+   GHOST BOTANICAL / FOSSIL SUBSTRATE LAYER
+   Present across pages, quietened on case study pages.
+   ============================================================ */
+.ghost-substrate {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+.ghost-substrate--quiet { opacity: 0.035; }
+
+/* ============================================================
+   CASE STUDY SCAFFOLDING — shared by Botanica / Magic Lantern / Card Game
+   Each page sets its own --page-ground and --page-ink per its register.
+   ============================================================ */
+.cs-section {
+  position: relative;
+  padding: var(--space-6) var(--space-3);
+}
+.cs-section--image {
+  background: var(--page-ground, var(--deep-warm-grey));
+  color: var(--page-ink, var(--cream));
+  padding: var(--space-6) var(--space-2);
+}
+.cs-section--text {
+  background: var(--cream);
+  color: var(--navy);
+}
+.cs-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.cs-inner--wide { max-width: var(--measure-wide); }
+
+.cs-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.cs-placeholder-note {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--magenta);
+  background: rgba(123, 23, 80, 0.06);
+  border-left: 2px solid var(--magenta);
+  padding: var(--space-1) var(--space-2);
+  margin-top: var(--space-2);
+  font-style: italic;
+}
+
+/* Slide figure wrapper: handles both mounted-artefact and full-bleed projection images */
+.slide-figure {
+  position: relative;
+  margin: 0 auto var(--space-3) auto;
+}
+.slide-figure img {
+  width: 100%;
+  border-radius: var(--radius-slide);
+}
+.slide-figure--mounted img {
+  box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.5);
+}
+.slide-figure--projection img {
+  border-radius: 0;
+}
+.slide-caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--warm-grey);
+  text-align: center;
+  margin-top: var(--space-1);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   PROJECTION OVERLAY EFFECT
+   A slide image enters large and "projected" — pinned centre-screen
+   while the page scrolls past it — then shrinks as it scrolls,
+   and releases into the normal text flow as a small, settled,
+   documented photograph. Reusable across case studies.
+   ============================================================ */
+.proj-block { position: relative; margin: var(--space-4) 0; }
+.proj-runway {
+  height: 300vh;
+  position: relative;
+}
+.proj-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+/* The base layer: the same image, fixed in size, low opacity — the trace
+   that stays put while the foreground layer moves through it. The palimpsest. */
+.proj-base-img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-width: 24rem;
+  max-height: 56vh;
+  width: auto;
+  height: auto;
+  opacity: 0.14;
+  filter: grayscale(20%);
+  border-radius: var(--radius-slide);
+  z-index: 1;
+}
+/* The foreground layer: begins oversized and out of focus, as if projected
+   across a building from a distance, then scales down and sharpens as the
+   reader scrolls — settling into the same scale as the base layer beneath it. */
+.proj-sticky__img {
+  position: relative;
+  z-index: 2;
+  max-width: min(640px, 90vw);
+  max-height: 72vh;
+  width: auto;
+  border-radius: var(--radius-slide);
+  box-shadow: 0 2rem 6rem rgba(0,0,0,0.55);
+  will-change: transform, filter;
+  transform: scale(2);
+  filter: blur(26px);
+}
+.proj-caption {
+  text-align: center;
+  margin-top: calc(var(--space-2) * -1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-runway { height: auto !important; }
+  .proj-sticky {
+    position: relative !important;
+    height: auto !important;
+    padding: var(--space-3) 0;
+  }
+  .proj-base-img { display: none !important; }
+  .proj-sticky__img {
+    max-width: min(640px, 90vw) !important;
+    max-height: none !important;
+    transform: none !important;
+    filter: none !important;
+    margin: 0 auto;
+  }
+}
+
+/* On the dark/nocturnal sections specifically, dark-toned source images can
+   visually vanish into a near-black ground once blurred and scaled up.
+   Strengthen the ghost layer and add a faint warm glow behind it so there's
+   always something perceptible to track during the unfocused phase. */
+.ml-sequence .proj-base-img {
+  opacity: 0.4;
+  filter: grayscale(0%) brightness(1.2);
+}
+.ml-sequence .proj-sticky::after {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  background: radial-gradient(circle at center, rgba(201, 154, 75, 0.14), transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   HORIZONTAL IMAGE GRID — a specimen-board layout for several
+   static images shown side by side rather than stacked vertically.
+   ============================================================ */
+.ml-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+  align-items: start;
+}
+.ml-grid__item {
+  display: flex;
+  flex-direction: column;
+}
+.ml-grid__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(245, 239, 228, 0.18);
+  box-shadow: 0 1rem 2.5rem rgba(0,0,0,0.5);
+}
+.ml-grid__item figcaption { margin-top: var(--space-1); text-align: center; }
+.ml-grid__item .ml-slide__caption-title { font-size: 0.62rem; }
+.ml-grid__item .slide-caption { font-size: 0.78rem; min-height: 2.4em; }
+
+@media (max-width: 900px) {
+  .ml-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .ml-grid { grid-template-columns: 1fr; }
+}
+
+/* Utility: fade-in-on-scroll, applied via JS by adding .is-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
