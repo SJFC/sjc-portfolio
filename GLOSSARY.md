@@ -60,6 +60,18 @@ The single creature that flies once across a section, triggered the moment that 
 The simple fade-up-as-you-scroll-to-it effect used for ordinary text and content — much plainer than a Palimpsest, just an opacity and position fade, no pinning, no runway.
 → `.reveal` / `.is-visible`, driven by the `IntersectionObserver` near the bottom of the script
 
+**Text palimpsest**
+The typographic sibling of the Palimpsest: a single short line of text that arrives out of focus and resolves as the reader scrolls, over a runway half the length of an image palimpsest's (text cannot sustain a long unreadable phase). Three things settle at once — blur lifting, opacity rising, letter-spacing tightening, as though the letters are gathering. Used AT MOST ONCE per page: on Minor Deities, the fossil line resolving before its stanza; on Botanica, the claim line. Reduced motion: the line is simply present.
+→ `.text-focus` in tokens.css; line colour per page via `--text-focus-color`; the `updateTextFocus()` block in each page's script
+
+**Materialising**
+A constructed, collaged image dissolving into its documentary twin as the reader scrolls — the world of the slides becoming the real, living, cared-for thing. Built as the photograph *underneath* and the collage *above*, with only the collage's opacity scroll-driven (the photograph is a layer within the collage, so the installation itself never moves; only the imagined layer withdraws). Direction matters: fiction resolving into the real belongs to Botanica's opening; the closing collage reverses the arc as a static image, the real re-entering the imagined. Used once, on Botanica's opening.
+→ `.bo-materialise` and `updateMaterialise()` in botanica.html
+
+**The sprig**
+Botanica's sibling to the moth: a line-drawn fern frond that draws itself once — stem rising first, paired pinnae unfurling from the base upward, the still-coiled crozier tip arriving last — and never repeats. A different mechanism from the moth (a drawing drawing itself, not a flight path), the same one-shot logic. Trialled on the case study page and removed by eye; held for the participant-facing site, where a growing thing greeting each contributor suits the invitation.
+→ `assets/images/botanica/sprig-motif.svg` (self-contained, with its animation; trigger by adding the `is-growing` class)
+
 **Eased / easing**
 A transition that speeds up and slows down rather than moving at a constant rate — used so the focus-pull in a Palimpsest feels weighted rather than mechanical.
 → The `eased` calculation inside `updateProjections()`

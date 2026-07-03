@@ -99,7 +99,17 @@
   .ml-argument__item p { font-size: var(--text-base); max-width: var(--measure); }
 
   /* ---- More text: argument III + citation, no image ---- */
-  .ml-argument-text { background: var(--cream); color: var(--navy); padding: var(--space-2) var(--space-3) var(--space-6); }
+  .ml-argument-text { background: var(--cream); color: var(--navy); padding: var(--space-5) var(--space-3) var(--space-6); }
+
+  /* ---- Interlude: the fossil line resolves, its stanza follows, and one
+     slide stands beside the argument about what exceeds explanation.
+     Dark ground so the resolving line reads as light. ---- */
+  .ml-interlude {
+    background: var(--near-black);
+    color: var(--cream);
+    padding: 0 var(--space-3) var(--space-5);
+  }
+  .ml-interlude .ml-poem { font-style: italic; }
   .ml-citation {
     margin-top: var(--space-4); padding: var(--space-3); border: 1px solid var(--warm-grey);
     border-left: 3px solid var(--magenta); font-family: var(--font-sans); font-size: var(--text-sm);
@@ -232,7 +242,44 @@
     </div>
   </section>
 
-  <!-- ============ 5. MORE TEXT — argument III, no image ============ -->
+  <!-- ============ 5a. INTERLUDE — the fossil line resolves, the stanza it
+       belongs to follows, and Reflected Invocations stands beside the
+       argument about what exceeds explanation ============ -->
+  <section class="ml-interlude">
+    <div class="text-focus">
+      <div class="text-focus__runway" id="tf-runway">
+        <div class="text-focus__sticky">
+          <p class="text-focus__line" id="tf-line">the eggshell bones of tiny things are lost</p>
+        </div>
+      </div>
+    </div>
+    <div class="cs-inner reveal">
+      <div class="ml-poem" style="font-size:var(--text-base); margin: 0 auto;">
+        <p>Sentences are cardamom,<br>
+        their aromatic seed dispersed<br>
+        in words just as imago's wings<br>
+        unfurl to skeletons of leafy veins.<br>
+        <br>
+        This world's a vast electrograph.<br>
+        It spins to shine and so outrun<br>
+        the crawling night. Inside its rock<br>
+        the eggshell bones of tiny things are lost</p>
+      </div>
+    </div>
+    <figure class="ml-slide reveal">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--mounted">
+          <img src="../assets/images/magic-lantern/invocation-and-alchemy.jpg" alt="A figure with an owl's head in eighteenth-century dress gestures toward a golden chandelier suspended in a ruined hall.">
+        </div>
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of reflected invocations</span>
+          <p class="slide-caption">We catch light in the subterranean palace</p>
+        </figcaption>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ============ 5b. MORE TEXT — argument III, no image ============ -->
   <section class="ml-argument-text">
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">III.</span>
@@ -328,13 +375,6 @@
         </figcaption>
       </figure>
       <figure class="ml-grid__item">
-        <img src="../assets/images/magic-lantern/invocation-and-alchemy.jpg" alt="A figure with an owl's head in eighteenth-century dress gestures toward a golden chandelier suspended in a ruined hall.">
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of reflected invocations</span>
-          <p class="slide-caption">We catch light in the subterranean palace</p>
-        </figcaption>
-      </figure>
-      <figure class="ml-grid__item">
         <img src="../assets/images/magic-lantern/wonder-darkness-wonder.jpg" alt="A scene almost entirely in darkness. A faint pale figure is just visible beside two moths near unseen water.">
         <figcaption>
           <span class="ml-slide__caption-title">The minor deity of velvet wonder</span>
@@ -395,17 +435,6 @@
     <div class="cs-inner">
       <span class="cs-eyebrow">Glass threads</span>
       <p>Further work can be found under glass, including orchids, a Victorian sewing box and terraria filled with palms and moss acting as a poetic data physicalisation and visual metaphor for the practice of care and a critical reflection on when data becomes containment as well as classification.</p>
-      <div class="ml-poem" style="font-size:var(--text-base); margin: var(--space-3) 0;">
-        <p>Sentences are cardamom,<br>
-        their aromatic seed dispersed<br>
-        in words just as imago's wings<br>
-        unfurl to skeletons of leafy veins.<br>
-        <br>
-        This world's a vast electrograph.<br>
-        It spins to shine and so outrun<br>
-        the crawling night. Inside its rock<br>
-        the eggshell bones of tiny things are lost</p>
-      </div>
       <div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a></div>
       <p class="ml-closing__credit">With thanks to Ewan Morrison, critical friend and collaborator throughout the development of this work.</p>
     </div>
@@ -479,6 +508,35 @@
       }
     }, { passive: true });
     updateProjections();
+
+    // Text palimpsest: the fossil line resolving from blur over its own
+    // short runway (see GLOSSARY.md — "text palimpsest"). One per page.
+    const tfRunway = document.getElementById('tf-runway');
+    const tfLine = document.getElementById('tf-line');
+    if (tfRunway && tfLine) {
+      const TF_MAX_BLUR = 14, TF_MIN_OPACITY = 0.35;
+      const TF_MAX_TRACK = 0.06, TF_MIN_TRACK = 0.02, TF_DWELL = 0.35;
+      let tfTicking = false;
+      function updateTextFocus() {
+        const rect = tfRunway.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const focusDistance = total * (1 - TF_DWELL);
+        let p = focusDistance > 0 ? (-rect.top) / focusDistance : 1;
+        p = Math.min(Math.max(p, 0), 1);
+        const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        tfLine.style.filter = `blur(${TF_MAX_BLUR * (1 - eased)}px)`;
+        tfLine.style.opacity = TF_MIN_OPACITY + (1 - TF_MIN_OPACITY) * eased;
+        tfLine.style.letterSpacing = `${TF_MAX_TRACK - (TF_MAX_TRACK - TF_MIN_TRACK) * eased}em`;
+        tfTicking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!tfTicking) {
+          requestAnimationFrame(updateTextFocus);
+          tfTicking = true;
+        }
+      }, { passive: true });
+      updateTextFocus();
+    }
   }
 </script>
 

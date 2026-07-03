@@ -1,0 +1,43 @@
+<svg viewBox="0 0 130 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- THE SPRIG — Botanica's growth motif, held for the participant page.
+       A fern frond that draws itself once: stem rises first, paired pinnae
+       unfurl from the base upward, the still-coiled crozier tip arrives
+       last. Add class "is-growing" to trigger; see GLOSSARY.md.
+       Self-contained: styles and keyframes travel with the file. -->
+  <style>
+    path {
+      fill: none;
+      stroke: #E8B978; /* --slide-amber */
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+    svg.is-growing path, .is-growing path { animation: sprig-grow 1.4s ease-out forwards; }
+    .is-growing path:nth-child(1) { animation-duration: 2.4s; }
+    .is-growing path:nth-child(2) { animation-delay: 0.7s; }
+    .is-growing path:nth-child(3) { animation-delay: 0.9s; }
+    .is-growing path:nth-child(4) { animation-delay: 1.1s; }
+    .is-growing path:nth-child(5) { animation-delay: 1.3s; }
+    .is-growing path:nth-child(6) { animation-delay: 1.5s; }
+    .is-growing path:nth-child(7) { animation-delay: 1.7s; }
+    .is-growing path:nth-child(8) { animation-delay: 1.9s; }
+    .is-growing path:nth-child(9) { animation-delay: 2.2s; animation-duration: 2s; }
+    @keyframes sprig-grow { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .is-growing path { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+  <!-- Stem -->
+  <path pathLength="1" d="M60 295 C 58 240, 64 190, 62 140 C 61 110, 64 85, 68 62" />
+  <!-- Pinnae, base upward -->
+  <path pathLength="1" d="M59 250 C 42 244, 28 234, 20 218" />
+  <path pathLength="1" d="M60 246 C 78 240, 92 230, 100 214" />
+  <path pathLength="1" d="M61 205 C 46 199, 34 190, 28 176" />
+  <path pathLength="1" d="M62 200 C 77 194, 89 185, 95 171" />
+  <path pathLength="1" d="M62 160 C 50 154, 41 146, 36 134" />
+  <path pathLength="1" d="M63 155 C 75 149, 84 141, 89 129" />
+  <path pathLength="1" d="M65 112 C 55 107, 48 100, 44 90" />
+  <!-- The crozier, drawn last -->
+  <path pathLength="1" d="M68 62 C 72 44, 68 30, 56 26 C 46 23, 38 30, 40 40 C 42 48, 50 51, 56 47 C 61 43, 60 36, 55 34" />
+</svg>
