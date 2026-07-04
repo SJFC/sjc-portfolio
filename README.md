@@ -1,6 +1,6 @@
 # Sarah-Jane Crowson — Portfolio Site
 
-A bespoke static website documenting the practice of Sarah-Jane Crowson, practitioner-researcher and poet. Built as a postgraduate portfolio submission for the MDES 10 module at Hereford College of Arts.
+A bespoke static website documenting the practice of Sarah-Jane Crowson, practitioner-researcher and poet. Built as a postgraduate portfolio submission for the MDES 10 module at Sunderland University.
 
 ---
 
