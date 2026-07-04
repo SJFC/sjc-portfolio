@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botanica — Your Conditions — Sarah-Jane Crowson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+
+  /* This page is the inverse of the case study: mobile-first, minimal
+     reading, one clear invitation, answerable in under a minute. Same
+     design system, same register — but structurally almost opposite. */
+
+  body { background: var(--cream); }
+
+  .bp-wrap {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-3) var(--space-6);
+  }
+
+  .bp-back {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+  }
+  .bp-back:hover { color: var(--magenta); }
+
+  .bp-sprig-wrap { width: 90px; margin: 0 auto var(--space-2); }
+  .bp-sprig-wrap svg { width: 100%; height: auto; display: block; }
+
+  .bp-eyebrow {
+    display: block;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: var(--space-2);
+  }
+  .bp-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 7vw, var(--text-xl));
+    color: var(--magenta);
+    margin-bottom: var(--space-3);
+  }
+  .bp-intro {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--olive);
+    text-align: center;
+    max-width: 26rem;
+    margin: 0 auto var(--space-5);
+    line-height: 1.7;
+  }
+
+  .bp-field { margin-bottom: var(--space-4); }
+  .bp-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: var(--space-1);
+  }
+  .bp-hint {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--warm-grey);
+    margin: 0 0 0.6em;
+  }
+  .bp-input, .bp-textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--navy);
+    background: #fff;
+    border: 1px solid var(--mauve-pink);
+    border-radius: var(--radius-slide);
+    padding: var(--space-2);
+  }
+  .bp-input:focus, .bp-textarea:focus {
+    outline: 2px solid var(--magenta);
+    outline-offset: 1px;
+  }
+  .bp-textarea { min-height: 7rem; resize: vertical; line-height: 1.6; }
+
+  .bp-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6em;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--warm-grey);
+    line-height: 1.5;
+    margin-bottom: var(--space-4);
+  }
+  .bp-consent input { margin-top: 0.2em; flex: 0 0 auto; }
+
+  .bp-submit {
+    display: block;
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--magenta);
+    border: none;
+    border-radius: var(--radius-slide);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .bp-submit:hover { background: var(--navy); }
+  .bp-submit:disabled { opacity: 0.6; cursor: default; }
+
+  .bp-status {
+    margin-top: var(--space-3);
+    font-family: var(--font-display);
+    font-style: italic;
+    text-align: center;
+    min-height: 1.5em;
+  }
+  .bp-status.is-error { color: var(--magenta); font-style: normal; font-family: var(--font-sans); font-size: var(--text-sm); }
+
+  /* Thank-you state: form hides, a settled reflection remains */
+  .bp-form.is-sent { display: none; }
+  .bp-thankyou { display: none; text-align: center; }
+  .bp-thankyou.is-visible { display: block; }
+  .bp-thankyou p { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-md); line-height: 1.7; }
+
+  .bp-footer {
+    margin-top: var(--space-6);
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--warm-grey);
+  }
+  .bp-footer a { color: var(--warm-grey); }
+
+</style>
+</head>
+<body>
+
+  <div class="bp-wrap">
+
+    <a class="bp-back" href="botanica.html">← Botanica</a>
+
+    <div class="bp-sprig-wrap" id="bp-sprig-wrap" aria-hidden="true">
+      <!-- THE SPRIG — see GLOSSARY.md. Greets each visitor once on arrival. -->
+      <svg viewBox="0 0 130 300" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .bp-sprig-wrap path {
+            fill: none; stroke: var(--magenta); stroke-width: 2;
+            stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1;
+          }
+          .bp-sprig-wrap.is-growing path { animation: bp-sprig-grow 1.4s ease-out forwards; }
+          .bp-sprig-wrap.is-growing path:nth-child(1) { animation-duration: 2.2s; }
+          .bp-sprig-wrap.is-growing path:nth-child(2) { animation-delay: 0.6s; }
+          .bp-sprig-wrap.is-growing path:nth-child(3) { animation-delay: 0.8s; }
+          .bp-sprig-wrap.is-growing path:nth-child(4) { animation-delay: 1.0s; }
+          .bp-sprig-wrap.is-growing path:nth-child(5) { animation-delay: 1.2s; }
+          .bp-sprig-wrap.is-growing path:nth-child(6) { animation-delay: 1.4s; }
+          .bp-sprig-wrap.is-growing path:nth-child(7) { animation-delay: 1.6s; }
+          .bp-sprig-wrap.is-growing path:nth-child(8) { animation-delay: 1.8s; }
+          .bp-sprig-wrap.is-growing path:nth-child(9) { animation-delay: 2.0s; animation-duration: 1.8s; }
+          @keyframes bp-sprig-grow { to { stroke-dashoffset: 0; } }
+          @media (prefers-reduced-motion: reduce) {
+            .bp-sprig-wrap.is-growing path { animation: none; stroke-dashoffset: 0; }
+          }
+        </style>
+        <path pathLength="1" d="M60 295 C 58 240, 64 190, 62 140 C 61 110, 64 85, 68 62" />
+        <path pathLength="1" d="M59 250 C 42 244, 28 234, 20 218" />
+        <path pathLength="1" d="M60 246 C 78 240, 92 230, 100 214" />
+        <path pathLength="1" d="M61 205 C 46 199, 34 190, 28 176" />
+        <path pathLength="1" d="M62 200 C 77 194, 89 185, 95 171" />
+        <path pathLength="1" d="M62 160 C 50 154, 41 146, 36 134" />
+        <path pathLength="1" d="M63 155 C 75 149, 84 141, 89 129" />
+        <path pathLength="1" d="M65 112 C 55 107, 48 100, 44 90" />
+        <path pathLength="1" d="M68 62 C 72 44, 68 30, 56 26 C 46 23, 38 30, 40 40 C 42 48, 50 51, 56 47 C 61 43, 60 36, 55 34" />
+      </svg>
+    </div>
+
+    <span class="bp-eyebrow">Botanica</span>
+    <h1 class="bp-title">Your conditions</h1>
+    <p class="bp-intro">Every plant here carries a label: a type, and the conditions it needs to thrive. This is yours to write.</p>
+
+    <form class="bp-form" id="bp-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+
+      <div class="bp-field">
+        <label class="bp-label" for="bp-name">What would you like to be called</label>
+        <p class="bp-hint">A name, an initial, or leave it blank.</p>
+        <input class="bp-input" type="text" id="bp-name" name="name" maxlength="80">
+      </div>
+
+      <div class="bp-field">
+        <label class="bp-label" for="bp-conditions">Conditions</label>
+        <p class="bp-hint">How would you like to be represented as data? What do you need in order to thrive?</p>
+        <textarea class="bp-textarea" id="bp-conditions" name="conditions" required maxlength="600"></textarea>
+      </div>
+
+      <label class="bp-consent">
+        <input type="checkbox" name="consent" value="yes">
+        <span>I'm happy for what I've written to be used, anonymously, in the Botanica installation or its documentation.</span>
+      </label>
+
+      <!-- Spam trap: real visitors never fill this in. Formspree ignores
+           submissions where this field is non-empty if configured to. -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+      <button class="bp-submit" type="submit" id="bp-submit">Add my conditions</button>
+
+      <p class="bp-status" id="bp-status" role="status"></p>
+    </form>
+
+    <div class="bp-thankyou" id="bp-thankyou">
+      <p>Thank you. Your conditions have been added — one more entry in something still growing.</p>
+    </div>
+
+    <div class="bp-footer">
+      <p>Curious about the thinking behind this? <a href="botanica.html">Read the case study →</a></p>
+    </div>
+
+  </div>
+
+<script>
+  // Growth motif: fires once on arrival, no scroll needed — this page has
+  // almost nothing to scroll through.
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('bp-sprig-wrap').classList.add('is-growing');
+  });
+
+  // Progressive enhancement: submit via fetch so the visitor never leaves
+  // this page. Falls back to a normal form POST (and Formspree's own
+  // confirmation page) if JS fails or is unavailable.
+  const form = document.getElementById('bp-form');
+  const statusEl = document.getElementById('bp-status');
+  const submitBtn = document.getElementById('bp-submit');
+  const thankyou = document.getElementById('bp-thankyou');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusEl.textContent = '';
+    statusEl.classList.remove('is-error');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.classList.add('is-sent');
+        thankyou.classList.add('is-visible');
+      } else {
+        throw new Error('Form service returned an error');
+      }
+    } catch (err) {
+      statusEl.textContent = "Something went wrong — please try again, or come back to this page in a moment.";
+      statusEl.classList.add('is-error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Add my conditions';
+    }
+  });
+</script>
+
+</body>
+</html>
