@@ -1,22 +1,1156 @@
+
+/
+Claude finished the response
+
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Botanica: A Data Humanist Question — Sarah-Jane Crowson</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link href="https://fonts.googleapi
+
+pasted
+
+
+I notice the user prompt is empty, so I cannot determine the primary language. However, based on the thinking block being in English, here is my summary: Architected page restructuring with color-coded typography hierarchy
+I notice the user prompt is empty, so I cannot determine the primary language. However, based on the thinking block being in English, here is my summary: Architected page restructuring with color-coded typography hierarchy
+Botanica's the same move, in three small edits. The wording is all yours already — nothing new except one eyebrow, flagged below.
+
+Edit 1 — add the header's CSS. In the <style> block, find the comment /* ---- Title as poem ---- */ and paste this just above it:
+
+css
+  /* ---- Opening header: still, first — orientation before motion,
+     matching the grammar of the other case studies. ---- */
+  .bo-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+  }
+Edit 2 — add the header itself. Find </nav>, and paste this on the line after it, before the <!-- ============ 1. OPENING — MATERIALISING ============ --> comment:
+
+html
+  <!-- ============ 1. TITLE — still, first ============ -->
+  <header class="bo-opening">
+    <span class="cs-eyebrow">A data humanist question</span>
+    <h1 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h1>
+    <p class="bo-title-poem__standfirst">When does care become containment?</p>
+  </header>
+It reuses your existing title and standfirst styles, so magenta title and olive standfirst come for free — the header sits on cream in Botanica's own register, then scrolling drops into the aubergine dark of the Materialising. That register shift is a nice moment in itself.
+
+Edit 3 — stop the page introducing itself twice. In the old "TITLE AS POEM" section (now below the Materialising), find these three lines and replace them:
+
+html
+    <div class="cs-inner"><span class="cs-eyebrow">A data humanist question</span></div>
+    <h2 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h2>
+    <p class="bo-title-poem__standfirst">When does care become containment?</p>
+with this one line:
+
+html
+    <div class="cs-inner"><span class="cs-eyebrow">The installation</span></div>
+so that section becomes the introduction to the work itself — the sewing box paragraphs — with a fresh eyebrow instead of a repeated title. "The installation" is my placeholder; swap in whatever eyebrow you'd rather ("The work", "The question" — your call).
+
+One deliberate detail: the title is now an <h1> rather than <h2> — it's the page's proper top-level heading, which is both semantically right and better for screen readers, and it renders identically because the class does the styling.
+
+Commit message suggestion: "botanica: title header above materialising". Then Minor Deities when you're ready — paste it over and I suspect it'll need only a light check rather than surgery.
+
+Please could you drop those in a fresh document - but what I'll do is stop uploading and downloading and if you can make the new html copyable from here I can control a and control v across to github
+
+
+Weighed presentation format for copyable HTML code
+Weighed presentation format for copyable HTML code
+Here's the complete new botanica.html with all three edits applied — select all in the GitHub editor, delete, paste this in its place, commit:
+
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah-Jane Crowson</title>
-<link rel="stylesheet" href="assets/css/tokens.css">
+<title>Botanica: A Data Humanist Question — Sarah-Jane Crowson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
 <style>
-  body { display:flex; align-items:center; justify-content:center; min-height:100vh; text-align:center; }
-  .placeholder h1 { font-size: var(--text-2xl); font-style: italic; margin-bottom: var(--space-2); }
-  .placeholder p { font-family: var(--font-sans); color: var(--warm-grey); }
-  .placeholder a { color: var(--magenta); }
+
+  body.bo-page { background: var(--cream); }
+
+  /* ---- Botanica's own dark ground: deep aubergine drawn from the
+     sewing-box lining, distinct from Magic Lantern's nocturnal register.
+     Set locally so shared components keep their defaults elsewhere. ---- */
+  .bo-sequence {
+    --page-ground: #2A1020;
+    --page-ink: var(--cream);
+    background: var(--page-ground);
+    color: var(--page-ink);
+    padding: var(--space-5) 0;
+    position: relative;
+  }
+  .bo-sequence .proj-base-img { opacity: 0.2; }
+  .bo-sequence .proj-sticky::after {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    background: radial-gradient(circle at center, rgba(123, 23, 80, 0.22), transparent 62%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- Opening: MATERIALISING ----
+     The collaged image (the world of the slides — constructed, fictional)
+     dissolves into its documentary twin as the reader scrolls. The
+     photograph is a layer within the collage, so the installation itself
+     never moves; only the imagined layer withdraws. See GLOSSARY.md. ---- */
+  .bo-materialise__runway {
+    height: 220vh;
+    position: relative;
+    background: #2A1020;
+  }
+  .bo-materialise__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-2);
+  }
+  .bo-materialise__frame {
+    position: relative;
+    height: min(82vh, 120vw);
+    aspect-ratio: 4 / 5;
+    max-width: 92vw;
+  }
+  .bo-materialise__frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-slide);
+  }
+  .bo-materialise__photo { z-index: 1; box-shadow: 0 2rem 6rem rgba(0,0,0,0.55); }
+  .bo-materialise__collage { z-index: 2; will-change: opacity; }
+  .bo-materialise__scroll-cue {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mauve-pink);
+    opacity: 0.7;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bo-materialise__runway { height: auto; padding: var(--space-5) 0; }
+    .bo-materialise__sticky { position: relative; height: auto; }
+    .bo-materialise__frame { height: auto; aspect-ratio: auto; max-width: min(92vw, 34rem); }
+    .bo-materialise__frame img { position: static; height: auto; }
+    .bo-materialise__collage { display: none; }
+  }
+
+  /* ---- Opening header: still, first — orientation before motion,
+     matching the grammar of the other case studies. ---- */
+  .bo-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+  }
+
+  /* ---- Title as poem ---- */
+  .bo-title-poem__title {
+    font-size: clamp(2.4rem, 5vw, var(--text-2xl));
+    color: var(--magenta);
+    max-width: var(--measure-wide);
+    margin: var(--space-2) auto var(--space-2);
+  }
+  .bo-title-poem__standfirst {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--olive);
+    max-width: var(--measure-wide);
+    margin: 0 auto var(--space-4);
+  }
+  .bo-title-poem .cs-inner p { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+  .bo-title-poem .cs-inner p + p { margin-top: 1.2em; }
+
+  /* ---- Argument ---- */
+  .bo-argument__item { max-width: var(--measure); margin: 0 auto var(--space-4); }
+  .bo-argument__item h3 { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
+
+  /* The claim line arrives as the page's text palimpsest, on cream —
+     line colour overridden to magenta for contrast on the light ground. */
+  .bo-claim { background: var(--cream); --text-focus-color: var(--magenta); }
+
+  /* ---- Horizontal scroll-snap plant sequence ---- */
+  .bo-plants { background: var(--deep-warm-grey); color: var(--cream); padding: var(--space-5) 0; position: relative; overflow: hidden; }
+  .bo-plants__intro { text-align: center; padding: 0 var(--space-3) var(--space-4); }
+  .bo-plants__intro .cs-eyebrow { color: var(--slide-amber); }
+  .bo-plants__track {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 var(--space-3) var(--space-2);
+    scrollbar-width: thin;
+    scrollbar-color: var(--magenta) transparent;
+  }
+  .bo-plant {
+    flex: 0 0 min(76vw, 26rem);
+    scroll-snap-align: center;
+    background: rgba(245,239,228,0.03);
+    border: 1px solid rgba(245,239,228,0.1);
+    border-radius: var(--radius-slide);
+    overflow: hidden;
+  }
+  .bo-plant img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .bo-plant__caption { padding: var(--space-2) var(--space-2) var(--space-3); }
+  .bo-plant__name { font-family: var(--font-display); font-size: var(--text-md); color: var(--slide-amber); }
+  .bo-plant__conditions-label {
+    font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--warm-grey); display: block; margin: var(--space-1) 0 0.4em;
+  }
+  .bo-plant__conditions { font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); line-height: 1.6; color: var(--cream); }
+  .bo-plants__scroll-cue { text-align: center; font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); padding-top: var(--space-2); }
+
+  .bo-specimen__frame { max-width: 22rem; margin: 0 auto; position: relative; }
+  .bo-specimen__frame img { width: 100%; border-radius: var(--radius-slide); box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.45); }
+
+  /* ---- Closing specimen (terrarium collage) ---- */
+  .bo-specimen { position: relative; text-align: center; padding: var(--space-6) var(--space-3); }
+  .bo-specimen__caption {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--mauve-pink);
+    margin: var(--space-3) auto 0;
+    max-width: var(--measure);
+  }
+
+  /* ---- QR / participation ---- */
+  .bo-qr { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: center; max-width: var(--measure-wide); margin: 0 auto; }
+  .bo-qr__code {
+    width: 9rem; height: 9rem; flex: 0 0 auto;
+    border: 1px solid var(--warm-grey); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans); font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--warm-grey); text-align: center; padding: var(--space-1);
+    background: rgba(123,23,80,0.04);
+  }
+  .bo-qr__text { max-width: 26rem; }
+  .bo-qr__text a { color: var(--magenta); }
+
+  .bo-closing__next { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
+  .bo-closing__next a { color: var(--magenta); text-decoration: none; border-bottom: 1px solid currentColor; }
+
 </style>
 </head>
-<body>
-  <div class="placeholder">
-    <h1>Sarah-Jane Crowson</h1>
-    <p>Landing page — built last, by design.<br>
-      In the meantime: <a href="case-studies/magic-lantern.html">Minor Deities →</a> · <a href="case-studies/botanica.html">Botanica →</a> · <a href="case-studies/consultation.html">Revealing Layers →</a></p>
-  </div>
+<body class="bo-page">
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+    <div class="site-nav__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ============ 1. TITLE — still, first: orientation before motion,
+       matching the grammar of the other case studies ============ -->
+  <header class="bo-opening">
+    <span class="cs-eyebrow">A data humanist question</span>
+    <h1 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h1>
+    <p class="bo-title-poem__standfirst">When does care become containment?</p>
+  </header>
+
+  <!-- ============ 2. MATERIALISING — now the first thing scrolling
+       brings you into, not the landing state ============ -->
+  <section class="bo-materialise">
+    <div class="bo-materialise__runway" id="bo-mat-runway">
+      <div class="bo-materialise__sticky">
+        <div class="bo-materialise__frame">
+          <img class="bo-materialise__photo" src="../assets/images/botanica/botanica-title-photo.jpg"
+               alt="A Victorian sewing box lined in magenta silk holds ivy and small plants; a spotted orchid arcs overhead beside a fern carrying its care label.">
+          <img class="bo-materialise__collage" id="bo-mat-collage" src="../assets/images/botanica/botanica-title-collage.jpg"
+               alt="" aria-hidden="true">
+        </div>
+        <p class="bo-materialise__scroll-cue">Scroll</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. THE INSTALLATION ============ -->
+  <section class="bo-title-poem cs-section reveal">
+    <div class="cs-inner"><span class="cs-eyebrow">The installation</span></div>
+    <div class="cs-inner">
+      <p><strong>Botanica</strong> is a small, living installation exploring how people become represented as data. It asks what gets lost when complex, relational lives are organised into categories.</p>
+      <p>A Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to hold thread, pins, buttons — equipment to create, mend and make. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
+      <p>The box still organises. But it can no longer fully contain or care for what it holds.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. THE ARGUMENT ============ -->
+  <section class="bo-argument-images cs-section reveal">
+    <div class="cs-inner cs-inner--wide"><span class="cs-eyebrow">The argument</span></div>
+
+    <div class="bo-argument__item">
+      <h3>Classification as care — and its limit</h3>
+      <p>Sewing boxes, like many Victorian objects, divide, compartmentalise and label. They are both useful and beautiful. But a box is still one box: one atmosphere, one structure, one bounded environment. The idea of sorting, of classification is not rejected here — it does real, useful work. But Botanica asks what happens at the point where it reaches its limit, or when it is applied to things which do not naturally belong together.</p>
+    </div>
+
+    <div class="bo-argument__item">
+      <h3>Data as ecological</h3>
+      <p>Rather than treating data as fixed, flat or extractive, Botanica asks what happens when data is imagined as ecological instead — relational, situated, fragile, adaptive, dependent on ongoing care. A data point then behaves less like an entry in a spreadsheet and more like the living thing it represents: it needs particular conditions to be understood accurately, and it can be harmed by the wrong environment even while carrying an accurate care label.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4b. THE CLAIM — text palimpsest, once on this page ============ -->
+  <section class="bo-claim">
+    <div class="text-focus">
+      <div class="text-focus__runway" id="tf-runway">
+        <div class="text-focus__sticky">
+          <p class="text-focus__line" id="tf-line">A label states what is needed to thrive. A care environment asks — and keeps asking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. THE PALIMPSEST — the silk lining, close ============ -->
+  <section class="bo-sequence">
+    <div class="proj-block">
+      <div class="proj-runway">
+        <div class="proj-sticky">
+          <img class="proj-base-img" src="../assets/images/botanica/label-detail-magenta-lining.jpg" alt="" aria-hidden="true">
+          <img class="proj-sticky__img" src="../assets/images/botanica/label-detail-magenta-lining.jpg" alt="A close view of the sewing box's crumpled magenta silk lining and brass hinge, with fern fronds and plant labels leaning against it.">
+        </div>
+      </div>
+      <figcaption class="proj-caption">
+        <span class="ml-slide__caption-title" style="color:var(--slide-amber);">Containment and growth</span>
+        <p class="slide-caption" style="color:var(--mauve-pink);">Despite its silken luxury, the box cannot quite hold a living thing.</p>
+      </figcaption>
+    </div>
+  </section>
+
+  <!-- ============ 6. PLANT SEQUENCE — horizontal scroll-snap ============ -->
+  <section class="bo-plants" id="bo-plant-sequence">
+    <div class="bo-plants__intro reveal">
+      <span class="cs-eyebrow">Conditions, not just categories</span>
+      <p style="font-family:var(--font-display); font-style:italic; color:var(--warm-grey); max-width:var(--measure); margin:0 auto;">Each plant carries a label — a type, and the conditions it actually needs to thrive.</p>
+    </div>
+    <div class="bo-plants__track reveal">
+
+      <figure class="bo-plant">
+        <img src="../assets/images/botanica/sweet-woodruff.jpg" alt="Sweet woodruff's whorled star-shaped leaves fill the frame, a red thread winding through the stems, magenta silk behind.">
+        <figcaption class="bo-plant__caption">
+          <span class="bo-plant__name">Sweet Woodruff</span>
+          <span class="bo-plant__conditions-label">Conditions</span>
+          <p class="bo-plant__conditions">Shade, shelter, scent — my stars form quiet constellations.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="bo-plant">
+        <img src="../assets/images/botanica/spiderwort.jpg" alt="Close view of spiderwort's striped purple and silver-green leaves against the compartments and magenta silk of the sewing box.">
+        <figcaption class="bo-plant__caption">
+          <span class="bo-plant__name">Spiderwort</span>
+          <span class="bo-plant__conditions-label">Conditions</span>
+          <p class="bo-plant__conditions">My brightness thrives in soft half-shaded light — holds vibrancy and contemplation.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="bo-plant">
+        <img src="../assets/images/botanica/samphire.jpg" alt="Samphire's segmented green stems rise in front of the box's magenta lining, dried roses and moss at their base.">
+        <figcaption class="bo-plant__caption">
+          <span class="bo-plant__name">Samphire</span>
+          <span class="bo-plant__conditions-label">Conditions</span>
+          <p class="bo-plant__conditions">Sea air — the edge of ideas. Resilience is not a synonym for ease.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="bo-plant">
+        <img src="../assets/images/botanica/fern.jpg" alt="A lemon button fern arcs across the box's brass hinge and magenta silk, half concealing its own care label.">
+        <figcaption class="bo-plant__caption">
+          <span class="bo-plant__name">Fern</span>
+          <span class="bo-plant__conditions-label">Conditions</span>
+          <p class="bo-plant__conditions">Soft, damp waterfalls, the scent of moss — my curled knowledge unfurls with regular attention.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+    <p class="bo-plants__scroll-cue">Scroll sideways →</p>
+  </section>
+
+  <!-- ============ 7. CLOSING SPECIMEN — the work re-enters the imagined ============ -->
+  <section class="bo-specimen reveal" style="background:var(--near-black); color:var(--cream);" id="bo-closing-specimen">
+    <span class="cs-eyebrow" style="color:var(--slide-amber);">Worlds under glass</span>
+    <div class="bo-specimen__frame">
+      <img src="../assets/images/botanica/terrarium-collage.jpg" alt="A collaged double exposure: the Botanica installation seen through overlaid glass vessels and greenery, the real and the imagined interleaved.">
+    </div>
+    <p class="bo-specimen__caption">The Victorians also held worlds in glass: the Crystal Palace, Wardian cases, rows of pinned insects. But what knowledge escaped the glass — half-hidden, now, in hedgerows?</p>
+  </section>
+
+  <!-- ============ 8. PARTICIPATION ============ -->
+  <section class="cs-section reveal">
+    <div class="cs-inner"><span class="cs-eyebrow">Your thoughts</span></div>
+    <div class="bo-qr">
+      <img src="../assets/images/botanica/participate-qr.png" alt="QR code linking to the Botanica participation page." style="width:9rem; height:9rem; border-radius:4px;">
+      <p class="bo-qr__text">Scan the QR code beside the installation or visit <a href="botanica-participate.html">this link</a> to find a space for dialogue. You are invited to consider how <em>you</em> would like to be represented as data — and what a more humane, situated data practice might look like.</p>
+    </div>
+  </section>
+
+  <!-- ============ 9. CLOSING ============ -->
+  <section class="cs-section reveal" style="background:var(--cream);">
+    <div class="cs-inner">
+      <span class="cs-eyebrow">Still growing</span>
+      <p>Botanica is in development, with a September launch in Hereford as part of h-Art. This page will change as the installation does — final photography, confirmed label text, and the participation space are still to come.</p>
+     <p class="bo-closing__next"><a href="magic-lantern.html">← Minor Deities</a> · <a href="consultation.html">Revealing Layers →</a></p>
+    </div>
+  </section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+
+    // MATERIALISING: the collaged layer thins as the reader scrolls,
+    // until only the documentary photograph remains. Scroll-driven so the
+    // reader performs the crossing themselves. See GLOSSARY.md.
+    const matRunway = document.getElementById('bo-mat-runway');
+    const matCollage = document.getElementById('bo-mat-collage');
+    const MAT_DWELL = 0.25; // final quarter of the runway holds the photograph alone
+    let matTicking = false;
+    function updateMaterialise() {
+      const rect = matRunway.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const distance = total * (1 - MAT_DWELL);
+      let p = distance > 0 ? (-rect.top) / distance : 1;
+      p = Math.min(Math.max(p, 0), 1);
+      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      matCollage.style.opacity = 1 - eased;
+      matTicking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!matTicking) {
+        requestAnimationFrame(updateMaterialise);
+        matTicking = true;
+      }
+    }, { passive: true });
+    updateMaterialise();
+
+    // PROJECTION OVERLAY (image palimpsest) — used once on this page,
+    // around the silk-lining close-up. Same mechanism as Magic Lantern's.
+    const runways = document.querySelectorAll('.proj-runway');
+    const MAX_SCALE = 2, MIN_SCALE = 1, MAX_BLUR = 16, DWELL = 0.35;
+    let ticking = false;
+    function updateProjections() {
+      runways.forEach(runway => {
+        const rect = runway.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const focusDistance = total * (1 - DWELL);
+        let progress = focusDistance > 0 ? (-rect.top) / focusDistance : 0;
+        progress = Math.min(Math.max(progress, 0), 1);
+        const eased = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        const img = runway.querySelector('.proj-sticky__img');
+        if (img) {
+          img.style.transform = `scale(${MAX_SCALE - (MAX_SCALE - MIN_SCALE) * eased})`;
+          img.style.filter = `blur(${MAX_BLUR * (1 - eased)}px)`;
+        }
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProjections);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateProjections();
+
+    // TEXT PALIMPSEST — the claim line resolving from blur. Once per page.
+    const tfRunway = document.getElementById('tf-runway');
+    const tfLine = document.getElementById('tf-line');
+    if (tfRunway && tfLine) {
+      const TF_MAX_BLUR = 14, TF_MIN_OPACITY = 0.35;
+      const TF_MAX_TRACK = 0.06, TF_MIN_TRACK = 0.02, TF_DWELL = 0.35;
+      let tfTicking = false;
+      function updateTextFocus() {
+        const rect = tfRunway.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const focusDistance = total * (1 - TF_DWELL);
+        let p = focusDistance > 0 ? (-rect.top) / focusDistance : 1;
+        p = Math.min(Math.max(p, 0), 1);
+        const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        tfLine.style.filter = `blur(${TF_MAX_BLUR * (1 - eased)}px)`;
+        tfLine.style.opacity = TF_MIN_OPACITY + (1 - TF_MIN_OPACITY) * eased;
+        tfLine.style.letterSpacing = `${TF_MAX_TRACK - (TF_MAX_TRACK - TF_MIN_TRACK) * eased}em`;
+        tfTicking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!tfTicking) {
+          requestAnimationFrame(updateTextFocus);
+          tfTicking = true;
+        }
+      }, { passive: true });
+      updateTextFocus();
+    }
+  }
+</script>
+
 </body>
 </html>
+Everything else is untouched — Materialising, the silk palimpsest, the claim line, the plant sequence all exactly as they were, just renumbered in the section comments. The one wording decision left to you is the eyebrow on the old title section, now reading "The installation" — swap it in GitHub afterwards if another word feels righter.
+
+Commit as something like "botanica: title header above materialising", and once you've seen it live, paste Minor Deities over and we'll give it the light check.
+
+GORGEOUS. Perfect, much easier and more readable.
+
+Excellent — and the copy-paste workflow clearly suits how you're working now, so we'll keep it as the default.
+
+That's two of the three chapters opening the same way. Whenever you're ready, paste magic-lantern.html over and I'll do the light check on Minor Deities — my expectation is it already opens correctly and needs nothing, or at most a nudge so its title block reads as the same kind of opening as the other two: eyebrow, title, standfirst, still, before the page starts to move. If it's already right, we leave it settled and the chapter grammar is complete.
+
+Then the remaining map, as it stands: the <1 stat card adjustment on Revealing Layers if you still want it, the About Me page, and the landing page — which now inherits both the statement text we saved and the three matching chapter openings to gather behind those Stanhope peepholes.
+
+
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Minor Deities: representations &amp;c., under glass — Sarah-Jane Crowson</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link href="https:
+
+pasted
+
+Now, Magic Lantern actually looks beautiful without the title, but I think we need the title. I think what we do is add in the title but keep a memory of how beautiful the start of magic lantern works (partly because the image is strong) and we use that for the landing page - the landing page holds the image which currently kicks off magic lantern. here is the magic lantern code
+
+
+Architected header design while preserving image-forward aesthetic for landing page
+Architected header design while preserving image-forward aesthetic for landing page
+That's a lovely trade — the hedgerow image gets promoted rather than demoted: it stops being one page's opening and becomes the site's. Noted for the landing page build: Hedgerow and Lost Light leads it, and the image-first-in-darkness opening we're removing here is the feeling the landing page should preserve (which sits beautifully with the Stanhope peephole concept — fixed circles of light in a dark field).
+
+Two small decisions I've made in the code below, both one-line swaps in GitHub if you'd rather:
+
+The standfirst — the other two pages have one, and Minor Deities didn't have an obvious candidate, so I've borrowed your own line: "To be preserved is not a synonym for free." Alternatives from your existing text: "We share opaque reflections in the gardens of the past." — or delete the line entirely.
+The old title section's eyebrow — with the title lifted to the top, that section now opens with the eyebrow "Reading the title" (its three paragraphs literally unpack the title phrase by phrase, so they still work — the bolded fragments carry it). Swap the wording if another feels righter.
+The header sits on near-black — Minor Deities' own ground, as cream is Botanica's — with the title in cream and the &c., under glass in slide-gold. Full file, select-all and paste over:
+
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minor Deities: representations &amp;c., under glass — Sarah-Jane Crowson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+
+  body.ml-page { background: var(--near-black); }
+
+  /* ---- Opening header: still, first — orientation before motion,
+     matching the grammar of the other case studies, but on this page's
+     own nocturnal ground rather than cream. ---- */
+  .ml-opening-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    color: var(--cream);
+    padding: var(--space-6) var(--space-3) var(--space-4);
+    text-align: center;
+  }
+  .ml-opening-header .cs-eyebrow { color: var(--slide-gold); }
+  .ml-opening-header__title {
+    font-size: clamp(2.2rem, 5vw, var(--text-2xl));
+    color: var(--cream);
+    max-width: var(--measure-wide);
+    margin: var(--space-2) auto var(--space-2);
+  }
+  .ml-opening-header__title em { color: var(--slide-gold); font-style: italic; }
+  .ml-opening-header__standfirst {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--warm-grey);
+    max-width: var(--measure);
+    margin: 0 auto;
+  }
+
+  /* ---- Opening ---- */
+  .ml-opening {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    padding: var(--space-5) var(--space-2) var(--space-4);
+  }
+  .ml-opening__frame { width: min(92vw, 560px); }
+  .ml-opening__frame img { width: 100%; box-shadow: 0 2rem 6rem rgba(0,0,0,0.7); }
+  .ml-opening__caption {
+    font-family: var(--font-display); font-style: italic; color: var(--warm-grey);
+    font-size: var(--text-sm); text-align: center; margin-top: var(--space-2);
+  }
+  .ml-opening__scroll-cue {
+    margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-xs);
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); opacity: 0.6;
+  }
+
+  /* ---- Title as poem ---- */
+  .ml-title-poem { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); }
+  .ml-title-poem__title {
+    font-size: var(--text-2xl); font-style: italic; margin-bottom: var(--space-4);
+    max-width: var(--measure-wide); margin-left: auto; margin-right: auto;
+  }
+  .ml-title-poem .cs-inner { display: grid; gap: var(--space-3); }
+  .ml-title-poem p { font-size: var(--text-md); line-height: 1.6; }
+
+  /* ---- Shared: image-only sequence (opening triad + closing chapter) ---- */
+  .ml-sequence {
+    background: var(--deep-warm-grey); color: var(--cream);
+    padding: var(--space-5) 0; position: relative;
+  }
+  .ml-sequence__intro {
+    max-width: var(--measure); margin: 0 auto var(--space-5);
+    padding: 0 var(--space-3); text-align: center;
+  }
+  .ml-sequence__intro .cs-eyebrow { color: var(--slide-gold); }
+  .ml-slide { padding: var(--space-5) var(--space-2); }
+  .ml-slide__frame { max-width: 640px; margin: 0 auto; }
+  .ml-slide--full .ml-slide__frame { max-width: 760px; }
+  .ml-slide__caption-title {
+    font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--slide-gold);
+  }
+
+  .ml-ghost-text {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .ml-ghost-text span {
+    font-family: var(--font-display); font-style: italic;
+    font-size: clamp(3rem, 12vw, 9rem); color: var(--cream); opacity: 0.035;
+    white-space: nowrap; transform: rotate(-4deg);
+  }
+
+  .ml-moth { position: absolute; width: 52px; height: 44px; opacity: 0; z-index: 5; pointer-events: none; }
+  .ml-moth.is-flying { animation: moth-drift 11s ease-in-out forwards; }
+  .ml-moth__wing { transform-box: fill-box; }
+  .ml-moth__wing--left  { transform-origin: 100% 60%; }
+  .ml-moth__wing--right { transform-origin: 0% 60%; }
+  .ml-moth.is-flying .ml-moth__wing--left  { animation: wing-flap-left 0.19s ease-in-out infinite alternate; }
+  .ml-moth.is-flying .ml-moth__wing--right { animation: wing-flap-right 0.17s ease-in-out infinite alternate; }
+  @keyframes wing-flap-left  { 0% { transform: scaleX(1) rotate(-2deg); } 100% { transform: scaleX(0.38) rotate(-10deg); } }
+  @keyframes wing-flap-right { 0% { transform: scaleX(1) rotate(2deg); } 100% { transform: scaleX(0.38) rotate(10deg); } }
+  @keyframes moth-drift {
+    0%   { opacity: 0;   transform: translate(-8vw, 30vh) rotate(12deg); }
+    8%   { opacity: 0.9; transform: translate(-2vw, 28vh) rotate(-6deg); }
+    22%  { opacity: 0.9; transform: translate(8vw, 22vh) rotate(8deg); }
+    38%  { opacity: 0.9; transform: translate(18vw, 26vh) rotate(-10deg); }
+    52%  { opacity: 0.9; transform: translate(14vw, 32vh) rotate(6deg); }
+    66%  { opacity: 0.9; transform: translate(6vw, 38vh) rotate(-8deg); }
+    80%  { opacity: 0.9; transform: translate(-2vw, 44vh) rotate(10deg); }
+    92%  { opacity: 0.4; transform: translate(-6vw, 46vh) rotate(-4deg); }
+    100% { opacity: 0;   transform: translate(-12vw, 48vh) rotate(6deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ml-moth.is-flying { animation: none; opacity: 0; } .ml-moth.is-flying .ml-moth__wing { animation: none; } }
+
+  /* ---- Text + image section: the argument, interwoven with projection-effect images ---- */
+  .ml-argument-images { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3) 0; }
+  .ml-argument__item { margin-bottom: var(--space-4); max-width: var(--measure-wide); margin-left: auto; margin-right: auto; }
+  .ml-argument__number { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
+  .ml-argument__item h3 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
+  .ml-argument__item p { font-size: var(--text-base); max-width: var(--measure); }
+
+  /* ---- More text: argument III + citation, no image ---- */
+  .ml-argument-text { background: var(--cream); color: var(--navy); padding: var(--space-5) var(--space-3) var(--space-6); }
+
+  /* ---- Interlude: the fossil line resolves, its stanza follows, and one
+     slide stands beside the argument about what exceeds explanation.
+     Dark ground so the resolving line reads as light. ---- */
+  .ml-interlude {
+    background: var(--near-black);
+    color: var(--cream);
+    padding: 0 var(--space-3) var(--space-5);
+  }
+  .ml-interlude .ml-poem { font-style: italic; }
+  .ml-citation {
+    margin-top: var(--space-4); padding: var(--space-3); border: 1px solid var(--warm-grey);
+    border-left: 3px solid var(--magenta); font-family: var(--font-sans); font-size: var(--text-sm);
+    max-width: var(--measure-wide); margin-left: auto; margin-right: auto; line-height: 1.7;
+  }
+
+  /* ---- The poem ---- */
+  .ml-poem-section { background: var(--near-black); color: var(--cream); padding: var(--space-6) var(--space-3); }
+  .ml-poem-section .cs-eyebrow { color: var(--slide-gold); }
+  .ml-poem { font-family: var(--font-display); font-style: italic; font-size: var(--text-md); line-height: 1.85; max-width: var(--measure); margin: var(--space-3) auto 0; }
+  .ml-poem-credit { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--warm-grey); margin-top: var(--space-3); max-width: var(--measure); margin-left: auto; margin-right: auto; }
+  .ml-poem-credit a { color: var(--slide-gold); text-decoration: underline; }
+
+  /* ---- Closing ---- */
+  .ml-closing { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); }
+  .ml-closing p { font-size: var(--text-md); max-width: var(--measure); }
+  .ml-closing__credit { margin-top: var(--space-5); font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); color: var(--warm-grey); }
+  .ml-closing__nav { margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-sm); }
+  .ml-closing__nav a { color: var(--magenta); text-decoration: none; border-bottom: 1px solid var(--magenta); }
+</style>
+</head>
+<body class="ml-page">
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+    <div class="site-nav__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ============ 1. TITLE — still, first: orientation before motion,
+       matching the grammar of the other case studies ============ -->
+  <header class="ml-opening-header">
+    <span class="cs-eyebrow">The visual poetics of hidden space</span>
+    <h1 class="ml-opening-header__title">Minor Deities: <em>representations &amp;c., under glass</em></h1>
+    <p class="ml-opening-header__standfirst">To be preserved is not a synonym for free.</p>
+  </header>
+
+  <!-- ============ 2. OPENING IMAGE ============ -->
+  <section class="ml-opening">
+    <div class="ml-opening__frame">
+      <img src="../assets/images/magic-lantern/hedgerow-and-lost-light.jpg"
+           alt="A lantern slide titled Minor Deities: representations &c., under glass. A figure in pale Victorian dress stands in a wooded clearing, her head replaced by a bloom of rose-pink light.">
+    </div>
+    <p class="ml-opening__scroll-cue">Scroll</p>
+  </section>
+
+  <!-- ============ 3. THREE IMAGES — image rhythm before any reading ============ -->
+  <section class="ml-sequence">
+    <div class="proj-block">
+      <div class="proj-runway">
+        <div class="proj-sticky">
+          <img class="proj-base-img" src="../assets/images/magic-lantern/cautious-wonder.jpg" alt="" aria-hidden="true">
+          <img class="proj-sticky__img" src="../assets/images/magic-lantern/cautious-wonder.jpg" alt="A robed figure with a luminous moon in place of a face stands among dark trees, a moth nearby. Plate 60.">
+        </div>
+      </div>
+      <figcaption class="proj-caption">
+        <span class="ml-slide__caption-title">The minor deity of cautious wonder — Plate 60</span>
+        <p class="slide-caption">We share opaque reflections in the gardens of the past.</p>
+      </figcaption>
+    </div>
+    <figure class="ml-slide ml-slide--full">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--projection">
+          <img src="../assets/images/magic-lantern/minor-deity-of-forgotten-places.jpg" alt="A figure with a glowing fern in place of a head stands in flooded cathedral ruins, reflected in still dark water.">
+        </div>
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of forgotten places</span>
+          <p class="slide-caption">Each gilded fern unfurls in forest night</p>
+        </figcaption>
+      </div>
+    </figure>
+    <figure class="ml-slide">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--mounted">
+          <img src="../assets/images/magic-lantern/minor-deity-of-open-fortune.jpg" alt="A figure with a flower in place of a head stands before ruined city towers, a cluster of amethyst crystal floating nearby.">
+        </div>
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of open fortune — Plate 26</span>
+          <p class="slide-caption">Our thoughts encoded in the bones of cities</p>
+        </figcaption>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ============ 4. TITLE AS POEM (first text) ============ -->
+  <section class="ml-title-poem cs-section reveal">
+    <div class="cs-inner"><span class="cs-eyebrow">Reading the title</span></div>
+    <div class="cs-inner">
+      <p><strong>Minor Deities</strong> were a series of collages shown as Victorian 'Magic Lantern' slides in Hereford in 2023. They are imagined household gods, wayside-shrine presences, the half-glimpsed things that linger in spaces officialdom has stopped looking at closely.</p>
+      <p><strong>representations &amp;c.</strong> borrows the voice of the Victorian catalogue entry. The <em>&amp;c.</em> admits existences beyond the label which we cannot list. It gestures to the plant that outgrows its pot and blurs boundaries: the notes classification cannot hold.</p>
+      <p><strong>under glass</strong> is the living thing — a memory preserved by being fixed in a point in space. But the work questions whether to be seen is also to be known. To be preserved is not a synonym for free.</p>
+    </div>
+  </section>
+
+  <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER ============ -->
+  <section class="ml-argument-images">
+    <div class="cs-inner cs-inner--wide reveal"><span class="cs-eyebrow">The argument</span></div>
+
+    <div class="ml-argument__item reveal">
+      <span class="ml-argument__number">I.</span>
+      <h3>The portrait as data visualisation</h3>
+      <p>The collages use traditional portrait images and transform them. A Victorian portrait was never a neutral record. It encoded social position, gender, propriety, wealth — the values of whoever commissioned it. It shows only what was classified and what the system valued enough to keep.</p>
+    </div>
+
+    <div class="proj-block">
+      <div class="proj-runway">
+        <div class="proj-sticky">
+          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="" aria-hidden="true">
+          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="A woman in a butterfly mask sits in a moss-grown cloister, an astrological map overlaid across the scene.">
+        </div>
+      </div>
+      <figcaption class="proj-caption">
+        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of underground caverns — unframed plate</span>
+        <p class="slide-caption" style="color:var(--warm-grey);">Water keeps its own reflected time.</p>
+      </figcaption>
+    </div>
+
+    <div class="ml-argument__item reveal">
+      <span class="ml-argument__number">II.</span>
+      <h3>Time as non-linear, space as relational</h3>
+      <p>The lantern slide transfixes time: pins a moment, fixes it under glass, projects it to an audience who call it true and write it into histories. This work counter-balances that, evoking Lefebvre's <em>half-glimpsed forgotten spaces</em> — the wayside shrine, the overgrown spring, the local deity not quite erased. These are the residual spaces the official image cannot fully contain. They echo Massey's relational space: images from different times and registers are layered, because space and time are constellations of relation rather than fixed coordinates.</p>
+    </div>
+
+    <div class="proj-block">
+      <div class="proj-runway">
+        <div class="proj-sticky">
+          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="" aria-hidden="true">
+          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="A pale, faceless figure seen from behind, standing at the edge of dark water in a tangled forest.">
+        </div>
+      </div>
+      <figcaption class="proj-caption">
+        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of irresolution — unframed plate</span>
+        <p class="slide-caption" style="color:var(--warm-grey);">Each moth's a beacon in the quiet garden</p>
+      </figcaption>
+    </div>
+  </section>
+
+  <!-- ============ 6a. INTERLUDE — the fossil line resolves, the stanza it
+       belongs to follows, and Reflected Invocations stands beside the
+       argument about what exceeds explanation ============ -->
+  <section class="ml-interlude">
+    <div class="text-focus">
+      <div class="text-focus__runway" id="tf-runway">
+        <div class="text-focus__sticky">
+          <p class="text-focus__line" id="tf-line">the eggshell bones of tiny things are lost</p>
+        </div>
+      </div>
+    </div>
+    <div class="cs-inner reveal">
+      <div class="ml-poem" style="font-size:var(--text-base); margin: 0 auto;">
+        <p>Sentences are cardamom,<br>
+        their aromatic seed dispersed<br>
+        in words just as imago's wings<br>
+        unfurl to skeletons of leafy veins.<br>
+        <br>
+        This world's a vast electrograph.<br>
+        It spins to shine and so outrun<br>
+        the crawling night. Inside its rock<br>
+        the eggshell bones of tiny things are lost</p>
+      </div>
+    </div>
+    <figure class="ml-slide reveal">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--mounted">
+          <img src="../assets/images/magic-lantern/invocation-and-alchemy.jpg" alt="A figure with an owl's head in eighteenth-century dress gestures toward a golden chandelier suspended in a ruined hall.">
+        </div>
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of reflected invocations</span>
+          <p class="slide-caption">We catch light in the subterranean palace</p>
+        </figcaption>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ============ 6b. MORE TEXT — argument III, no image ============ -->
+  <section class="ml-argument-text">
+    <div class="ml-argument__item reveal">
+      <span class="ml-argument__number">III.</span>
+      <h3>What AI cannot generate alone</h3>
+      <!-- EDIT -->
+      <p>The thinking in these slides fed directly into five questions contributed to Humanity's Last Exam, a benchmark designed to test what current AI cannot answer. The questions passed extensive peer review. Humanities scholars, and women working at small arts colleges, were almost entirely absent from the contributor list. If humanistic thinking is missing from the tests by which AI capability is measured, do we risk creating a closed, impermeable dataset — a narrow representation of space which becomes fixed in our shared social experience?</p>
+      <div class="ml-citation">
+        Center for AI Safety, Scale AI and HLE Contributors Consortium. <em>Nature</em>, vol. 649, pp. 1139–1146, 28 January 2026. DOI: 10.1038/s41586-025-09962-4. Sarah-Jane Crowson, listed author, Hereford College of Arts, Hereford, UK.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. MORE IMAGE — closing visual chapter, before the poem ============ -->
+  <section class="ml-sequence">
+    <div class="ml-ghost-text" aria-hidden="true"><span>the eggshell bones of tiny things are lost</span></div>
+    <div class="ml-moth" id="ml-moth">
+      <svg viewBox="0 0 80 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="40" cy="34" rx="2.5" ry="11" fill="#2A1A0A"/>
+        <ellipse cx="40" cy="24" rx="2" ry="3.5" fill="#3D2410"/>
+        <!-- Antennae -->
+        <line x1="40" y1="21" x2="30" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
+        <line x1="40" y1="21" x2="50" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
+        <circle cx="29.5" cy="9.5" r="1" fill="#2A1A0A"/>
+        <circle cx="50.5" cy="9.5" r="1" fill="#2A1A0A"/>
+        <!-- Left upper wing -->
+        <g class="ml-moth__wing ml-moth__wing--left">
+          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
+                fill="#8B4A18" opacity="0.92"/>
+          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
+                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
+          <!-- Wing markings -->
+          <path d="M24 18 C20 22, 16 26, 18 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
+          <path d="M18 20 C15 24, 13 27, 14 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
+          <ellipse cx="14" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(-20 14 24)"/>
+          <ellipse cx="22" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(-10 22 20)"/>
+          <!-- Amber edge band -->
+          <path d="M8 18 C4 23, 4 29, 10 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
+          <!-- Left lower wing -->
+          <path d="M38 34 C30 34, 14 36, 8 42 C4 47, 8 52, 16 50 C26 48, 36 42, 39 38 Z"
+                fill="#6B3410" opacity="0.88"/>
+          <path d="M16 48 C12 44, 10 40, 14 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
+          <ellipse cx="12" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(15 12 44)"/>
+          <path d="M8 42 C5 46, 6 50, 10 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
+        </g>
+        <!-- Right upper wing -->
+        <g class="ml-moth__wing ml-moth__wing--right">
+          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
+                fill="#8B4A18" opacity="0.92"/>
+          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
+                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
+          <path d="M56 18 C60 22, 64 26, 62 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
+          <path d="M62 20 C65 24, 67 27, 66 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
+          <ellipse cx="66" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(20 66 24)"/>
+          <ellipse cx="58" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(10 58 20)"/>
+          <path d="M72 18 C76 23, 76 29, 70 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
+          <!-- Right lower wing -->
+          <path d="M42 34 C50 34, 66 36, 72 42 C76 47, 72 52, 64 50 C54 48, 44 42, 41 38 Z"
+                fill="#6B3410" opacity="0.88"/>
+          <path d="M64 48 C68 44, 70 40, 66 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
+          <ellipse cx="68" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(-15 68 44)"/>
+          <path d="M72 42 C75 46, 74 50, 70 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
+        </g>
+        <!-- Subtle cream highlight on body -->
+        <ellipse cx="40" cy="27" rx="1" ry="2.5" fill="#E8D5B0" opacity="0.25"/>
+      </svg>
+    </div>
+
+    <div class="ml-sequence__intro reveal">
+      <span class="cs-eyebrow">Further slideshow images</span>
+    </div>
+
+    <div class="ml-grid reveal">
+      <figure class="ml-grid__item">
+        <img src="../assets/images/magic-lantern/minor-deity-of-desire-paths.jpg" alt="A winged figure in a blue gown stands by a waterfall, an owl perched on her hand, an old map of imagined territories behind her.">
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of desire paths</span>
+          <p class="slide-caption">Our memory is an unmapped treasure box</p>
+        </figcaption>
+      </figure>
+      <figure class="ml-grid__item">
+        <img src="../assets/images/magic-lantern/unique-spirits.jpg" alt="A flower-headed figure falls or floats through a beam of light above a library, a small dark moth nearby, a man below raising his hand.">
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of levitating promises</span>
+          <p class="slide-caption">We are caught in air, adrift in the palace of books</p>
+        </figcaption>
+      </figure>
+      <figure class="ml-grid__item">
+        <img src="../assets/images/magic-lantern/deity-of-keys-drowned-cities.jpg" alt="A winged, owl-faced figure stands in a cathedral-like grove, holding a small clock, a stained glass gate glowing below.">
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of keys and drowned cities</span>
+          <p class="slide-caption">Feathered time in the leaf cathedral</p>
+        </figcaption>
+      </figure>
+      <figure class="ml-grid__item">
+        <img src="../assets/images/magic-lantern/wonder-darkness-wonder.jpg" alt="A scene almost entirely in darkness. A faint pale figure is just visible beside two moths near unseen water.">
+        <figcaption>
+          <span class="ml-slide__caption-title">The minor deity of velvet wonder</span>
+          <p class="slide-caption">Moth dusts wingbeats in the moonlight garden</p>
+        </figcaption>
+      </figure>
+    </div>
+
+
+    <!-- PLACEHOLDER: projection photograph slot — drop in this weekend's lit photograph of a framed slide projected -->
+    <figure class="ml-slide ml-slide--full reveal">
+  <div class="ml-slide__frame">
+    <div class="slide-figure slide-figure--projection">
+      <img src="../assets/images/magic-lantern/hedgerow-slide-backlit.jpg" alt="The lantern slide backlit by window light.">
+    </div>
+    <figcaption><span class="ml-slide__caption-title">Hedgerow and Lost Light — the slide itself</span></figcaption>
+  </div>
+</figure>
+  </section>
+
+  <!-- ============ 8. THE POEM ============ -->
+  <section class="ml-poem-section cs-section reveal">
+    <div class="cs-inner">
+      <span class="cs-eyebrow">Labyrinth/Establishment</span>
+      <p style="font-family:var(--font-display); font-style:italic; color:var(--warm-grey); font-size:var(--text-base);">A poem written at the blurred edges of past/present/future</p>
+      <div class="ml-poem">
+        <p>Imagine you're a labyrinth, your veins<br>
+        stone passages draped velvet-wet with moss.<br>
+        You hear the ring of footsteps, then these stop<br>
+        and voices whisper as they find a key<br>
+        that turns into a snatch of song, a breeze<br>
+        of fade and shimmer squeezing to become<br>
+        a wing-like thing that scrapes at hardwood<br>
+        doors. An amber warmth – a breath – a flare<br>
+        unlocks a box where secrets carved from games<br>
+        of chance are trapped in spotted maps of mirror glass.<br>
+        And then, uncertain candle-shadows drip<br>
+        their molten wax on golden threads that lead<br>
+        to yet another wall. Dear Visitor,<br>
+        what brought you to these lairs of fractal spaces<br>
+        built up over years, secreting spiral<br>
+        trails which split and merge like pools of liquid<br>
+        mercury. I offer – what? An arch<br>
+        of palimpsests, a history, a vague<br>
+        attenuated frayed half-world where past<br>
+        imperfect paper monsters fold themselves<br>
+        into the safety of this – passé simple – abyss.</p>
+      </div>
+      <p class="ml-poem-credit">
+        <em>Imagine you are a labyrinth</em>, Sarah-Jane Crowson. First published in <em>Sugar House Review</em>.
+        Watch the accompanying animation: <a href="https://youtu.be/uxJn2CTUk-U" target="_blank" rel="noopener">youtu.be/uxJn2CTUk-U</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 9. GLASS THREAD & FOSSIL RECORD ============ -->
+  <section class="ml-closing cs-section reveal">
+    <div class="cs-inner">
+      <span class="cs-eyebrow">Glass threads</span>
+      <p>Further work can be found under glass, including orchids, a Victorian sewing box and terraria filled with palms and moss acting as a poetic data physicalisation and visual metaphor for the practice of care and a critical reflection on when data becomes containment as well as classification.</p>
+<div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a> · <a href="consultation.html">Revealing Layers →</a></div>
+      <p class="ml-closing__credit">With thanks to Ewan Morrison, critical friend and collaborator throughout the development of this work.</p>
+    </div>
+  </section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  const moth = document.getElementById('ml-moth');
+  const sequenceSections = document.querySelectorAll('.ml-sequence');
+  const lastSequence = sequenceSections[sequenceSections.length - 1];
+  let mothFlown = false;
+  const mothObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !mothFlown) {
+        mothFlown = true;
+        moth.classList.add('is-flying');
+        mothObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  if (lastSequence) mothObserver.observe(lastSequence);
+
+  // Projection overlay effect: a palimpsest. A fixed-size ghost layer sits
+  // behind, unmoving. The foreground layer begins oversized and unfocused —
+  // as if projected across a building from a distance — then scales down
+  // and sharpens into focus as the reader scrolls, settling to rest near
+  // the ghost layer's size. Skipped entirely for reduced-motion users.
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    const runways = document.querySelectorAll('.proj-runway');
+    const MAX_SCALE = 2;
+    const MIN_SCALE = 1;
+    const MAX_BLUR = 16;
+    const DWELL = 0.35; // fraction of each runway's scroll distance spent fully resolved, before it unpins
+    let ticking = false;
+    function updateProjections() {
+      runways.forEach(runway => {
+        const rect = runway.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const focusDistance = total * (1 - DWELL);
+        let progress = focusDistance > 0 ? (-rect.top) / focusDistance : 0;
+        progress = Math.min(Math.max(progress, 0), 1);
+        // ease the focus pull so the sharpening feels weighted, not linear
+        const eased = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        const img = runway.querySelector('.proj-sticky__img');
+        if (img) {
+          const scale = MAX_SCALE - (MAX_SCALE - MIN_SCALE) * eased;
+          const blur = MAX_BLUR * (1 - eased);
+          img.style.transform = `scale(${scale})`;
+          img.style.filter = `blur(${blur}px)`;
+        }
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProjections);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateProjections();
+
+    // Text palimpsest: the fossil line resolving from blur over its own
+    // short runway (see GLOSSARY.md — "text palimpsest"). One per page.
+    const tfRunway = document.getElementById('tf-runway');
+    const tfLine = document.getElementById('tf-line');
+    if (tfRunway && tfLine) {
+      const TF_MAX_BLUR = 14, TF_MIN_OPACITY = 0.35;
+      const TF_MAX_TRACK = 0.06, TF_MIN_TRACK = 0.02, TF_DWELL = 0.35;
+      let tfTicking = false;
+      function updateTextFocus() {
+        const rect = tfRunway.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const focusDistance = total * (1 - TF_DWELL);
+        let p = focusDistance > 0 ? (-rect.top) / focusDistance : 1;
+        p = Math.min(Math.max(p, 0), 1);
+        const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        tfLine.style.filter = `blur(${TF_MAX_BLUR * (1 - eased)}px)`;
+        tfLine.style.opacity = TF_MIN_OPACITY + (1 - TF_MIN_OPACITY) * eased;
+        tfLine.style.letterSpacing = `${TF_MAX_TRACK - (TF_MAX_TRACK - TF_MIN_TRACK) * eased}em`;
+        tfTicking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!tfTicking) {
+          requestAnimationFrame(updateTextFocus);
+          tfTicking = true;
+        }
+      }, { passive: true });
+      updateTextFocus();
+    }
+  }
+</script>
+
+</body>
+</html>
+What this preserves: the hedgerow image still gets its full-viewport moment in the dark, immediately after the header — so the descent into the image world is one small beat later, not lost. Everything else — the palimpsest triad, the moth, the fossil line, the poem — is untouched.
+
+And the chapter grammar is now complete across all three: near-black for Minor Deities, cream into aubergine for Botanica, cream into navy for Revealing Layers. Same door, three rooms. When we build the landing page, Hedgerow and Lost Light is waiting for it.
+
+
+Fable 5 is the most capable model and draws down usage much faster than Opus 4.8
+
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Revealing layers update · ZIP
+Revealing layers update
+ZIP
+No preview available
+
+
+
+
+
+
+
+
+
+
+
+
+
+
