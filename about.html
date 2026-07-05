@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Sarah-Jane Crowson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<style>
+
+  /* ---- About page. Root level, so paths have no ../
+     Quiet cream register: the chapters own the dramatic grounds;
+     this page is the person, in daylight. ---- */
+
+  body.ab-page { background: var(--cream); color: var(--navy); }
+
+  .ab-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    padding: var(--space-6) var(--space-3) var(--space-4);
+    text-align: center;
+  }
+  .ab-opening .cs-eyebrow { color: var(--olive); }
+  .ab-opening__title {
+    font-size: clamp(2.2rem, 5vw, var(--text-2xl));
+    color: var(--navy);
+    margin: var(--space-2) auto;
+  }
+  .ab-opening__standfirst {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--olive);
+    max-width: var(--measure);
+    margin: 0 auto;
+  }
+
+  .ab-section { padding: var(--space-5) var(--space-3); }
+  .ab-section--tinted { background: #EDE6D6; }
+  .ab-inner { max-width: var(--measure); margin: 0 auto; }
+  .ab-inner .cs-eyebrow { color: var(--olive); }
+  .ab-inner h2 { font-size: var(--text-lg); color: var(--navy); margin-bottom: var(--space-2); }
+  .ab-inner p + p { margin-top: 1.2em; }
+  .ab-inner em.mag { color: var(--magenta); font-style: italic; }
+
+  .ab-role { margin-bottom: var(--space-3); }
+  .ab-role__title { font-family: var(--font-display); font-size: var(--text-md); color: var(--navy); display: block; }
+  .ab-role__meta {
+    font-family: var(--font-sans); font-size: var(--text-xs);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-grey);
+    display: block; margin: 0.3em 0 0.6em;
+  }
+
+  .ab-contact { background: var(--navy); color: var(--cream); text-align: center; }
+  .ab-contact .cs-eyebrow { color: var(--sage); }
+  .ab-contact__links { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
+  .ab-contact__links a { color: var(--slide-amber); text-decoration: none; border-bottom: 1px solid currentColor; margin: 0 0.6em; }
+
+</style>
+</head>
+<body class="ab-page">
+
+  <nav class="site-nav">
+    <a href="index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+    <div class="site-nav__links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ============ 1. TITLE — same opening grammar as the chapters ============ -->
+  <header class="ab-opening">
+    <span class="cs-eyebrow">Data humanism · creative research · AI ethics</span>
+    <h1 class="ab-opening__title">About</h1>
+    <p class="ab-opening__standfirst">Making data more human, more situated and more honest.</p>
+  </header>
+
+  <!-- ============ 2. WHO ============ -->
+  <section class="ab-section">
+    <div class="ab-inner">
+      <p>I am a poet, artist and practitioner-researcher working at the boundary of data, human experience and ethical representation. I help institutions communicate complexity through participatory, practice-led and data humanist methods, bringing together visual, poetic, material and collaborative approaches.</p>
+      <p>Creative practice functions as a research method in my work: poetry and collage are tools for investigating complexity, systems and lived experience, and they directly inform my institutional and participatory practice. The three bodies of work on this site — <em class="mag">Minor Deities</em>, <em class="mag">Botanica</em> and <em class="mag">Revealing Layers</em> — share one argument, made in three materials: classification without changed conditions is containment, not care.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. THE WORK IN INSTITUTIONS ============ -->
+  <section class="ab-section ab-section--tinted">
+    <div class="ab-inner">
+      <span class="cs-eyebrow">Institutional practice</span>
+      <h2>Where the methods are tested</h2>
+      <div class="ab-role">
+        <span class="ab-role__title">Scholarship, Equality, Diversity and Inclusion Lead</span>
+        <span class="ab-role__meta">Hereford College of Arts · 2018–present</span>
+        <p>I lead institutional strategy across higher education policy, equality, ethics, student voice and Access and Participation planning. I authored the college's Access and Participation Plan — approved first time by the Office for Students — and led the Teaching Excellence Framework submission that contributed to the award of TEF Silver. The consultation practice documented in <em class="mag">Revealing Layers</em> comes directly from this work.</p>
+      </div>
+      <div class="ab-role">
+        <span class="ab-role__title">Scholarship Development Manager</span>
+        <span class="ab-role__meta">Association of Colleges Scholarship Project · 2015–2018</span>
+        <p>I developed and embedded scholarship within three Further Education colleges, mentoring colleagues across the sector to develop, evaluate and disseminate research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. WRITING, IMAGES, RESEARCH ============ -->
+  <section class="ab-section">
+    <div class="ab-inner">
+      <span class="cs-eyebrow">Writing, images, research</span>
+      <h2>Published practice</h2>
+      <p>My poetry is published in <em>Rattle</em>, <em>The Adroit Journal</em>, <em>Sugar House Review</em> and other journals, and has been shortlisted for the Haiku Society Touchstone Award. My collage practice — found imagery, classification systems, natural history aesthetics — appears in journals including <em>The American Psychoanalyst</em>.</p>
+      <p>The thinking in this practice fed five accepted questions into Humanity's Last Exam, a benchmark of what current AI cannot answer, cited in <em>Nature</em> (2026). My doctoral research into critical and radical rurality and specialist arts education is intentionally paused, with a planned relaunch in 2027, refocused on data humanism and institutional representation.</p>
+      <p>I am a Fellow of the Royal Society of Arts, a member of the Data Visualisation Society, and a member of the Transforming Access and Student Outcomes theme working group. I hold a PGCert in Research Practices (Birmingham City University, 2021) and am currently completing an MDes in Design at the University of Sunderland — of which this portfolio is a part.</p>
+    </div>
+  </section>
+
+  <!-- ============ 5. CONTACT ============ -->
+  <section class="ab-section ab-contact">
+    <span class="cs-eyebrow">Get in touch</span>
+    <p style="max-width:var(--measure); margin:var(--space-2) auto 0;">Botanica launches in Hereford in September 2026 as part of h-Art. For conversations about research, collaboration or commissions:</p>
+    <p class="ab-contact__links">
+      <a href="mailto:FILL-IN@example.com">Email</a> ·
+      <a href="https://FILL-IN-linkedin-url">LinkedIn</a> ·
+      <a href="https://github.com/FILL-IN">GitHub</a>
+    </p>
+  </section>
+
+</body>
+</html>
