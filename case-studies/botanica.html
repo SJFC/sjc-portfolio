@@ -85,6 +85,18 @@
     .bo-materialise__collage { display: none; }
   }
 
+  /* ---- Opening header: still, first — orientation before motion,
+     matching the grammar of the other case studies. ---- */
+  .bo-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+  }
+
   /* ---- Title as poem ---- */
   .bo-title-poem__title {
     font-size: clamp(2.4rem, 5vw, var(--text-2xl));
@@ -183,7 +195,16 @@
     </div>
   </nav>
 
-  <!-- ============ 1. OPENING — MATERIALISING ============ -->
+  <!-- ============ 1. TITLE — still, first: orientation before motion,
+       matching the grammar of the other case studies ============ -->
+  <header class="bo-opening">
+    <span class="cs-eyebrow">A data humanist question</span>
+    <h1 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h1>
+    <p class="bo-title-poem__standfirst">When does care become containment?</p>
+  </header>
+
+  <!-- ============ 2. MATERIALISING — now the first thing scrolling
+       brings you into, not the landing state ============ -->
   <section class="bo-materialise">
     <div class="bo-materialise__runway" id="bo-mat-runway">
       <div class="bo-materialise__sticky">
@@ -198,11 +219,9 @@
     </div>
   </section>
 
-  <!-- ============ 2. TITLE AS POEM ============ -->
+  <!-- ============ 3. THE INSTALLATION ============ -->
   <section class="bo-title-poem cs-section reveal">
-    <div class="cs-inner"><span class="cs-eyebrow">A data humanist question</span></div>
-    <h2 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h2>
-    <p class="bo-title-poem__standfirst">When does care become containment?</p>
+    <div class="cs-inner"><span class="cs-eyebrow">The installation</span></div>
     <div class="cs-inner">
       <p><strong>Botanica</strong> is a small, living installation exploring how people become represented as data. It asks what gets lost when complex, relational lives are organised into categories.</p>
       <p>A Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to hold thread, pins, buttons — equipment to create, mend and make. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
@@ -210,7 +229,7 @@
     </div>
   </section>
 
-  <!-- ============ 3. THE ARGUMENT ============ -->
+  <!-- ============ 4. THE ARGUMENT ============ -->
   <section class="bo-argument-images cs-section reveal">
     <div class="cs-inner cs-inner--wide"><span class="cs-eyebrow">The argument</span></div>
 
@@ -225,7 +244,7 @@
     </div>
   </section>
 
-  <!-- ============ 3b. THE CLAIM — text palimpsest, once on this page ============ -->
+  <!-- ============ 4b. THE CLAIM — text palimpsest, once on this page ============ -->
   <section class="bo-claim">
     <div class="text-focus">
       <div class="text-focus__runway" id="tf-runway">
@@ -236,7 +255,7 @@
     </div>
   </section>
 
-  <!-- ============ 4. THE PALIMPSEST — the silk lining, close ============ -->
+  <!-- ============ 5. THE PALIMPSEST — the silk lining, close ============ -->
   <section class="bo-sequence">
     <div class="proj-block">
       <div class="proj-runway">
@@ -252,7 +271,7 @@
     </div>
   </section>
 
-  <!-- ============ 5. PLANT SEQUENCE — horizontal scroll-snap ============ -->
+  <!-- ============ 6. PLANT SEQUENCE — horizontal scroll-snap ============ -->
   <section class="bo-plants" id="bo-plant-sequence">
     <div class="bo-plants__intro reveal">
       <span class="cs-eyebrow">Conditions, not just categories</span>
@@ -300,7 +319,7 @@
     <p class="bo-plants__scroll-cue">Scroll sideways →</p>
   </section>
 
-  <!-- ============ 6. CLOSING SPECIMEN — the work re-enters the imagined ============ -->
+  <!-- ============ 7. CLOSING SPECIMEN — the work re-enters the imagined ============ -->
   <section class="bo-specimen reveal" style="background:var(--near-black); color:var(--cream);" id="bo-closing-specimen">
     <span class="cs-eyebrow" style="color:var(--slide-amber);">Worlds under glass</span>
     <div class="bo-specimen__frame">
@@ -309,7 +328,7 @@
     <p class="bo-specimen__caption">The Victorians also held worlds in glass: the Crystal Palace, Wardian cases, rows of pinned insects. But what knowledge escaped the glass — half-hidden, now, in hedgerows?</p>
   </section>
 
-  <!-- ============ 7. PARTICIPATION ============ -->
+  <!-- ============ 8. PARTICIPATION ============ -->
   <section class="cs-section reveal">
     <div class="cs-inner"><span class="cs-eyebrow">Your thoughts</span></div>
     <div class="bo-qr">
@@ -318,7 +337,7 @@
     </div>
   </section>
 
-  <!-- ============ 8. CLOSING ============ -->
+  <!-- ============ 9. CLOSING ============ -->
   <section class="cs-section reveal" style="background:var(--cream);">
     <div class="cs-inner">
       <span class="cs-eyebrow">Still growing</span>
