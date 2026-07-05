@@ -3,579 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minor Deities: representations &amp;c., under glass — Sarah-Jane Crowson</title>
+<title>Sarah-Jane Crowson — poet, artist, practitioner-researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
 <style>
 
-  body.ml-page { background: var(--near-black); }
+  /* ---- Holding landing page. Deliberately quiet: the hedgerow slide in
+     darkness, the statement, three doors. The full landing build (the
+     Stanhope peepholes) replaces this later; nothing here should need
+     unpicking when it does. NOTE: this page lives at the repo ROOT, so
+     paths are assets/... and case-studies/... with no ../ ---- */
 
-  /* ---- Opening header: still, first — orientation before motion,
-     matching the grammar of the other case studies, but on this page's
-     own nocturnal ground rather than cream. ---- */
-  .ml-opening-header {
+  body.ix-page { background: var(--near-black); }
+
+  .ix-opening {
+    min-height: 92vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: var(--near-black);
     color: var(--cream);
-    padding: var(--space-6) var(--space-3) var(--space-4);
+    padding: var(--space-5) var(--space-2) var(--space-4);
     text-align: center;
   }
-  .ml-opening-header .cs-eyebrow { color: var(--slide-gold); }
-  .ml-opening-header__title {
-    font-size: clamp(2.2rem, 5vw, var(--text-2xl));
+  .ix-opening__name {
+    font-size: clamp(2rem, 4.5vw, var(--text-xl));
     color: var(--cream);
-    max-width: var(--measure-wide);
-    margin: var(--space-2) auto var(--space-2);
+    margin-bottom: var(--space-1);
   }
-  .ml-opening-header__title em { color: var(--slide-gold); font-style: italic; }
-  .ml-opening-header__standfirst {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: var(--text-md);
+  .ix-opening__role {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--warm-grey);
-    max-width: var(--measure);
-    margin: 0 auto;
+    margin-bottom: var(--space-4);
   }
-
-  /* ---- Opening ---- */
-  .ml-opening {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--near-black);
-    padding: var(--space-5) var(--space-2) var(--space-4);
-  }
-  .ml-opening__frame { width: min(92vw, 560px); }
-  .ml-opening__frame img { width: 100%; box-shadow: 0 2rem 6rem rgba(0,0,0,0.7); }
-  .ml-opening__caption {
+  .ix-opening__frame { width: min(88vw, 480px); }
+  .ix-opening__frame img { width: 100%; box-shadow: 0 2rem 6rem rgba(0,0,0,0.7); }
+  .ix-opening__caption {
     font-family: var(--font-display); font-style: italic; color: var(--warm-grey);
-    font-size: var(--text-sm); text-align: center; margin-top: var(--space-2);
+    font-size: var(--text-sm); margin-top: var(--space-2);
   }
-  .ml-opening__scroll-cue {
+  .ix-opening__scroll-cue {
     margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-xs);
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); opacity: 0.6;
   }
 
-  /* ---- Title as poem ---- */
-  .ml-title-poem { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); }
-  .ml-title-poem__title {
-    font-size: var(--text-2xl); font-style: italic; margin-bottom: var(--space-4);
-    max-width: var(--measure-wide); margin-left: auto; margin-right: auto;
-  }
-  .ml-title-poem .cs-inner { display: grid; gap: var(--space-3); }
-  .ml-title-poem p { font-size: var(--text-md); line-height: 1.6; }
-
-  /* ---- Shared: image-only sequence (opening triad + closing chapter) ---- */
-  .ml-sequence {
-    background: var(--deep-warm-grey); color: var(--cream);
-    padding: var(--space-5) 0; position: relative;
-  }
-  .ml-sequence__intro {
-    max-width: var(--measure); margin: 0 auto var(--space-5);
-    padding: 0 var(--space-3); text-align: center;
-  }
-  .ml-sequence__intro .cs-eyebrow { color: var(--slide-gold); }
-  .ml-slide { padding: var(--space-5) var(--space-2); }
-  .ml-slide__frame { max-width: 640px; margin: 0 auto; }
-  .ml-slide--full .ml-slide__frame { max-width: 760px; }
-  .ml-slide__caption-title {
-    font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--slide-gold);
+  /* ---- The statement, on cream ---- */
+  .ix-statement { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); text-align: center; }
+  .ix-statement p {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.6vw, var(--text-lg));
+    line-height: 1.6;
+    max-width: var(--measure-wide);
+    margin: 0 auto;
   }
 
-  .ml-ghost-text {
-    position: absolute; inset: 0; pointer-events: none; z-index: 0;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  /* ---- Three doors, each in its chapter's register ---- */
+  .ix-work { background: var(--near-black); padding: var(--space-6) var(--space-3); }
+  .ix-work__intro { text-align: center; margin-bottom: var(--space-4); }
+  .ix-work__intro .cs-eyebrow { color: var(--slide-gold); }
+  .ix-doors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    max-width: var(--measure-wide);
+    margin: 0 auto;
   }
-  .ml-ghost-text span {
-    font-family: var(--font-display); font-style: italic;
-    font-size: clamp(3rem, 12vw, 9rem); color: var(--cream); opacity: 0.035;
-    white-space: nowrap; transform: rotate(-4deg);
+  .ix-door {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radius-slide);
+    padding: var(--space-4) var(--space-3);
+    min-height: 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-
-  .ml-moth { position: absolute; width: 52px; height: 44px; opacity: 0; z-index: 5; pointer-events: none; }
-  .ml-moth.is-flying { animation: moth-drift 11s ease-in-out forwards; }
-  .ml-moth__wing { transform-box: fill-box; }
-  .ml-moth__wing--left  { transform-origin: 100% 60%; }
-  .ml-moth__wing--right { transform-origin: 0% 60%; }
-  .ml-moth.is-flying .ml-moth__wing--left  { animation: wing-flap-left 0.19s ease-in-out infinite alternate; }
-  .ml-moth.is-flying .ml-moth__wing--right { animation: wing-flap-right 0.17s ease-in-out infinite alternate; }
-  @keyframes wing-flap-left  { 0% { transform: scaleX(1) rotate(-2deg); } 100% { transform: scaleX(0.38) rotate(-10deg); } }
-  @keyframes wing-flap-right { 0% { transform: scaleX(1) rotate(2deg); } 100% { transform: scaleX(0.38) rotate(10deg); } }
-  @keyframes moth-drift {
-    0%   { opacity: 0;   transform: translate(-8vw, 30vh) rotate(12deg); }
-    8%   { opacity: 0.9; transform: translate(-2vw, 28vh) rotate(-6deg); }
-    22%  { opacity: 0.9; transform: translate(8vw, 22vh) rotate(8deg); }
-    38%  { opacity: 0.9; transform: translate(18vw, 26vh) rotate(-10deg); }
-    52%  { opacity: 0.9; transform: translate(14vw, 32vh) rotate(6deg); }
-    66%  { opacity: 0.9; transform: translate(6vw, 38vh) rotate(-8deg); }
-    80%  { opacity: 0.9; transform: translate(-2vw, 44vh) rotate(10deg); }
-    92%  { opacity: 0.4; transform: translate(-6vw, 46vh) rotate(-4deg); }
-    100% { opacity: 0;   transform: translate(-12vw, 48vh) rotate(6deg); }
+  .ix-door:hover, .ix-door:focus-visible { transform: translateY(-4px); box-shadow: 0 1.5rem 3rem rgba(0,0,0,0.5); }
+  .ix-door__eyebrow {
+    font-family: var(--font-sans); font-size: var(--text-xs);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: block; margin-bottom: var(--space-1); opacity: 0.75;
   }
-  @media (prefers-reduced-motion: reduce) { .ml-moth.is-flying { animation: none; opacity: 0; } .ml-moth.is-flying .ml-moth__wing { animation: none; } }
+  .ix-door__title { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.25; display: block; }
+  .ix-door__sub { font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); display: block; margin-top: var(--space-1); opacity: 0.85; }
 
-  /* ---- Text + image section: the argument, interwoven with projection-effect images ---- */
-  .ml-argument-images { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3) 0; }
-  .ml-argument__item { margin-bottom: var(--space-4); max-width: var(--measure-wide); margin-left: auto; margin-right: auto; }
-  .ml-argument__number { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
-  .ml-argument__item h3 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
-  .ml-argument__item p { font-size: var(--text-base); max-width: var(--measure); }
+  /* Register per chapter */
+  .ix-door--ml { background: #101014; border: 1px solid rgba(245,239,228,0.14); }
+  .ix-door--ml .ix-door__eyebrow { color: var(--slide-gold); }
+  .ix-door--ml .ix-door__title { color: var(--cream); }
+  .ix-door--ml .ix-door__sub { color: var(--warm-grey); }
 
-  /* ---- More text: argument III + citation, no image ---- */
-  .ml-argument-text { background: var(--cream); color: var(--navy); padding: var(--space-5) var(--space-3) var(--space-6); }
+  .ix-door--bo { background: #2A1020; border: 1px solid rgba(245,239,228,0.14); }
+  .ix-door--bo .ix-door__eyebrow { color: var(--mauve-pink); }
+  .ix-door--bo .ix-door__title { color: var(--cream); }
+  .ix-door--bo .ix-door__sub { color: var(--mauve-pink); }
 
-  /* ---- Interlude: the fossil line resolves, its stanza follows, and one
-     slide stands beside the argument about what exceeds explanation.
-     Dark ground so the resolving line reads as light. ---- */
-  .ml-interlude {
-    background: var(--near-black);
-    color: var(--cream);
-    padding: 0 var(--space-3) var(--space-5);
+  .ix-door--co { background: var(--navy); border: 1px solid rgba(245,239,228,0.14); }
+  .ix-door--co .ix-door__eyebrow { color: var(--sage); }
+  .ix-door--co .ix-door__title { color: var(--cream); }
+  .ix-door--co .ix-door__sub { color: var(--sage); }
+
+  @media (max-width: 760px) { .ix-doors { grid-template-columns: 1fr; } .ix-door { min-height: 0; } }
+
+  /* ---- Footer beat ---- */
+  .ix-footer {
+    background: var(--near-black); color: var(--warm-grey);
+    text-align: center; padding: var(--space-5) var(--space-3);
+    font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.08em;
   }
-  .ml-interlude .ml-poem { font-style: italic; }
-  .ml-citation {
-    margin-top: var(--space-4); padding: var(--space-3); border: 1px solid var(--warm-grey);
-    border-left: 3px solid var(--magenta); font-family: var(--font-sans); font-size: var(--text-sm);
-    max-width: var(--measure-wide); margin-left: auto; margin-right: auto; line-height: 1.7;
-  }
+  .ix-footer a { color: var(--slide-gold); }
 
-  /* ---- The poem ---- */
-  .ml-poem-section { background: var(--near-black); color: var(--cream); padding: var(--space-6) var(--space-3); }
-  .ml-poem-section .cs-eyebrow { color: var(--slide-gold); }
-  .ml-poem { font-family: var(--font-display); font-style: italic; font-size: var(--text-md); line-height: 1.85; max-width: var(--measure); margin: var(--space-3) auto 0; }
-  .ml-poem-credit { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--warm-grey); margin-top: var(--space-3); max-width: var(--measure); margin-left: auto; margin-right: auto; }
-  .ml-poem-credit a { color: var(--slide-gold); text-decoration: underline; }
-
-  /* ---- Closing ---- */
-  .ml-closing { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); }
-  .ml-closing p { font-size: var(--text-md); max-width: var(--measure); }
-  .ml-closing__credit { margin-top: var(--space-5); font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); color: var(--warm-grey); }
-  .ml-closing__nav { margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-sm); }
-  .ml-closing__nav a { color: var(--magenta); text-decoration: none; border-bottom: 1px solid var(--magenta); }
 </style>
 </head>
-<body class="ml-page">
+<body class="ix-page">
 
   <nav class="site-nav">
-    <a href="../index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+    <a href="index.html" class="site-nav__name">Sarah-Jane Crowson</a>
     <div class="site-nav__links">
-      <a href="../index.html#work">Work</a>
-      <a href="../about.html">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
-  <!-- ============ 1. TITLE — still, first: orientation before motion,
-       matching the grammar of the other case studies ============ -->
-  <header class="ml-opening-header">
-    <span class="cs-eyebrow">The visual poetics of hidden space</span>
-    <h1 class="ml-opening-header__title">Minor Deities: <em>representations &amp;c., under glass</em></h1>
-    <p class="ml-opening-header__standfirst">To be preserved is not a synonym for free.</p>
-  </header>
-
-  <!-- ============ 2. OPENING IMAGE ============ -->
-  <section class="ml-opening">
-    <div class="ml-opening__frame">
-      <img src="../assets/images/magic-lantern/hedgerow-and-lost-light.jpg"
+  <!-- ============ 1. OPENING — the hedgerow slide, in darkness ============ -->
+  <section class="ix-opening">
+    <h1 class="ix-opening__name">Sarah-Jane Crowson</h1>
+    <p class="ix-opening__role">Poet · artist · practitioner-researcher</p>
+    <div class="ix-opening__frame">
+      <img src="assets/images/magic-lantern/hedgerow-and-lost-light.jpg"
            alt="A lantern slide titled Minor Deities: representations &c., under glass. A figure in pale Victorian dress stands in a wooded clearing, her head replaced by a bloom of rose-pink light.">
     </div>
-    <p class="ml-opening__scroll-cue">Scroll</p>
+    <p class="ix-opening__caption">Hedgerow and Lost Light — from Minor Deities, 2023</p>
+    <p class="ix-opening__scroll-cue">Scroll</p>
   </section>
 
-  <!-- ============ 3. THREE IMAGES — image rhythm before any reading ============ -->
-  <section class="ml-sequence">
-    <div class="proj-block">
-      <div class="proj-runway">
-        <div class="proj-sticky">
-          <img class="proj-base-img" src="../assets/images/magic-lantern/cautious-wonder.jpg" alt="" aria-hidden="true">
-          <img class="proj-sticky__img" src="../assets/images/magic-lantern/cautious-wonder.jpg" alt="A robed figure with a luminous moon in place of a face stands among dark trees, a moth nearby. Plate 60.">
-        </div>
-      </div>
-      <figcaption class="proj-caption">
-        <span class="ml-slide__caption-title">The minor deity of cautious wonder — Plate 60</span>
-        <p class="slide-caption">We share opaque reflections in the gardens of the past.</p>
-      </figcaption>
+  <!-- ============ 2. THE STATEMENT ============ -->
+  <section class="ix-statement">
+    <p>I design bespoke, human-centred ways for organisations to communicate complex information, engage stakeholders and gather meaningful insight. My work combines visual design, participatory research, data storytelling and creative practice to make information more accessible, compelling and useful.</p>
+  </section>
+
+  <!-- ============ 3. THREE DOORS ============ -->
+  <section class="ix-work" id="work">
+    <div class="ix-work__intro">
+      <span class="cs-eyebrow">Three bodies of work</span>
     </div>
-    <figure class="ml-slide ml-slide--full">
-      <div class="ml-slide__frame">
-        <div class="slide-figure slide-figure--projection">
-          <img src="../assets/images/magic-lantern/minor-deity-of-forgotten-places.jpg" alt="A figure with a glowing fern in place of a head stands in flooded cathedral ruins, reflected in still dark water.">
-        </div>
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of forgotten places</span>
-          <p class="slide-caption">Each gilded fern unfurls in forest night</p>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="ml-slide">
-      <div class="ml-slide__frame">
-        <div class="slide-figure slide-figure--mounted">
-          <img src="../assets/images/magic-lantern/minor-deity-of-open-fortune.jpg" alt="A figure with a flower in place of a head stands before ruined city towers, a cluster of amethyst crystal floating nearby.">
-        </div>
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of open fortune — Plate 26</span>
-          <p class="slide-caption">Our thoughts encoded in the bones of cities</p>
-        </figcaption>
-      </div>
-    </figure>
-  </section>
-
-  <!-- ============ 4. TITLE AS POEM (first text) ============ -->
-  <section class="ml-title-poem cs-section reveal">
-    <div class="cs-inner"><span class="cs-eyebrow">Reading the title</span></div>
-    <div class="cs-inner">
-      <p><strong>Minor Deities</strong> were a series of collages shown as Victorian 'Magic Lantern' slides in Hereford in 2023. They are imagined household gods, wayside-shrine presences, the half-glimpsed things that linger in spaces officialdom has stopped looking at closely.</p>
-      <p><strong>representations &amp;c.</strong> borrows the voice of the Victorian catalogue entry. The <em>&amp;c.</em> admits existences beyond the label which we cannot list. It gestures to the plant that outgrows its pot and blurs boundaries: the notes classification cannot hold.</p>
-      <p><strong>under glass</strong> is the living thing — a memory preserved by being fixed in a point in space. But the work questions whether to be seen is also to be known. To be preserved is not a synonym for free.</p>
+    <div class="ix-doors">
+      <a class="ix-door ix-door--ml" href="case-studies/magic-lantern.html">
+        <span class="ix-door__eyebrow">The visual poetics of hidden space</span>
+        <span class="ix-door__title">Minor Deities</span>
+        <span class="ix-door__sub">representations &amp;c., under glass</span>
+      </a>
+      <a class="ix-door ix-door--bo" href="case-studies/botanica.html">
+        <span class="ix-door__eyebrow">A data humanist question</span>
+        <span class="ix-door__title">Botanica</span>
+        <span class="ix-door__sub">When does care become containment?</span>
+      </a>
+      <a class="ix-door ix-door--co" href="case-studies/consultation.html">
+        <span class="ix-door__eyebrow">Creative consultations</span>
+        <span class="ix-door__title">Revealing Layers</span>
+        <span class="ix-door__sub">Listening to data and the people it represents.</span>
+      </a>
     </div>
   </section>
 
-  <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER ============ -->
-  <section class="ml-argument-images">
-    <div class="cs-inner cs-inner--wide reveal"><span class="cs-eyebrow">The argument</span></div>
-
-    <div class="ml-argument__item reveal">
-      <span class="ml-argument__number">I.</span>
-      <h3>The portrait as data visualisation</h3>
-      <p>The collages use traditional portrait images and transform them. A Victorian portrait was never a neutral record. It encoded social position, gender, propriety, wealth — the values of whoever commissioned it. It shows only what was classified and what the system valued enough to keep.</p>
-    </div>
-
-    <div class="proj-block">
-      <div class="proj-runway">
-        <div class="proj-sticky">
-          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="" aria-hidden="true">
-          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="A woman in a butterfly mask sits in a moss-grown cloister, an astrological map overlaid across the scene.">
-        </div>
-      </div>
-      <figcaption class="proj-caption">
-        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of underground caverns — unframed plate</span>
-        <p class="slide-caption" style="color:var(--warm-grey);">Water keeps its own reflected time.</p>
-      </figcaption>
-    </div>
-
-    <div class="ml-argument__item reveal">
-      <span class="ml-argument__number">II.</span>
-      <h3>Time as non-linear, space as relational</h3>
-      <p>The lantern slide transfixes time: pins a moment, fixes it under glass, projects it to an audience who call it true and write it into histories. This work counter-balances that, evoking Lefebvre's <em>half-glimpsed forgotten spaces</em> — the wayside shrine, the overgrown spring, the local deity not quite erased. These are the residual spaces the official image cannot fully contain. They echo Massey's relational space: images from different times and registers are layered, because space and time are constellations of relation rather than fixed coordinates.</p>
-    </div>
-
-    <div class="proj-block">
-      <div class="proj-runway">
-        <div class="proj-sticky">
-          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="" aria-hidden="true">
-          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="A pale, faceless figure seen from behind, standing at the edge of dark water in a tangled forest.">
-        </div>
-      </div>
-      <figcaption class="proj-caption">
-        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of irresolution — unframed plate</span>
-        <p class="slide-caption" style="color:var(--warm-grey);">Each moth's a beacon in the quiet garden</p>
-      </figcaption>
-    </div>
+  <!-- ============ 4. FOOTER ============ -->
+  <section class="ix-footer">
+    <p>Botanica launches in Hereford, September 2026, as part of h-Art.</p>
   </section>
-
-  <!-- ============ 6a. INTERLUDE — the fossil line resolves, the stanza it
-       belongs to follows, and Reflected Invocations stands beside the
-       argument about what exceeds explanation ============ -->
-  <section class="ml-interlude">
-    <div class="text-focus">
-      <div class="text-focus__runway" id="tf-runway">
-        <div class="text-focus__sticky">
-          <p class="text-focus__line" id="tf-line">the eggshell bones of tiny things are lost</p>
-        </div>
-      </div>
-    </div>
-    <div class="cs-inner reveal">
-      <div class="ml-poem" style="font-size:var(--text-base); margin: 0 auto;">
-        <p>Sentences are cardamom,<br>
-        their aromatic seed dispersed<br>
-        in words just as imago's wings<br>
-        unfurl to skeletons of leafy veins.<br>
-        <br>
-        This world's a vast electrograph.<br>
-        It spins to shine and so outrun<br>
-        the crawling night. Inside its rock<br>
-        the eggshell bones of tiny things are lost</p>
-      </div>
-    </div>
-    <figure class="ml-slide reveal">
-      <div class="ml-slide__frame">
-        <div class="slide-figure slide-figure--mounted">
-          <img src="../assets/images/magic-lantern/invocation-and-alchemy.jpg" alt="A figure with an owl's head in eighteenth-century dress gestures toward a golden chandelier suspended in a ruined hall.">
-        </div>
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of reflected invocations</span>
-          <p class="slide-caption">We catch light in the subterranean palace</p>
-        </figcaption>
-      </div>
-    </figure>
-  </section>
-
-  <!-- ============ 6b. MORE TEXT — argument III, no image ============ -->
-  <section class="ml-argument-text">
-    <div class="ml-argument__item reveal">
-      <span class="ml-argument__number">III.</span>
-      <h3>What AI cannot generate alone</h3>
-      <!-- EDIT -->
-      <p>The thinking in these slides fed directly into five questions contributed to Humanity's Last Exam, a benchmark designed to test what current AI cannot answer. The questions passed extensive peer review. Humanities scholars, and women working at small arts colleges, were almost entirely absent from the contributor list. If humanistic thinking is missing from the tests by which AI capability is measured, do we risk creating a closed, impermeable dataset — a narrow representation of space which becomes fixed in our shared social experience?</p>
-      <div class="ml-citation">
-        Center for AI Safety, Scale AI and HLE Contributors Consortium. <em>Nature</em>, vol. 649, pp. 1139–1146, 28 January 2026. DOI: 10.1038/s41586-025-09962-4. Sarah-Jane Crowson, listed author, Hereford College of Arts, Hereford, UK.
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 7. MORE IMAGE — closing visual chapter, before the poem ============ -->
-  <section class="ml-sequence">
-    <div class="ml-ghost-text" aria-hidden="true"><span>the eggshell bones of tiny things are lost</span></div>
-    <div class="ml-moth" id="ml-moth">
-      <svg viewBox="0 0 80 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Body -->
-        <ellipse cx="40" cy="34" rx="2.5" ry="11" fill="#2A1A0A"/>
-        <ellipse cx="40" cy="24" rx="2" ry="3.5" fill="#3D2410"/>
-        <!-- Antennae -->
-        <line x1="40" y1="21" x2="30" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
-        <line x1="40" y1="21" x2="50" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
-        <circle cx="29.5" cy="9.5" r="1" fill="#2A1A0A"/>
-        <circle cx="50.5" cy="9.5" r="1" fill="#2A1A0A"/>
-        <!-- Left upper wing -->
-        <g class="ml-moth__wing ml-moth__wing--left">
-          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
-                fill="#8B4A18" opacity="0.92"/>
-          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
-                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
-          <!-- Wing markings -->
-          <path d="M24 18 C20 22, 16 26, 18 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
-          <path d="M18 20 C15 24, 13 27, 14 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
-          <ellipse cx="14" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(-20 14 24)"/>
-          <ellipse cx="22" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(-10 22 20)"/>
-          <!-- Amber edge band -->
-          <path d="M8 18 C4 23, 4 29, 10 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
-          <!-- Left lower wing -->
-          <path d="M38 34 C30 34, 14 36, 8 42 C4 47, 8 52, 16 50 C26 48, 36 42, 39 38 Z"
-                fill="#6B3410" opacity="0.88"/>
-          <path d="M16 48 C12 44, 10 40, 14 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
-          <ellipse cx="12" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(15 12 44)"/>
-          <path d="M8 42 C5 46, 6 50, 10 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
-        </g>
-        <!-- Right upper wing -->
-        <g class="ml-moth__wing ml-moth__wing--right">
-          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
-                fill="#8B4A18" opacity="0.92"/>
-          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
-                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
-          <path d="M56 18 C60 22, 64 26, 62 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
-          <path d="M62 20 C65 24, 67 27, 66 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
-          <ellipse cx="66" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(20 66 24)"/>
-          <ellipse cx="58" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(10 58 20)"/>
-          <path d="M72 18 C76 23, 76 29, 70 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
-          <!-- Right lower wing -->
-          <path d="M42 34 C50 34, 66 36, 72 42 C76 47, 72 52, 64 50 C54 48, 44 42, 41 38 Z"
-                fill="#6B3410" opacity="0.88"/>
-          <path d="M64 48 C68 44, 70 40, 66 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
-          <ellipse cx="68" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(-15 68 44)"/>
-          <path d="M72 42 C75 46, 74 50, 70 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
-        </g>
-        <!-- Subtle cream highlight on body -->
-        <ellipse cx="40" cy="27" rx="1" ry="2.5" fill="#E8D5B0" opacity="0.25"/>
-      </svg>
-    </div>
-
-    <div class="ml-sequence__intro reveal">
-      <span class="cs-eyebrow">Further slideshow images</span>
-    </div>
-
-    <div class="ml-grid reveal">
-      <figure class="ml-grid__item">
-        <img src="../assets/images/magic-lantern/minor-deity-of-desire-paths.jpg" alt="A winged figure in a blue gown stands by a waterfall, an owl perched on her hand, an old map of imagined territories behind her.">
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of desire paths</span>
-          <p class="slide-caption">Our memory is an unmapped treasure box</p>
-        </figcaption>
-      </figure>
-      <figure class="ml-grid__item">
-        <img src="../assets/images/magic-lantern/unique-spirits.jpg" alt="A flower-headed figure falls or floats through a beam of light above a library, a small dark moth nearby, a man below raising his hand.">
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of levitating promises</span>
-          <p class="slide-caption">We are caught in air, adrift in the palace of books</p>
-        </figcaption>
-      </figure>
-      <figure class="ml-grid__item">
-        <img src="../assets/images/magic-lantern/deity-of-keys-drowned-cities.jpg" alt="A winged, owl-faced figure stands in a cathedral-like grove, holding a small clock, a stained glass gate glowing below.">
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of keys and drowned cities</span>
-          <p class="slide-caption">Feathered time in the leaf cathedral</p>
-        </figcaption>
-      </figure>
-      <figure class="ml-grid__item">
-        <img src="../assets/images/magic-lantern/wonder-darkness-wonder.jpg" alt="A scene almost entirely in darkness. A faint pale figure is just visible beside two moths near unseen water.">
-        <figcaption>
-          <span class="ml-slide__caption-title">The minor deity of velvet wonder</span>
-          <p class="slide-caption">Moth dusts wingbeats in the moonlight garden</p>
-        </figcaption>
-      </figure>
-    </div>
-
-
-    <!-- PLACEHOLDER: projection photograph slot — drop in this weekend's lit photograph of a framed slide projected -->
-    <figure class="ml-slide ml-slide--full reveal">
-  <div class="ml-slide__frame">
-    <div class="slide-figure slide-figure--projection">
-      <img src="../assets/images/magic-lantern/hedgerow-slide-backlit.jpg" alt="The lantern slide backlit by window light.">
-    </div>
-    <figcaption><span class="ml-slide__caption-title">Hedgerow and Lost Light — the slide itself</span></figcaption>
-  </div>
-</figure>
-  </section>
-
-  <!-- ============ 8. THE POEM ============ -->
-  <section class="ml-poem-section cs-section reveal">
-    <div class="cs-inner">
-      <span class="cs-eyebrow">Labyrinth/Establishment</span>
-      <p style="font-family:var(--font-display); font-style:italic; color:var(--warm-grey); font-size:var(--text-base);">A poem written at the blurred edges of past/present/future</p>
-      <div class="ml-poem">
-        <p>Imagine you're a labyrinth, your veins<br>
-        stone passages draped velvet-wet with moss.<br>
-        You hear the ring of footsteps, then these stop<br>
-        and voices whisper as they find a key<br>
-        that turns into a snatch of song, a breeze<br>
-        of fade and shimmer squeezing to become<br>
-        a wing-like thing that scrapes at hardwood<br>
-        doors. An amber warmth – a breath – a flare<br>
-        unlocks a box where secrets carved from games<br>
-        of chance are trapped in spotted maps of mirror glass.<br>
-        And then, uncertain candle-shadows drip<br>
-        their molten wax on golden threads that lead<br>
-        to yet another wall. Dear Visitor,<br>
-        what brought you to these lairs of fractal spaces<br>
-        built up over years, secreting spiral<br>
-        trails which split and merge like pools of liquid<br>
-        mercury. I offer – what? An arch<br>
-        of palimpsests, a history, a vague<br>
-        attenuated frayed half-world where past<br>
-        imperfect paper monsters fold themselves<br>
-        into the safety of this – passé simple – abyss.</p>
-      </div>
-      <p class="ml-poem-credit">
-        <em>Imagine you are a labyrinth</em>, Sarah-Jane Crowson. First published in <em>Sugar House Review</em>.
-        Watch the accompanying animation: <a href="https://youtu.be/uxJn2CTUk-U" target="_blank" rel="noopener">youtu.be/uxJn2CTUk-U</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ 9. GLASS THREAD & FOSSIL RECORD ============ -->
-  <section class="ml-closing cs-section reveal">
-    <div class="cs-inner">
-      <span class="cs-eyebrow">Glass threads</span>
-      <p>Further work can be found under glass, including orchids, a Victorian sewing box and terraria filled with palms and moss acting as a poetic data physicalisation and visual metaphor for the practice of care and a critical reflection on when data becomes containment as well as classification.</p>
-<div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a> · <a href="consultation.html">Revealing Layers →</a></div>
-      <p class="ml-closing__credit">With thanks to Ewan Morrison, critical friend and collaborator throughout the development of this work.</p>
-    </div>
-  </section>
-
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  const moth = document.getElementById('ml-moth');
-  const sequenceSections = document.querySelectorAll('.ml-sequence');
-  const lastSequence = sequenceSections[sequenceSections.length - 1];
-  let mothFlown = false;
-  const mothObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !mothFlown) {
-        mothFlown = true;
-        moth.classList.add('is-flying');
-        mothObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  if (lastSequence) mothObserver.observe(lastSequence);
-
-  // Projection overlay effect: a palimpsest. A fixed-size ghost layer sits
-  // behind, unmoving. The foreground layer begins oversized and unfocused —
-  // as if projected across a building from a distance — then scales down
-  // and sharpens into focus as the reader scrolls, settling to rest near
-  // the ghost layer's size. Skipped entirely for reduced-motion users.
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReducedMotion) {
-    const runways = document.querySelectorAll('.proj-runway');
-    const MAX_SCALE = 2;
-    const MIN_SCALE = 1;
-    const MAX_BLUR = 16;
-    const DWELL = 0.35; // fraction of each runway's scroll distance spent fully resolved, before it unpins
-    let ticking = false;
-    function updateProjections() {
-      runways.forEach(runway => {
-        const rect = runway.getBoundingClientRect();
-        const total = rect.height - window.innerHeight;
-        const focusDistance = total * (1 - DWELL);
-        let progress = focusDistance > 0 ? (-rect.top) / focusDistance : 0;
-        progress = Math.min(Math.max(progress, 0), 1);
-        // ease the focus pull so the sharpening feels weighted, not linear
-        const eased = progress < 0.5
-          ? 2 * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-        const img = runway.querySelector('.proj-sticky__img');
-        if (img) {
-          const scale = MAX_SCALE - (MAX_SCALE - MIN_SCALE) * eased;
-          const blur = MAX_BLUR * (1 - eased);
-          img.style.transform = `scale(${scale})`;
-          img.style.filter = `blur(${blur}px)`;
-        }
-      });
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateProjections);
-        ticking = true;
-      }
-    }, { passive: true });
-    updateProjections();
-
-    // Text palimpsest: the fossil line resolving from blur over its own
-    // short runway (see GLOSSARY.md — "text palimpsest"). One per page.
-    const tfRunway = document.getElementById('tf-runway');
-    const tfLine = document.getElementById('tf-line');
-    if (tfRunway && tfLine) {
-      const TF_MAX_BLUR = 14, TF_MIN_OPACITY = 0.35;
-      const TF_MAX_TRACK = 0.06, TF_MIN_TRACK = 0.02, TF_DWELL = 0.35;
-      let tfTicking = false;
-      function updateTextFocus() {
-        const rect = tfRunway.getBoundingClientRect();
-        const total = rect.height - window.innerHeight;
-        const focusDistance = total * (1 - TF_DWELL);
-        let p = focusDistance > 0 ? (-rect.top) / focusDistance : 1;
-        p = Math.min(Math.max(p, 0), 1);
-        const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-        tfLine.style.filter = `blur(${TF_MAX_BLUR * (1 - eased)}px)`;
-        tfLine.style.opacity = TF_MIN_OPACITY + (1 - TF_MIN_OPACITY) * eased;
-        tfLine.style.letterSpacing = `${TF_MAX_TRACK - (TF_MAX_TRACK - TF_MIN_TRACK) * eased}em`;
-        tfTicking = false;
-      }
-      window.addEventListener('scroll', () => {
-        if (!tfTicking) {
-          requestAnimationFrame(updateTextFocus);
-          tfTicking = true;
-        }
-      }, { passive: true });
-      updateTextFocus();
-    }
-  }
-</script>
 
 </body>
 </html>
