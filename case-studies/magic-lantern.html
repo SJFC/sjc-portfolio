@@ -11,6 +11,36 @@
 
   body.ml-page { background: var(--near-black); }
 
+  /* ---- Opening header: still, first — orientation before motion,
+     matching the grammar of the other case studies, but on this page's
+     own nocturnal ground rather than cream. ---- */
+  .ml-opening-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    color: var(--cream);
+    padding: var(--space-6) var(--space-3) var(--space-4);
+    text-align: center;
+  }
+  .ml-opening-header .cs-eyebrow { color: var(--slide-gold); }
+  .ml-opening-header__title {
+    font-size: clamp(2.2rem, 5vw, var(--text-2xl));
+    color: var(--cream);
+    max-width: var(--measure-wide);
+    margin: var(--space-2) auto var(--space-2);
+  }
+  .ml-opening-header__title em { color: var(--slide-gold); font-style: italic; }
+  .ml-opening-header__standfirst {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--warm-grey);
+    max-width: var(--measure);
+    margin: 0 auto;
+  }
+
   /* ---- Opening ---- */
   .ml-opening {
     min-height: 100vh;
@@ -141,7 +171,15 @@
     </div>
   </nav>
 
-  <!-- ============ 1. OPENING ============ -->
+  <!-- ============ 1. TITLE — still, first: orientation before motion,
+       matching the grammar of the other case studies ============ -->
+  <header class="ml-opening-header">
+    <span class="cs-eyebrow">The visual poetics of hidden space</span>
+    <h1 class="ml-opening-header__title">Minor Deities: <em>representations &amp;c., under glass</em></h1>
+    <p class="ml-opening-header__standfirst">To be preserved is not a synonym for free.</p>
+  </header>
+
+  <!-- ============ 2. OPENING IMAGE ============ -->
   <section class="ml-opening">
     <div class="ml-opening__frame">
       <img src="../assets/images/magic-lantern/hedgerow-and-lost-light.jpg"
@@ -150,7 +188,7 @@
     <p class="ml-opening__scroll-cue">Scroll</p>
   </section>
 
-  <!-- ============ 2. THREE IMAGES — image rhythm before any reading ============ -->
+  <!-- ============ 3. THREE IMAGES — image rhythm before any reading ============ -->
   <section class="ml-sequence">
     <div class="proj-block">
       <div class="proj-runway">
@@ -188,10 +226,9 @@
     </figure>
   </section>
 
-  <!-- ============ 3. TITLE AS POEM (first text) ============ -->
+  <!-- ============ 4. TITLE AS POEM (first text) ============ -->
   <section class="ml-title-poem cs-section reveal">
-    <div class="cs-inner"><span class="cs-eyebrow">The visual poetics of hidden space</span></div>
-    <h2 class="ml-title-poem__title">Minor Deities: <em>representations &amp;c., under glass</em></h2>
+    <div class="cs-inner"><span class="cs-eyebrow">Reading the title</span></div>
     <div class="cs-inner">
       <p><strong>Minor Deities</strong> were a series of collages shown as Victorian 'Magic Lantern' slides in Hereford in 2023. They are imagined household gods, wayside-shrine presences, the half-glimpsed things that linger in spaces officialdom has stopped looking at closely.</p>
       <p><strong>representations &amp;c.</strong> borrows the voice of the Victorian catalogue entry. The <em>&amp;c.</em> admits existences beyond the label which we cannot list. It gestures to the plant that outgrows its pot and blurs boundaries: the notes classification cannot hold.</p>
@@ -199,7 +236,7 @@
     </div>
   </section>
 
-  <!-- ============ 4. TEXT + IMAGE WORKING TOGETHER ============ -->
+  <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER ============ -->
   <section class="ml-argument-images">
     <div class="cs-inner cs-inner--wide reveal"><span class="cs-eyebrow">The argument</span></div>
 
@@ -242,7 +279,7 @@
     </div>
   </section>
 
-  <!-- ============ 5a. INTERLUDE — the fossil line resolves, the stanza it
+  <!-- ============ 6a. INTERLUDE — the fossil line resolves, the stanza it
        belongs to follows, and Reflected Invocations stands beside the
        argument about what exceeds explanation ============ -->
   <section class="ml-interlude">
@@ -279,7 +316,7 @@
     </figure>
   </section>
 
-  <!-- ============ 5b. MORE TEXT — argument III, no image ============ -->
+  <!-- ============ 6b. MORE TEXT — argument III, no image ============ -->
   <section class="ml-argument-text">
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">III.</span>
@@ -292,7 +329,7 @@
     </div>
   </section>
 
-  <!-- ============ 6. MORE IMAGE — closing visual chapter, before the poem ============ -->
+  <!-- ============ 7. MORE IMAGE — closing visual chapter, before the poem ============ -->
   <section class="ml-sequence">
     <div class="ml-ghost-text" aria-hidden="true"><span>the eggshell bones of tiny things are lost</span></div>
     <div class="ml-moth" id="ml-moth">
@@ -395,7 +432,7 @@
 </figure>
   </section>
 
-  <!-- ============ 7. THE POEM ============ -->
+  <!-- ============ 8. THE POEM ============ -->
   <section class="ml-poem-section cs-section reveal">
     <div class="cs-inner">
       <span class="cs-eyebrow">Labyrinth/Establishment</span>
@@ -430,7 +467,7 @@
     </div>
   </section>
 
-  <!-- ============ 8. GLASS THREAD & FOSSIL RECORD ============ -->
+  <!-- ============ 9. GLASS THREAD & FOSSIL RECORD ============ -->
   <section class="ml-closing cs-section reveal">
     <div class="cs-inner">
       <span class="cs-eyebrow">Glass threads</span>
