@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A forgotten place — Sarah-Jane Crowson</title>
+<!-- GitHub Pages serves this page at any missing path, so every URL below
+     is absolute to the project root rather than relative. Colours carry
+     hex fallbacks in case the stylesheet is unreachable. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sjc-portfolio/assets/css/tokens.css">
+<style>
+  /* The minor deity of forgotten places, as web infrastructure: the page
+     nobody is meant to find, kept in the Minor Deities nocturnal register.
+     The moth lives here now — the residual space of the site itself. */
+  * { margin: 0; box-sizing: border-box; }
+  body.fp-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--near-black, #171411);
+    color: var(--cream, #F2EADA);
+    padding: 2rem;
+    font-family: var(--font-serif, "EB Garamond", Georgia, serif);
+  }
+  .fp-eyebrow {
+    font-family: var(--font-sans, "Inter", sans-serif);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slide-gold, #C9A648);
+  }
+  .fp-title {
+    font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    margin: 0.6em auto 0.7em;
+    max-width: 24ch;
+  }
+  .fp-line {
+    font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--warm-grey, #9C8F7E);
+    max-width: 42ch;
+    margin: 0 auto;
+  }
+  .fp-home {
+    display: inline-block;
+    margin-top: 2.4rem;
+    font-family: var(--font-sans, "Inter", sans-serif);
+    font-size: 0.85rem;
+    color: var(--slide-gold, #C9A648);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.15em;
+  }
+  .fp-home:focus-visible { outline: 2px solid var(--magenta, #C0397B); outline-offset: 4px; }
+
+  /* The moth: resting by default, drifting in slow loops for those whose
+     settings allow motion. */
+  .fp-moth {
+    width: 64px;
+    height: 54px;
+    margin-bottom: 2.2rem;
+    opacity: 0.9;
+  }
+  .fp-moth__wing { transform-box: fill-box; }
+  .fp-moth__wing--left  { transform-origin: 100% 60%; }
+  .fp-moth__wing--right { transform-origin: 0% 60%; }
+  @media (prefers-reduced-motion: no-preference) {
+    .fp-moth { animation: fp-drift 26s ease-in-out infinite; }
+    .fp-moth .fp-moth__wing--left  { animation: fp-flap-left 0.21s ease-in-out infinite alternate; }
+    .fp-moth .fp-moth__wing--right { animation: fp-flap-right 0.19s ease-in-out infinite alternate; }
+  }
+  @keyframes fp-flap-left  { 0% { transform: scaleX(1) rotate(-2deg); } 100% { transform: scaleX(0.38) rotate(-10deg); } }
+  @keyframes fp-flap-right { 0% { transform: scaleX(1) rotate(2deg); } 100% { transform: scaleX(0.38) rotate(10deg); } }
+  @keyframes fp-drift {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    18%  { transform: translate(9vw, -6vh) rotate(8deg); }
+    36%  { transform: translate(-4vw, -11vh) rotate(-7deg); }
+    55%  { transform: translate(-11vw, -3vh) rotate(6deg); }
+    74%  { transform: translate(5vw, 4vh) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+</style>
+</head>
+<body class="fp-page">
+
+  <div class="fp-moth" role="img" aria-label="A brown moth with amber-edged wings, drifting.">
+    <svg viewBox="0 0 80 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Body -->
+      <ellipse cx="40" cy="34" rx="2.5" ry="11" fill="#2A1A0A"/>
+      <ellipse cx="40" cy="24" rx="2" ry="3.5" fill="#3D2410"/>
+      <!-- Antennae -->
+      <line x1="40" y1="21" x2="30" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
+      <line x1="40" y1="21" x2="50" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
+      <circle cx="29.5" cy="9.5" r="1" fill="#2A1A0A"/>
+      <circle cx="50.5" cy="9.5" r="1" fill="#2A1A0A"/>
+      <!-- Left upper wing -->
+      <g class="fp-moth__wing fp-moth__wing--left">
+        <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
+              fill="#8B4A18" opacity="0.92"/>
+        <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
+              fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
+        <!-- Wing markings -->
+        <path d="M24 18 C20 22, 16 26, 18 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
+        <path d="M18 20 C15 24, 13 27, 14 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
+        <ellipse cx="14" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(-20 14 24)"/>
+        <ellipse cx="22" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(-10 22 20)"/>
+        <!-- Amber edge band -->
+        <path d="M8 18 C4 23, 4 29, 10 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
+        <!-- Left lower wing -->
+        <path d="M38 34 C30 34, 14 36, 8 42 C4 47, 8 52, 16 50 C26 48, 36 42, 39 38 Z"
+              fill="#6B3410" opacity="0.88"/>
+        <path d="M16 48 C12 44, 10 40, 14 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
+        <ellipse cx="12" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(15 12 44)"/>
+        <path d="M8 42 C5 46, 6 50, 10 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
+      </g>
+      <!-- Right upper wing -->
+      <g class="fp-moth__wing fp-moth__wing--right">
+        <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
+              fill="#8B4A18" opacity="0.92"/>
+        <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
+              fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
+        <path d="M56 18 C60 22, 64 26, 62 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
+        <path d="M62 20 C65 24, 67 27, 66 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
+        <ellipse cx="66" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(20 66 24)"/>
+        <ellipse cx="58" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(10 58 20)"/>
+        <path d="M72 18 C76 23, 76 29, 70 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
+        <!-- Right lower wing -->
+        <path d="M42 34 C50 34, 66 36, 72 42 C76 47, 72 52, 64 50 C54 48, 44 42, 41 38 Z"
+              fill="#6B3410" opacity="0.88"/>
+        <path d="M64 48 C68 44, 70 40, 66 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
+        <ellipse cx="68" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(-15 68 44)"/>
+        <path d="M72 42 C75 46, 74 50, 70 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
+      </g>
+      <!-- Subtle cream highlight on body -->
+      <ellipse cx="40" cy="27" rx="1" ry="2.5" fill="#E8D5B0" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <span class="fp-eyebrow">A residual space</span>
+  <h1 class="fp-title">You've found a forgotten place</h1>
+  <p class="fp-line">There is no page under this glass. The address leads to one of the site's overgrown corners — the kind of space the catalogue stopped listing. The moth got here first.</p>
+
+  <a class="fp-home" href="/sjc-portfolio/index.html">Return to the collection →</a>
+
+</body>
+</html>
