@@ -99,29 +99,7 @@
     white-space: nowrap; transform: rotate(-4deg);
   }
 
-  .ml-moth { position: absolute; width: 52px; height: 44px; opacity: 0; z-index: 5; pointer-events: none; }
-  .ml-moth.is-flying { animation: moth-drift 11s ease-in-out forwards; }
-  .ml-moth__wing { transform-box: fill-box; }
-  .ml-moth__wing--left  { transform-origin: 100% 60%; }
-  .ml-moth__wing--right { transform-origin: 0% 60%; }
-  .ml-moth.is-flying .ml-moth__wing--left  { animation: wing-flap-left 0.19s ease-in-out infinite alternate; }
-  .ml-moth.is-flying .ml-moth__wing--right { animation: wing-flap-right 0.17s ease-in-out infinite alternate; }
-  @keyframes wing-flap-left  { 0% { transform: scaleX(1) rotate(-2deg); } 100% { transform: scaleX(0.38) rotate(-10deg); } }
-  @keyframes wing-flap-right { 0% { transform: scaleX(1) rotate(2deg); } 100% { transform: scaleX(0.38) rotate(10deg); } }
-  @keyframes moth-drift {
-    0%   { opacity: 0;   transform: translate(-8vw, 30vh) rotate(12deg); }
-    8%   { opacity: 0.9; transform: translate(-2vw, 28vh) rotate(-6deg); }
-    22%  { opacity: 0.9; transform: translate(8vw, 22vh) rotate(8deg); }
-    38%  { opacity: 0.9; transform: translate(18vw, 26vh) rotate(-10deg); }
-    52%  { opacity: 0.9; transform: translate(14vw, 32vh) rotate(6deg); }
-    66%  { opacity: 0.9; transform: translate(6vw, 38vh) rotate(-8deg); }
-    80%  { opacity: 0.9; transform: translate(-2vw, 44vh) rotate(10deg); }
-    92%  { opacity: 0.4; transform: translate(-6vw, 46vh) rotate(-4deg); }
-    100% { opacity: 0;   transform: translate(-12vw, 48vh) rotate(6deg); }
-  }
-  @media (prefers-reduced-motion: reduce) { .ml-moth.is-flying { animation: none; opacity: 0; } .ml-moth.is-flying .ml-moth__wing { animation: none; } }
-
-  /* ---- Text + image section: the argument, interwoven with projection-effect images ---- */
+  /* ---- Text + image section: the argument, interwoven with slides ---- */
   .ml-argument-images { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3) 0; }
   .ml-argument__item { margin-bottom: var(--space-4); max-width: var(--measure-wide); margin-left: auto; margin-right: auto; }
   .ml-argument__number { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
@@ -188,7 +166,9 @@
     <p class="ml-opening__scroll-cue">Scroll</p>
   </section>
 
-  <!-- ============ 3. THREE IMAGES — image rhythm before any reading ============ -->
+  <!-- ============ 3. THREE IMAGES — image rhythm before any reading.
+       The projection effect appears once, here, teaching the mechanic;
+       every slide after it stands still. ============ -->
   <section class="ml-sequence">
     <div class="proj-block">
       <div class="proj-runway">
@@ -228,7 +208,7 @@
 
   <!-- ============ 4. TITLE AS POEM (first text) ============ -->
   <section class="ml-title-poem cs-section reveal">
-    <div class="cs-inner"><span class="cs-eyebrow">The project: representations &amp;c under glass </span></div>
+    <div class="cs-inner"><span class="cs-eyebrow">The project: representations &amp;c under glass</span></div>
     <div class="cs-inner">
       <p><strong>Minor Deities</strong> were a series of collages shown as Victorian 'Magic Lantern' slides in Hereford in 2023. They are imagined household gods, wayside-shrine presences, the half-glimpsed things that linger in spaces officialdom has stopped looking at closely.</p>
       <p><strong>representations &amp;c.</strong> borrows the voice of the Victorian catalogue entry. The <em>&amp;c.</em> admits existences beyond the label which we cannot list. It gestures to the plant that outgrows its pot and blurs boundaries: the notes classification cannot hold.</p>
@@ -236,7 +216,8 @@
     </div>
   </section>
 
-  <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER ============ -->
+  <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER — static slides in a
+       vertical rhythm, the reading pace set by the reader ============ -->
   <section class="ml-argument-images">
     <div class="cs-inner cs-inner--wide reveal"><span class="cs-eyebrow">The argument</span></div>
 
@@ -246,37 +227,35 @@
       <p>The collages use traditional portrait images and transform them. A Victorian portrait was never a neutral record. It encoded social position, gender, propriety, wealth. It encoded not just an image, but the values of whoever commissioned it. It shows only what was classified and what the system valued enough to keep.</p>
     </div>
 
-    <div class="proj-block">
-      <div class="proj-runway">
-        <div class="proj-sticky">
-          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="" aria-hidden="true">
-          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="A woman in a butterfly mask sits in a moss-grown cloister, an astrological map overlaid across the scene.">
+    <figure class="ml-slide reveal">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--mounted">
+          <img src="../assets/images/magic-lantern/minor-deity-of-underground-waterways.jpg" alt="A woman in a butterfly mask sits in a moss-grown cloister, an astrological map overlaid across the scene.">
         </div>
+        <figcaption>
+          <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of underground waterways — unframed plate</span>
+          <p class="slide-caption" style="color:var(--warm-grey);">Water keeps its own reflected time.</p>
+        </figcaption>
       </div>
-      <figcaption class="proj-caption">
-        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of underground waterways — unframed plate</span>
-        <p class="slide-caption" style="color:var(--warm-grey);">Water keeps its own reflected time.</p>
-      </figcaption>
-    </div>
+    </figure>
 
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">II.</span>
       <h3>The theory: time as non-linear, space as relational</h3>
-      <p>The lantern slide transfixes time: pins a moment, fixes it under glass, projects it to an audience who see it as a true record and write it into personal and collective histories. This work counter-balances that, evoking Lefebvre's half-glimpsed forgotten spaces; the wayside shrine, the overgrown spring, the local deity not quite erased. These are the residual spaces the official image cannot fully contain. They echo Massey's relational space; images from different times and registers are layered, because space and time are constellations of relation rather than fixed coordinates.</p>
+      <p>The lantern slide transfixes time: pins a moment, fixes it under glass, projects it to an audience who see it as a true record and write it into personal and collective histories. In Jane Rendell's terms, the slides operate as critical spatial practice: work made where art and spatial theory meet, staged as much in the room the projection constructs as on the glass itself. The work counter-balances the transfixing, evoking Lefebvre's half-glimpsed forgotten spaces; the wayside shrine, the overgrown spring, the local deity not quite erased. These are the residual spaces the official image cannot fully contain. They echo Massey's relational space; images from different times and registers are layered, because space and time are constellations of relation rather than fixed coordinates.</p>
     </div>
 
-    <div class="proj-block">
-      <div class="proj-runway">
-        <div class="proj-sticky">
-          <img class="proj-base-img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="" aria-hidden="true">
-          <img class="proj-sticky__img" src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="A pale, faceless figure seen from behind, standing at the edge of dark water in a tangled forest.">
+    <figure class="ml-slide reveal">
+      <div class="ml-slide__frame">
+        <div class="slide-figure slide-figure--mounted">
+          <img src="../assets/images/magic-lantern/minor-deity-of-irresolution.jpg" alt="A pale, faceless figure seen from behind, standing at the edge of dark water in a tangled forest.">
         </div>
+        <figcaption>
+          <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of irresolution — unframed plate</span>
+          <p class="slide-caption" style="color:var(--warm-grey);">Each moth's a beacon in the quiet garden</p>
+        </figcaption>
       </div>
-      <figcaption class="proj-caption">
-        <span class="ml-slide__caption-title" style="color:var(--magenta);">The minor deity of irresolution — unframed plate</span>
-        <p class="slide-caption" style="color:var(--warm-grey);">Each moth's a beacon in the quiet garden</p>
-      </figcaption>
-    </div>
+    </figure>
   </section>
 
   <!-- ============ 6a. INTERLUDE — the fossil line resolves from blur, and
@@ -316,58 +295,6 @@
   <!-- ============ 7. THE SLIDE ITSELF — the material object, before the poem ============ -->
   <section class="ml-sequence">
     <div class="ml-ghost-text" aria-hidden="true"><span>the eggshell bones of tiny things are lost</span></div>
-    <div class="ml-moth" id="ml-moth">
-      <svg viewBox="0 0 80 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Body -->
-        <ellipse cx="40" cy="34" rx="2.5" ry="11" fill="#2A1A0A"/>
-        <ellipse cx="40" cy="24" rx="2" ry="3.5" fill="#3D2410"/>
-        <!-- Antennae -->
-        <line x1="40" y1="21" x2="30" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
-        <line x1="40" y1="21" x2="50" y2="10" stroke="#2A1A0A" stroke-width="0.7"/>
-        <circle cx="29.5" cy="9.5" r="1" fill="#2A1A0A"/>
-        <circle cx="50.5" cy="9.5" r="1" fill="#2A1A0A"/>
-        <!-- Left upper wing -->
-        <g class="ml-moth__wing ml-moth__wing--left">
-          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
-                fill="#8B4A18" opacity="0.92"/>
-          <path d="M39 26 C34 20, 20 14, 8 18 C2 22, 4 30, 10 32 C18 35, 30 32, 38 34 Z"
-                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
-          <!-- Wing markings -->
-          <path d="M24 18 C20 22, 16 26, 18 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
-          <path d="M18 20 C15 24, 13 27, 14 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
-          <ellipse cx="14" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(-20 14 24)"/>
-          <ellipse cx="22" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(-10 22 20)"/>
-          <!-- Amber edge band -->
-          <path d="M8 18 C4 23, 4 29, 10 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
-          <!-- Left lower wing -->
-          <path d="M38 34 C30 34, 14 36, 8 42 C4 47, 8 52, 16 50 C26 48, 36 42, 39 38 Z"
-                fill="#6B3410" opacity="0.88"/>
-          <path d="M16 48 C12 44, 10 40, 14 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
-          <ellipse cx="12" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(15 12 44)"/>
-          <path d="M8 42 C5 46, 6 50, 10 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
-        </g>
-        <!-- Right upper wing -->
-        <g class="ml-moth__wing ml-moth__wing--right">
-          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
-                fill="#8B4A18" opacity="0.92"/>
-          <path d="M41 26 C46 20, 60 14, 72 18 C78 22, 76 30, 70 32 C62 35, 50 32, 42 34 Z"
-                fill="none" stroke="#5C2E08" stroke-width="0.4" opacity="0.6"/>
-          <path d="M56 18 C60 22, 64 26, 62 30" stroke="#C8761A" stroke-width="0.8" opacity="0.7" fill="none"/>
-          <path d="M62 20 C65 24, 67 27, 66 30" stroke="#C8761A" stroke-width="0.6" opacity="0.5" fill="none"/>
-          <ellipse cx="66" cy="24" rx="2.5" ry="1.8" fill="#1A0A02" opacity="0.8" transform="rotate(20 66 24)"/>
-          <ellipse cx="58" cy="20" rx="1.8" ry="1.2" fill="#1A0A02" opacity="0.7" transform="rotate(10 58 20)"/>
-          <path d="M72 18 C76 23, 76 29, 70 32" stroke="#D4892A" stroke-width="2.5" opacity="0.5" fill="none" stroke-linecap="round"/>
-          <!-- Right lower wing -->
-          <path d="M42 34 C50 34, 66 36, 72 42 C76 47, 72 52, 64 50 C54 48, 44 42, 41 38 Z"
-                fill="#6B3410" opacity="0.88"/>
-          <path d="M64 48 C68 44, 70 40, 66 38" stroke="#C8761A" stroke-width="0.7" opacity="0.6" fill="none"/>
-          <ellipse cx="68" cy="44" rx="2" ry="1.5" fill="#1A0A02" opacity="0.75" transform="rotate(-15 68 44)"/>
-          <path d="M72 42 C75 46, 74 50, 70 51" stroke="#8B4A18" stroke-width="1.5" opacity="0.4" fill="none"/>
-        </g>
-        <!-- Subtle cream highlight on body -->
-        <ellipse cx="40" cy="27" rx="1" ry="2.5" fill="#E8D5B0" opacity="0.25"/>
-      </svg>
-    </div>
 
     <figure class="ml-slide ml-slide--full reveal">
       <div class="ml-slide__frame">
@@ -418,8 +345,8 @@
   <section class="ml-closing cs-section reveal">
     <div class="cs-inner">
       <span class="cs-eyebrow">Glass threads</span>
-      <p>This project is the conceptual underpinning for my arts-based and poetic approach to data analysis, participant-centred consultation and hybrid data visualisations. Further work can be found under glass, including orchids, a Victorian sewing box and terraria filled with palms and moss acting as a poetic data physicalisation and visual metaphor for the practice of care and a critical reflection on when data becomes containment as well as classification.</p>
-<div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a> · <a href="consultation.html">Revealing Layers →</a></div>
+      <p>This project is the conceptual underpinning for my arts-based and poetic approach to data analysis, participant-centred consultation and hybrid data visualisations. Further work continues under glass: orchids, a Victorian sewing box, terraria of palms and moss — a living data physicalisation, a visual metaphor for the practice of care, and a critical reflection on when classification becomes containment.</p>
+<div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a> · <a href="consultation.html">Regulated Instruments →</a></div>
       <p class="ml-closing__credit">With thanks to Ewan Morrison, critical friend and collaborator throughout the development of this work.</p>
     </div>
   </section>
@@ -436,26 +363,13 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => revealObserver.observe(el));
 
-  const moth = document.getElementById('ml-moth');
-  const sequenceSections = document.querySelectorAll('.ml-sequence');
-  const lastSequence = sequenceSections[sequenceSections.length - 1];
-  let mothFlown = false;
-  const mothObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !mothFlown) {
-        mothFlown = true;
-        moth.classList.add('is-flying');
-        mothObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  if (lastSequence) mothObserver.observe(lastSequence);
-
   // Projection overlay effect: a palimpsest. A fixed-size ghost layer sits
   // behind, unmoving. The foreground layer begins oversized and unfocused —
   // as if projected across a building from a distance — then scales down
   // and sharpens into focus as the reader scrolls, settling to rest near
-  // the ghost layer's size. Skipped entirely for reduced-motion users.
+  // the ghost layer's size. Used once, on the first slide: the page's
+  // opening lesson in how a projection resolves. Skipped entirely for
+  // reduced-motion users.
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     const runways = document.querySelectorAll('.proj-runway');
