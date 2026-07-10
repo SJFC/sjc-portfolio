@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Botanica: A Data Humanist Question — Sarah-Jane Crowson</title>
+<meta name="description" content="Botanica: a living installation in a Victorian sewing box, asking what gets lost when complex, relational lives are organised into categories. Launching at h.Art, Hereford, September 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -30,6 +31,13 @@
     background: radial-gradient(circle at center, rgba(123, 23, 80, 0.22), transparent 62%);
     pointer-events: none;
     z-index: 0;
+  }
+  /* Caption-title styling is defined on the Magic Lantern page, whose
+     class this page borrows for the projection caption; restated here so
+     the caption keeps its sans, uppercase register on this page too. */
+  .bo-sequence .ml-slide__caption-title {
+    font-family: var(--font-sans); font-size: var(--text-xs);
+    letter-spacing: 0.1em; text-transform: uppercase;
   }
 
   /* ---- Opening: MATERIALISING ----
@@ -118,6 +126,16 @@
   /* ---- Argument ---- */
   .bo-argument__item { max-width: var(--measure); margin: 0 auto var(--space-4); }
   .bo-argument__item h3 { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
+
+  /* Collage figures inside the argument: quiet frames on the cream
+     ground, ready for the planned images. */
+  .bo-argument__figure { max-width: 26rem; margin: var(--space-4) auto; }
+  .bo-argument__figure img { width: 100%; border-radius: var(--radius-slide); box-shadow: 0 1rem 3rem rgba(0,0,0,0.25); }
+  .bo-argument__figure figcaption {
+    font-family: var(--font-display); font-style: italic;
+    font-size: var(--text-sm); color: var(--olive);
+    text-align: center; margin-top: var(--space-1);
+  }
 
   /* The claim line arrives as the page's text palimpsest, on cream —
      line colour overridden to magenta for contrast on the light ground. */
@@ -267,6 +285,15 @@
       <p>A Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to hold thread, pins, buttons — equipment to create, mend and make. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
       <p>The box still organises. But it can no longer fully contain or care for what it holds.</p>
     </div>
+
+    <!-- PLANNED IMAGE — establishing shot of the full installation.
+         When the photograph exists, uncomment and point src at it:
+    <figure class="bo-argument__figure reveal">
+      <img src="../assets/images/botanica/installation-establishing.jpg"
+           alt="TO WRITE: the whole installation seen at once — sewing box, plants, setting.">
+      <figcaption>The installation, whole — before the close readings begin.</figcaption>
+    </figure>
+    -->
   </section>
 
   <!-- ============ 4. THE ARGUMENT ============ -->
@@ -282,6 +309,15 @@
       <h3>Data as ecological</h3>
       <p>Rather than treating data as fixed, flat or extractive, Botanica asks what happens when data is imagined as ecological instead — relational, situated, fragile, adaptive, dependent on particular environments. A data point then behaves less like an entry in a spreadsheet and more like the living thing it represents: it needs particular conditions to be understood accurately, and it can be harmed by the wrong environment even while carrying an accurate care label.</p>
     </div>
+
+    <!-- PLANNED IMAGE — collage for the argument section.
+         When it exists, uncomment and point src at it:
+    <figure class="bo-argument__figure reveal">
+      <img src="../assets/images/botanica/argument-collage.jpg"
+           alt="TO WRITE: describe the collage.">
+      <figcaption>TO WRITE: one italic line, in the register of the plant captions.</figcaption>
+    </figure>
+    -->
 
     <div class="bo-argument__item">
       <h3>Between the spreadsheet and the story</h3>
@@ -405,9 +441,7 @@
     <p class="bo-poem__couplet">The crows catch currents, glide. I watch one fall –<br>
     all magic's lost, it's only airborne paper.</p>
 
-    <!-- Publication attribution to confirm: add journal + year here if published,
-         or leave as-is if the poem is previously unpublished. -->
-    <p class="bo-poem__attribution">Sarah-Jane Crowson</p>
+    <p class="bo-poem__attribution">Sarah-Jane Crowson · first published in <em>Mezzo Cammin</em></p>
   </section>
 
   <!-- ============ 9. PARTICIPATION ============ -->
@@ -422,9 +456,9 @@
   <!-- ============ 10. CLOSING ============ -->
   <section class="cs-section reveal" style="background:var(--cream);">
     <div class="cs-inner">
-      <span class="cs-eyebrow">Future Work</span>
-      <p>Botanica is in development, with a September launch in Hereford planned. This page will change as the final photography, confirmed label text, and the participation space are still to come.</p>
-     <p class="bo-closing__next"><a href="magic-lantern.html">← Minor Deities</a> · <a href="consultation.html">Revealing Layers →</a></p>
+      <span class="cs-eyebrow">Future work</span>
+      <p>Botanica is in development ahead of its launch at h.Art in Hereford in September 2026. This page will grow with it: final photography and confirmed label text are still to come.</p>
+     <p class="bo-closing__next"><a href="magic-lantern.html">← Minor Deities</a> · <a href="consultation.html">Regulated Instruments →</a></p>
     </div>
   </section>
 
