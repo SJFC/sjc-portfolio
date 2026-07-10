@@ -1,6 +1,8 @@
 # Sarah-Jane Crowson — Portfolio Site
 
-A bespoke static website documenting the practice of Sarah-Jane Crowson, practitioner-researcher and poet. Built as a postgraduate portfolio submission for the MDES 10 module at Sunderland University.
+A bespoke static website documenting the practice of Sarah-Jane Crowson, poet, artist and practitioner-researcher. Built as a postgraduate portfolio submission for the MDES 10 module at the University of Sunderland.
+
+Live at: https://sjfc.github.io/sjc-portfolio/
 
 ---
 
@@ -8,17 +10,17 @@ A bespoke static website documenting the practice of Sarah-Jane Crowson, practit
 
 This site was built as a deliberate artistic and academic object, not only as a container for work. The design system, scroll behaviours, and visual language were developed in parallel with — and in response to — the practice it documents. The site is intended to be *entered* rather than encountered: text-light, image-beautiful, with interactions that carry conceptual weight rather than merely organising content.
 
-The three case studies documented here are:
+The three case studies documented here make one connected argument — that classification without changed conditions is containment, not care — asked of three different materials: the photograph, the plant, and the spreadsheet.
 
-- **Minor Deities: representations &c., under glass** — a magic lantern slideshow body of work shown at Hereford College of Arts, 2023
-- **Botanica: A Data Humanist Question** — a living installation (in development, September 2025 launch)
-- **Card Game** — in documentation
+- **Minor Deities: representations &c., under glass** — a magic lantern slideshow body of work shown in Hereford, 2023 (*critical spatial practice*)
+- **Botanica: a data humanist question** — a living installation, launching at h.Art, Hereford, September 2026 (*critical data visualisation*)
+- **Regulated Instruments: revealing layers** — a participatory consultation methodology applied to a regulated Access and Participation Plan (*participatory consultations*)
 
 ---
 
 ## Transparency statement: AI collaboration
 
-This site was built in active collaboration with **Claude** (Anthropic), an AI assistant, across a series of working sessions. I want to be explicit about what that collaboration involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses.
+This site was built in active collaboration with **Claude** (Anthropic), an AI assistant, across a series of working sessions. I want to be explicit about what that collaboration involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses. This approach was disclosed to the course tutor at the outset of the project.
 
 ### What Claude contributed
 
@@ -26,6 +28,7 @@ This site was built in active collaboration with **Claude** (Anthropic), an AI a
 - The design system architecture (shared token file, reusable components, scroll-effect utilities) was proposed and built by Claude
 - Placeholder draft text was written by Claude from my case study documents, as a starting point for my own editing
 - Debugging — including diagnosing why `position: sticky` was failing due to `overflow: hidden` on an ancestor element — was carried out by Claude through analysis of screen recordings I provided
+- In the later editorial stage, Claude performed "cold reads" of the site against its intended audiences (examiner, supervisor, prospective clients), produced snag lists, and carried agreed fixes into complete page files for me to review and commit
 
 ### What I contributed
 
@@ -34,12 +37,13 @@ This site was built in active collaboration with **Claude** (Anthropic), an AI a
 - All design direction: palette, typography, the palimpsest scroll effect concept, the image selection and sequencing, the decision to use a horizontal strip rather than vertical scroll for the closing image chapter, the moth's visual character and flight path
 - All source images and artwork
 - The poems, care-label captions, and poetic fragments throughout
+- All titles, and the editorial decisions of the later "drawer stage": renaming, re-sequencing, and the reading-across-pages that surfaced the site's connective systems
 
 ### How we worked
 
-We developed a shared working glossary (`GLOSSARY.md`) that maps the conceptual and poetic vocabulary of the practice to precise technical implementations — so that a word like "palimpsest" could carry both its theoretical meaning and its engineering meaning without collapsing either one. This glossary is included in the repository as a record of the collaborative method.
+We developed a shared working glossary (`GLOSSARY.md`) that maps the conceptual and poetic vocabulary of the practice to precise technical implementations — so that a word like "palimpsest" could carry both its theoretical meaning and its engineering meaning without collapsing either one. Design decisions and their rationale are recorded in `BRAND.md` and in working logs, rather than accumulated through silent iteration.
 
-Design decisions were made iteratively: I directed by eye and feel, provided screen recordings when something wasn't working, and edited text directly in the markup rather than relaying changes back to Claude. Claude acted as a collaborative developer; I acted as director, poet, and editor.
+The method was iterative in both directions. I directed by eye and feel, judged every effect on the live page rather than on description, provided screen recordings when something wasn't working, edited text directly in the markup, and — over the course of the project — re-learned how to work in HTML myself, making small changes directly in the GitHub editor. Later sessions settled into an explicit division of labour: I fetch and paste current files (the human holding the repository is the reliable source), Claude diffs, snags and rebuilds; some edits were made individually and separately, then reconciled. Claude acted as a collaborative developer and, later, a cold reader; I acted as director, poet, and editor.
 
 ### Why this matters to the practice
 
@@ -47,13 +51,38 @@ The question of what AI can and cannot generate is not incidental to this work �
 
 ---
 
+## Repository map
+
+- `index.html` — landing page: the mirror, the statement, three doors
+- `about.html` — the person, in daylight; contact
+- `404.html` — a residual space (served automatically by GitHub Pages for any missing address)
+- `case-studies/` — the three case study pages and the Botanica participation page
+- `assets/css/tokens.css` — the shared design system: colour, type scale, spacing, reusable components
+- `assets/images/` — photography and collage, organised per page
+- `GLOSSARY.md` — the shared vocabulary: poetic terms mapped to their technical implementations
+- `BRAND.md` — the identity decisions and their reasons: registers, grammar, conventions, governance
+- Working logs and page-edit documents, where committed, record session-by-session decisions
+
+---
+
 ## Technical notes
 
 Built with plain HTML, CSS, and vanilla JavaScript — no framework, no build step, no dependencies beyond Google Fonts. Deployed via GitHub Pages.
 
-The design system lives in `assets/css/tokens.css`. All colour values, type scale, spacing, and reusable component styles are defined there and referenced across pages, so any design-system change propagates site-wide rather than needing to be made per page.
+The design system lives in `assets/css/tokens.css`. All colour values, type scale, spacing, and reusable component styles are defined there and referenced across pages, so any design-system change propagates site-wide rather than needing to be made per page. Each case study sets its own colour register locally on top of the shared tokens (see `BRAND.md`).
 
-Browser support: all modern browsers. A `prefers-reduced-motion` fallback is implemented for all scroll-driven animations — users with this accessibility setting enabled see static versions of all animated elements.
+The landing-page mirror and the Botanica participation page post responses via Formspree. Each page carries a meta description; the landing page carries the site's machine-readable layer (Open Graph and JSON-LD structured data). On any future migration from GitHub Pages, the four absolute URLs noted in the `index.html` head comment are the only lines that change.
+
+Browser support: all modern browsers. A `prefers-reduced-motion` fallback is implemented for all scroll-driven animations — users with this setting enabled see static, fully resolved versions of every animated element, as a complete experience rather than a degraded one.
 
 ---
 
+## The site, in its own words
+
+> *To be preserved is not a synonym for free.* — Minor Deities
+
+> *Is categorisation a synonym for containment?* — Botanica
+
+> *Data is not a synonym for truth.* — Regulated Instruments
+
+> *Three bodies of work asking the same question of the photograph, the plant, and the spreadsheet.*
