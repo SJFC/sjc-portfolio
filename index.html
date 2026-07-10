@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- ===== Machine-readable layer. Human layer stays untouched. =====
      ON MIGRATION: the four absolute URLs below (canonical, og:url,
      og:image, JSON-LD url) are the only lines that change. ===== -->
@@ -30,8 +33,6 @@
   "url": "https://sjfc.github.io/sjc-portfolio/"
 }
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah-Jane Crowson — poet, artist, practitioner-researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -99,7 +100,10 @@
     box-shadow: 0 2rem 6rem rgba(0,0,0,0.7);
   }
 
-  /* ---- the thread: a running stitch, very very nearly even ---- */
+  /* ---- the thread: a running stitch, very very nearly even.
+     DORMANT by decision — the svg is absent from the figure; these rules
+     wait for the Singer-stitched iteration. --thread stays live: the card
+     and stitch-rule borrow it. ---- */
   .mirror-scene__thread {
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none; overflow: visible;
@@ -266,6 +270,11 @@
   .ix-work { background: var(--near-black); padding: var(--space-6) var(--space-3); }
   .ix-work__intro { text-align: center; margin-bottom: var(--space-4); }
   .ix-work__intro .cs-eyebrow { color: var(--slide-gold); }
+  .ix-work__line {
+    font-family: var(--font-display); font-style: italic;
+    font-size: var(--text-md); color: var(--warm-grey);
+    max-width: var(--measure); margin: var(--space-2) auto 0;
+  }
   .ix-doors {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -343,7 +352,11 @@
            fetchpriority="high"
            alt="A working collage: a Victorian bureau overgrown with ferns, ivy, moss and orchids in near-darkness. At its centre a gilt frame holds misted glass, in which a pale-gowned figure with a bloom for a head stands beside an open sewing box. A magenta thread trails from beneath the frame into the foliage.">
 
-      <!-- the thread: seeded running stitch, shadow layer beneath for the needle-holes -->
+      <!-- THE THREAD RESTS (decision, July 2026): the animated running
+           stitch is deliberately absent. A future Botanica iteration will
+           make the stitch with a manual Singer sewing machine — the thread
+           returns as material, not animation. Its CSS below stays dormant
+           so the mechanism is ready when it does. -->
 
       <button class="mirror-zone" id="mirrorZone" aria-haspopup="dialog"
               aria-label="The mirror has a question for you">
@@ -351,8 +364,7 @@
       </button>
 
       <figcaption class="ix-opening__caption">
-        Botanica:
-        Installation photography follows the Hereford launch, September 2026.
+        Botanica: installation photography follows the Hereford launch, September 2026.
       </figcaption>
     </figure>
 
@@ -361,24 +373,25 @@
 
   <!-- ============ 2. THE STATEMENT ============ -->
   <section class="ix-statement">
-    <p>I design poetic, participatory ways for organisations to communicate complex information, listen to lives ghosted by data, and make representation more accessible, situated and humane. </p>
+    <p>I design poetic, participatory ways for organisations to communicate complex information, listen to the lives ghosted by data, and make representation more accessible, situated and humane.</p>
   </section>
 
   <!-- ============ 3. THREE DOORS ============ -->
   <section class="ix-work" id="work">
     <div class="ix-work__intro">
       <span class="cs-eyebrow">Explore my work</span>
+      <p class="ix-work__line">Three bodies of work asking the same question of the photograph, the plant, and the spreadsheet.</p>
     </div>
     <div class="ix-doors">
       <a class="ix-door ix-door--ml" href="case-studies/magic-lantern.html">
         <span class="ix-door__eyebrow">Critical spatial practice</span>
         <span class="ix-door__title">Minor Deities</span>
-        <span class="ix-door__sub">representations &amp;c., under glass</span>
+        <span class="ix-door__sub">To be preserved is not a synonym for free.</span>
       </a>
       <a class="ix-door ix-door--bo" href="case-studies/botanica.html">
         <span class="ix-door__eyebrow">Critical data visualisation</span>
         <span class="ix-door__title">Botanica</span>
-        <span class="ix-door__sub">When does care become containment?</span>
+        <span class="ix-door__sub">Is categorisation a synonym for containment?</span>
       </a>
       <a class="ix-door ix-door--co" href="case-studies/consultation.html">
         <span class="ix-door__eyebrow">Participatory consultations</span>
@@ -390,7 +403,7 @@
 
   <!-- ============ 4. FOOTER ============ -->
   <section class="ix-footer">
-    <p>Botanica launches in Hereford, September 2026.</p>
+    <p>Botanica launches at h.Art in Hereford, September 2026.</p>
   </section>
 
   <!-- ============ THE RESPONSE CARD ============ -->
