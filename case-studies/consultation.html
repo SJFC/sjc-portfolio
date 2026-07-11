@@ -69,6 +69,17 @@
     color: var(--sage);
     opacity: 0.7;
   }
+  /* The erasure caption, rehomed beneath the header image (formerly the
+     caption of the removed butterfly-erasure figure). */
+  .co-accretion__caption {
+    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--sage);
+    max-width: 34rem;
+    text-align: center;
+  }
   .co-accretion__sr-caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
   @media (prefers-reduced-motion: reduce) {
     .co-accretion__runway { height: auto; padding: var(--space-5) 0; }
@@ -105,8 +116,31 @@
   .co-section-heading { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
   .cs-section .cs-inner p + p { margin-top: 1.2em; }
 
+  /* ---- THE QUESTION / THE METHOD — the shared capital-title grid.
+     One system across all three case studies: heading in the eyebrow
+     register, question line in the display italic register, method in
+     body prose. Candidate for consolidation into tokens.css. ---- */
+  .qm-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--olive);
+    margin: 0 0 var(--space-2);
+  }
+  .qm-question {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    line-height: 1.5;
+    max-width: var(--measure);
+  }
+
   /* Erasure chapters: full-width image moments on the navy ground,
-     the page's equivalent of the other case studies' image chapters. */
+     the page's equivalent of the other case studies' image chapters.
+     (Currently unused — the butterfly erasure was removed and its caption
+     rehomed beneath the header sequence; the component stays available.) */
   .co-erasure {
     background: var(--navy);
     color: var(--cream);
@@ -211,7 +245,7 @@
   }
   @media (max-width: 700px) { .co-sapphics__grid { grid-template-columns: 1fr; } }
 
-  /* The glass thread: the closing beat every case study on this site has —
+  /* The closing beat every case study on this site has —
      a short reflection with a single settled image. */
   .co-glass { background: var(--cream); }
   .co-glass .co-glass__figure { max-width: 22rem; margin: var(--space-4) auto; }
@@ -241,7 +275,9 @@
 
   <!-- ============ 2. ACCRETION: the erasure poem built in stages,
        the hidden source page at the bottom, arriving at the full collage —
-       now the first thing scrolling brings you into, not the landing state ============ -->
+       now the first thing scrolling brings you into, not the landing state.
+       The erasure caption sits beneath the frame (rehomed from the removed
+       butterfly-erasure figure). ============ -->
   <section class="co-accretion__runway" id="co-accretion-runway">
     <div class="co-accretion__sticky">
       <div class="co-accretion__frame">
@@ -250,40 +286,34 @@
         <img src="../assets/images/consultation/high-clouds-stage-2.jpg" alt="" aria-hidden="true">
         <img src="../assets/images/consultation/high-clouds-stage-3.jpg" alt="" aria-hidden="true">
       </div>
+      <p class="co-accretion__caption">An erasure poem keeps two stories legible: the full text beneath the wash, the selected text above it, echoing the layered stories told by data and by humans.</p>
       <p class="co-accretion__scroll-cue">Scroll</p>
     </div>
   </section>
 
-  <!-- ============ 3. CASE STUDY ============ -->
+  <!-- ============ 3. THE PROJECT + THE QUESTION ============ -->
   <section class="cs-section reveal">
     <div class="cs-inner">
-      <span class="cs-eyebrow">Revealing layers</span>
-      <h2 class="co-section-heading">Strategically writing policy: listening to data &amp; the humans it represents</h2>
-      <p>I design and deliver bespoke consultations using data, collaboratively created poetry, unique data visualisations and discussions with the people the data represents. This approach offers meaningful, humane consultation, and ensures that strategic or regulatory actions arising have an evidence base rooted in human experience.</p>
-      <p>In this example I worked for a small specialist Higher Educational institution designing and developing the regulatory instrument of the project's title: an Access and Participation Plan. Such institutions may be dealing with groups of 20 students rather than 2000 or even 200. At that scale, external data had to be analysed through the lens of the lived experience of students if it was to be meaningful.</p>
+      <span class="cs-eyebrow">The project: using arts methods to analyse data</span>
+      <h2 class="qm-heading">The question</h2>
+      <p class="qm-question">How can an institutional process that is dependent on external conditions of using set data methods become more humane, situated and relevant to the humans it describes.</p>
+      <p>Revealing Layers is an example of a consultation process I used as part of developing the regulatory instrument of the project's title: an Access and Participation Plan for a small specialist Higher Educational institution. Such institutions may be dealing with groups of 20 students rather than 2000 or even 200. At that scale, external data had to be analysed through the lens of the lived experience of students if it was to be meaningful.</p>
     </div>
   </section>
 
-  <!-- ============ 4. ERASURE CHAPTER I — the method's diagram ============ -->
-  <section class="co-erasure reveal">
-    <span class="cs-eyebrow">Revealing layers</span>
-    <div class="co-erasure__figure">
-      <img src="../assets/images/consultation/theory-of-illumination.jpg" alt="An erasure poem titled A Theory of Illumination: a Victorian text on manuscript illumination, struck through in green, with the surviving words reading dragon-tailed, perfection, delicate and beautiful, cunning, imagination, a border of brilliant, limitations, pure and bright, barbaric splendour. A carved marble head, a butterfly with a human eye at its centre, and two beetles surround the text.">
-    </div>
-    <p class="co-erasure__caption">An erasure poem keeps two stories legible: the full text beneath the wash, the selected text above it, echoing the layered stories told by data and by humans.</p>
-  </section>
-
-  <!-- ============ 5. THE METHOD ============ -->
+  <!-- ============ 4. THE METHOD ============ -->
   <section class="cs-section reveal" style="background:#EDE6D6;">
     <div class="cs-inner">
-      <span class="cs-eyebrow">The method</span>
-      <h2 class="co-section-heading">Working with the ecosystem</h2>
-      <p>In my consultations, I either design approaches that promote engagement with information through bespoke data installations, or go to where stakeholders thrive and feel comfortable; this project began with discussion groups.</p>
-<p>I worked organically and in dialogue with stakeholders. At first we discussed data. Then we created ideas, and finally reflected on the plans we had made.</p>
-   <p>This led to a nuanced design of a high-stakes regulatory document. The second stage of the project will test and refine those ideas through an installation, Botanica.</p>    </div>
+      <h2 class="qm-heading">The method</h2>
+      <p>I began by analysing the data available, using internal and external data, applying data privacy rules, documenting my process and identifying patterns and trends which might be viable. I then consulted teaching staff to sense-check my findings. I then worked organically and in dialogue with students. At first we discussed data. Then we created ideas, and finally reflected on the plans we had made, talking about key terms used and what they meant to different people.</p>
+      <p>The process wasn't always easy. I had to work with small datasets and ensure that findings were valid and preserved privacy. Finding space in 13 busy small courses to see as many students as I could was also problematic, given different timetablings — I had hoped to see all students in the space of two weeks but this proved impossible. Instead the roles and discussions changed as I had to design the final document whilst iterating consultations, working at pace with qualitative and quantitative data, reporting to senior leaders and strategically developing evaluative strategies.</p>
+      <p>However, the process, despite its demands, led to a more nuanced design of a high-stakes regulatory document.</p>
+      <p>I also used my practice to understand what was happening. The erasure poem sequence shown in this case study creates different formal text (with different meanings) from a larger formal text. Working with a poetic method in this way helped me realise what was happening — there were two clear narratives existing in parallel to each other, and both needed to be recognised as truths. This wasn't as simple as 'qualitative' and 'quantitative' data — it was more about translating the qualitative data into text-based or image-based patterns and overlaying that with text-based and image-based patterns derived from quantitative data.</p>
+      <p>Following this I decided that next time I will attempt to use arts methods as part of the discussion with students or other stakeholders.</p>
+    </div>
   </section>
 
-  <!-- ============ 6. THE EVIDENCE ============ -->
+  <!-- ============ 5. THE EVIDENCE ============ -->
   <section class="cs-section reveal">
     <div class="cs-inner cs-inner--wide" style="text-align:center;">
       <span class="cs-eyebrow">The evidence</span>
@@ -296,7 +326,7 @@
     <p class="co-evidence-link">Here is the regulatory instrument that was designed using this method, meeting both internal needs for a nuanced, humane approach and regulatory requirements. <a href="https://cdn.hca.ac.uk/files/Governance-and-Policies/Policies/College-Policies/Equality-diversity/Access-and-Participation-Plan-2025-2029.pdf">Access and Participation Plan 2025–29</a></p>
   </section>
 
-  <!-- ============ 7. WHAT WAS FOUND — her line, resolving ============ -->
+  <!-- ============ 6. WHAT WAS FOUND — her line, resolving ============ -->
   <section style="background:var(--cream); --text-focus-color: var(--olive);">
     <div class="text-focus">
       <div class="text-focus__runway" id="tf-runway">
@@ -315,7 +345,7 @@
     </div>
   </section>
 
-  <!-- ============ 8. FOUND SAPPHICS — a second dataset, in the same grid
+  <!-- ============ 7. FOUND SAPPHICS — a second dataset, in the same grid
        grammar as the institutional one above ============ -->
   <section class="co-sapphics reveal">
     <div class="co-sapphics__intro">
@@ -357,13 +387,13 @@
 </p>
   </section>
 
-  <!-- ============ 9. THE GLASS THREAD ============ -->
+  <!-- ============ 8. NEXT STEPS ============ -->
   <section class="cs-section co-glass reveal">
     <div class="cs-inner">
-      <span class="cs-eyebrow">Glass, removed</span>
+      <span class="cs-eyebrow">Next steps</span>
       <p>Using creative methods lets me work with institutions, external data and stakeholders, so that the people the record describes can see how they are described, and talk back to their own catalogue entry.</p>
       <p>My latest project, Botanica, continues the process begun in this case study, but this time using plants as a visual metaphor and asking: how would you like to be represented as data? </p>
-      <p class="co-closing__next"><a href="magic-lantern.html">Minor Deities</a> · <a href="botanica.html">Botanica →</a></p>
+      <p class="co-closing__next"><a href="magic-lantern.html">← Minor Deities</a> · <a href="botanica.html">Next: Botanica →</a></p>
     </div>
   </section>
 
@@ -383,13 +413,13 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
 
-    // ACCRETION — five staged composites of a layered PSD, each fading in
-    // over its own quarter of the runway, replaying how the erasure poem
-    // was actually built. See GLOSSARY.md.
+    // ACCRETION — staged composites of a layered PSD, each fading in
+    // over its own share of the runway, replaying how the erasure poem
+    // was actually built. Stage count is read from the markup. See GLOSSARY.md.
     const accRunway = document.getElementById('co-accretion-runway');
     if (accRunway) {
       const accImgs = accRunway.querySelectorAll('.co-accretion__frame img');
-      const STAGE_COUNT = accImgs.length; // e.g. 5
+      const STAGE_COUNT = accImgs.length;
       const ACC_DWELL = 0.15; // final 15% of the runway holds the finished image steady
       let accTicking = false;
       function updateAccretion() {
