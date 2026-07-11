@@ -71,6 +71,29 @@
   .ml-title-poem .cs-inner { display: grid; gap: var(--space-3); }
   .ml-title-poem p { font-size: var(--text-md); line-height: 1.6; }
 
+  /* ---- THE QUESTION / THE METHOD — the shared capital-title grid.
+     One system across all three case studies: heading in the eyebrow
+     register, question line in the display italic register, method in
+     body prose. Candidate for consolidation into tokens.css. ---- */
+  .ml-qm { background: var(--cream); color: var(--navy); padding: var(--space-5) var(--space-3); }
+  .ml-qm .cs-inner p + p { margin-top: 1.2em; }
+  .qm-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--magenta);
+    margin: 0 0 var(--space-2);
+  }
+  .qm-question {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    line-height: 1.5;
+    max-width: var(--measure);
+  }
+
   /* ---- Shared: image-only sequence (opening triad + closing chapter) ---- */
   .ml-sequence {
     background: var(--deep-warm-grey); color: var(--cream);
@@ -103,7 +126,7 @@
   .ml-argument-images { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3) 0; }
   .ml-argument__item { margin-bottom: var(--space-4); max-width: var(--measure-wide); margin-left: auto; margin-right: auto; }
   .ml-argument__number { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
-  .ml-argument__item h3 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
+  .ml-argument__item h2 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
   .ml-argument__item p { font-size: var(--text-base); max-width: var(--measure); }
 
   /* ---- More text: argument III + citation, no image ---- */
@@ -127,7 +150,7 @@
   /* ---- The poem ---- */
   .ml-poem-section { background: var(--near-black); color: var(--cream); padding: var(--space-6) var(--space-3); }
   .ml-poem-section .cs-eyebrow { color: var(--slide-gold); }
-  .ml-poem { font-family: var(--font-display); font-style: italic; font-size: var(--text-md); line-height: 1.85; max-width: var(--measure); margin: var(--space-3) auto 0; }
+  .ml-poem { font-family: var(--font-display); font-style: italic; font-size: var(--text-md); line-height: 1.85; max-width: var(--measure); margin: var(--space-3) auto 0; text-align: left; }
   .ml-poem-credit { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--warm-grey); margin-top: var(--space-3); max-width: var(--measure); margin-left: auto; margin-right: auto; }
   .ml-poem-credit a { color: var(--slide-gold); text-decoration: underline; }
 
@@ -216,6 +239,27 @@
     </div>
   </section>
 
+  <!-- ============ 4b. THE QUESTION ============ -->
+  <section class="ml-qm cs-section reveal">
+    <div class="cs-inner">
+      <h2 class="qm-heading">The question</h2>
+      <p class="qm-question">How can arts practice help us understand how the past informs the present and how, in re-telling the past, can this transform our understandings in the present.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4c. THE METHOD ============ -->
+  <section class="ml-qm cs-section reveal">
+    <div class="cs-inner">
+      <h2 class="qm-heading">The method</h2>
+      <p>In 2023 I was reaching the end of a doctoral journey (now paused) and thinking about critical spatial practice. I think through making, and I began to create digital collages which helped me look at my subject (the critical radical rural) through Lefebvre's triad of space (Henri Lefebvre, <em>The Production of Space</em>, 1974).</p>
+      <p>I was also working on college data, developing data analysis skills, and I was constantly reminded of critical theory — of how structures tend to preserve what is 'easy', what feels sustaining to the people creating the structures, which can be at odds to the people existing within the structures.</p>
+      <p>I used Photoshop to manipulate traditional portraiture, using multiple layers to create palimpsests and unreal landscapes. I transformed the figures at the centre of the collage through masks and erasure. Each figure had a slightly different meaning or set of meanings.</p>
+      <p>I experimented with different backgrounds but ended up iterating similar backgrounds, just erasing different aspects of them or adding one further layer.</p>
+      <p>The images were always intended to be projected, but this proved more problematic. Printing on glass is prohibitively expensive for a non-funded project, and Victorian lantern projectors in good working order are hard to come by — and come with health and safety issues in the form of naked flames.</p>
+      <p>In the end, I printed the images out on acetate and framed the acetate in double glass floating frames, offering the illusion of a lantern slide (which also worked with my purpose). Placed on a light source, with a lens underneath, the slides 'projected' on to the glass of a museum box.</p>
+    </div>
+  </section>
+
   <!-- ============ 5. TEXT + IMAGE WORKING TOGETHER — static slides in a
        vertical rhythm, the reading pace set by the reader ============ -->
   <section class="ml-argument-images">
@@ -223,7 +267,7 @@
 
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">I.</span>
-      <h3>The portrait: a data visualisation</h3>
+      <h2>The portrait: a data visualisation</h2>
       <p>The collages use traditional portrait images and transform them. A Victorian portrait was never a neutral record. It encoded social position, gender, propriety, wealth. It encoded not just an image, but the values of whoever commissioned it. It shows only what was classified and what the system valued enough to keep.</p>
     </div>
 
@@ -241,7 +285,7 @@
 
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">II.</span>
-      <h3>The theory: time as non-linear, space as relational</h3>
+      <h2>The theory: time as non-linear, space as relational</h2>
       <p>The lantern slide transfixes time: pins a moment, fixes it under glass, projects it to an audience who see it as a true record and write it into personal and collective histories. In Jane Rendell's terms, the slides operate as critical spatial practice: work made where art and spatial theory meet, staged as much in the room the projection constructs as on the glass itself. The work counter-balances the transfixing, evoking Lefebvre's half-glimpsed forgotten spaces; the wayside shrine, the overgrown spring, the local deity not quite erased. These are the residual spaces the official image cannot fully contain. They echo Massey's relational space; images from different times and registers are layered, because space and time are constellations of relation rather than fixed coordinates.</p>
     </div>
 
@@ -286,7 +330,7 @@
   <section class="ml-argument-text">
     <div class="ml-argument__item reveal">
       <span class="ml-argument__number">III.</span>
-      <h3>The outcome: a humanist contribution to an AI benchmark paper </h3>
+      <h2>The outcome: a humanist contribution to an AI benchmark paper </h2>
       <p>The thinking in these slides fed directly into five questions contributed to Humanity's Last Exam, a benchmark designed to test what current AI cannot answer. The questions passed extensive peer review. Humanities scholars, and women working at small arts colleges, were almost entirely absent from the contributor list. If humanistic thinking is missing from the tests by which AI capability is measured, do we risk creating a closed, impermeable dataset — a narrow representation of space which becomes fixed in our shared social experience?</p>
       <p class="ml-citation"><em>Nature</em>, 649, 1139–1146 (2026) · DOI: 10.1038/s41586-025-09962-4 · Sarah-Jane Crowson, listed author.</p>
     </div>
@@ -344,9 +388,9 @@
   <!-- ============ 9. GLASS THREAD & FOSSIL RECORD ============ -->
   <section class="ml-closing cs-section reveal">
     <div class="cs-inner">
-      <span class="cs-eyebrow">Glass threads</span>
+      <span class="cs-eyebrow">Glass threads — what happened next</span>
       <p>This project is the conceptual underpinning for my arts-based and poetic approach to data analysis, participant-centred consultation and hybrid data visualisations. Further work continues under glass: orchids, a Victorian sewing box, terraria of palms and moss — a living data physicalisation, a visual metaphor for the practice of care, and a critical reflection on when classification becomes containment.</p>
-<div class="ml-closing__nav"><a href="botanica.html">Next: Botanica →</a> · <a href="consultation.html">Regulated Instruments →</a></div>
+<div class="ml-closing__nav"><a href="consultation.html">Next: Regulated Instruments →</a> · <a href="botanica.html">Botanica →</a></div>
       <p class="ml-closing__credit">With thanks to Ewan Morrison, critical friend and collaborator throughout the development of this work.</p>
     </div>
   </section>
