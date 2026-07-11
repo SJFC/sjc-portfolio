@@ -123,9 +123,34 @@
   .bo-title-poem .cs-inner p { max-width: var(--measure); margin-left: auto; margin-right: auto; }
   .bo-title-poem .cs-inner p + p { margin-top: 1.2em; }
 
+  /* ---- THE QUESTION / THE METHOD — the shared capital-title grid.
+     One system across all three case studies: heading in the eyebrow
+     register, question line in the display italic register, method in
+     body prose. Candidate for consolidation into tokens.css. ---- */
+  .bo-qm { background: var(--cream); }
+  .bo-qm .cs-inner p { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+  .bo-qm .cs-inner p + p { margin-top: 1.2em; }
+  .qm-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--olive);
+    margin: 0 0 var(--space-2);
+  }
+  .qm-question {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    line-height: 1.5;
+    max-width: var(--measure);
+  }
+
   /* ---- Argument ---- */
   .bo-argument__item { max-width: var(--measure); margin: 0 auto var(--space-4); }
-  .bo-argument__item h3 { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
+  .bo-argument__number { font-family: var(--font-display); font-style: italic; color: var(--magenta); font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
+  .bo-argument__item h2 { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
 
   /* Collage figures inside the argument: quiet frames on the cream
      ground, ready for the planned images. */
@@ -187,7 +212,8 @@
 
   /* ---- The poem: Ghazal — each sher in its own compartment ----
      Set on the aubergine ground so the page closes in the box's own
-     register; couplets given air, echoing the compartments. ---- */
+     register; couplets given air, echoing the compartments. Couplets are
+     left-aligned within a centred block — the poem's own grid. ---- */
   .bo-poem {
     background: #2A1020;
     color: var(--cream);
@@ -215,6 +241,7 @@
     line-height: 1.7;
     max-width: var(--measure);
     margin: 0 auto 1.8em;
+    text-align: left;
   }
   .bo-poem__attribution {
     font-family: var(--font-sans);
@@ -277,12 +304,12 @@
     </div>
   </section>
 
-  <!-- ============ 3. THE INSTALLATION ============ -->
+  <!-- ============ 3. THE PROJECT ============ -->
   <section class="bo-title-poem cs-section reveal">
-    <div class="cs-inner"><span class="cs-eyebrow">The installation</span></div>
+    <div class="cs-inner"><span class="cs-eyebrow">The project: Botanica</span></div>
     <div class="cs-inner">
-      <p><strong>Botanica</strong> is a small, living installation exploring what gets lost when complex, relational lives are organised into categories.</p>
-      <p>A Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to hold thread, pins, buttons — equipment to create, mend and make. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
+      <p><strong>Botanica</strong> is a work in progress. The images here are from a small, living pilot installation exploring what gets lost when complex, relational lives are organised into categories.</p>
+      <p>In its current stage, a Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to hold thread, pins, buttons — equipment to create, mend and make. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
       <p>The box still organises. But it can no longer fully contain or care for what it holds.</p>
     </div>
 
@@ -296,17 +323,37 @@
     -->
   </section>
 
+  <!-- ============ 3b. THE QUESTION ============ -->
+  <section class="bo-qm cs-section reveal">
+    <div class="cs-inner">
+      <h2 class="qm-heading">The question</h2>
+      <p class="qm-question">How far might alternative ways of visualising/materialising data (i) offer a critical argument on the limitations of abstract classification and (ii) enable humans represented by data to choose their own form of representation.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3c. THE METHOD ============ -->
+  <section class="bo-qm cs-section reveal">
+    <div class="cs-inner">
+      <h2 class="qm-heading">The method</h2>
+      <p>I am developing Botanica in my studio, where a series of plants of different varieties nestle together, rather than in their preferred conditions or ecosystems in the rest of my flat. Each plant I have chosen to use has different requirements and characteristics — I have used poetry to personify each plant through the use of labels which both classify the plant 'as' a plant according to the conditions it requires and hint at personification, framing the different types of care each plant needs as elements which might apply to humans, too.</p>
+      <p>The pilot installation already enacts its metaphor by showing signs of tension. Although I want the installation to be 'live' and for audiences to see what happens over a period of time to plants placed into categorisation boxes, there are also material and ecological issues of care. Therefore plants are regularly moved 'out' of their box and into spaces more conducive to their care needs. This suggests one finding: bringing different living things together into a box and labelling them with needs does not mean they will thrive.</p>
+      <p>During the pilot, a heatwave risked the health of sweet woodruff — a forest plant, vulnerable precisely because it had been moved out of its relational ecosystem. I have also found it difficult to keep moss alive in a flat. To support more sustainable visual metaphors I have experimented with creating terrariums, and will create a mossarium as part of the final installation. Here the structured environment and scientific constraints — the glass — support rather than hinder survival. And even when given equal care, following identical instructions, plants choose their own pathways: one orchid has lost its flowers during the pilot; another has thrived. This adds complexity the metaphor must hold — the installation is still telling me what it knows about data.</p>
+    </div>
+  </section>
+
   <!-- ============ 4. THE ARGUMENT ============ -->
   <section class="bo-argument-images cs-section reveal">
     <div class="cs-inner cs-inner--wide"><span class="cs-eyebrow">The argument</span></div>
 
     <div class="bo-argument__item">
-      <h3>Classification as a limited manifestation of care</h3>
+      <span class="bo-argument__number">(i)</span>
+      <h2>Classification as a limited manifestation of care</h2>
       <p>Sewing boxes, like many Victorian objects, divide, compartmentalise and label. They are both useful and beautiful. But a box is still a single container: one atmosphere, one structure, one bounded environment. The idea of sorting, of classification does real, useful work. But Botanica asks what happens at the point where it reaches its limit, or when it is applied to things which require different kinds of care.</p>
     </div>
 
     <div class="bo-argument__item">
-      <h3>Data as ecological</h3>
+      <span class="bo-argument__number">(ii)</span>
+      <h2>Data as ecological</h2>
       <p>Rather than treating data as fixed, flat or extractive, Botanica asks what happens when data is imagined as ecological instead — relational, situated, fragile, adaptive, dependent on particular environments. A data point then behaves less like an entry in a spreadsheet and more like the living thing it represents: it needs particular conditions to be understood accurately, and it can be harmed by the wrong environment even while carrying an accurate care label.</p>
     </div>
 
@@ -320,7 +367,8 @@
     -->
 
     <div class="bo-argument__item">
-      <h3>Between the spreadsheet and the story</h3>
+      <span class="bo-argument__number">(iii)</span>
+      <h2>Between the spreadsheet and the story</h2>
       <p>Institutions hold two instruments for knowing a life. The metric is legible but bloodless: it can count every fern in the box and never notice one drying out. The case study is alive but singular: one plant, beautifully described, asked to stand for a forest. Botanica sits in the space between — proposing that accounts of lived experience can be gathered with enough rigour to sit alongside statistical datasets, and enough texture to argue with them as equals.</p>
     </div>
   </section>
@@ -449,7 +497,7 @@
     <div class="cs-inner"><span class="cs-eyebrow">Your thoughts</span></div>
     <div class="bo-qr">
       <img src="../assets/images/botanica/participate-qr.png" alt="QR code linking to the Botanica participation page." style="width:9rem; height:9rem; border-radius:4px;">
-      <p class="bo-qr__text">Scan the QR code beside the installation or visit <a href="botanica-participate.html">this link</a> to find a space for dialogue. You are invited to consider how <em>you</em> would like to be represented as data — and what a more humane, situated data practice might look like.</p>
+      <p class="bo-qr__text">Scan the QR code beside the installation or open <a href="botanica-participate.html">the participation page</a> to find a space for dialogue. You are invited to consider how <em>you</em> would like to be represented as data — and what a more humane, situated data practice might look like.</p>
     </div>
   </section>
 
@@ -458,7 +506,7 @@
     <div class="cs-inner">
       <span class="cs-eyebrow">Future work</span>
       <p>Botanica is in development ahead of its launch at h.Art in Hereford in September 2026. This page will grow with it: final photography and confirmed label text are still to come.</p>
-     <p class="bo-closing__next"><a href="magic-lantern.html">← Minor Deities</a> · <a href="consultation.html">Regulated Instruments →</a></p>
+     <p class="bo-closing__next"><a href="consultation.html">← Regulated Instruments</a> · <a href="botanica-participate.html">Participate →</a></p>
     </div>
   </section>
 
