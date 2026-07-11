@@ -1,0 +1,24 @@
+# Build notes — snagging rebuild, 11 July 2026
+**Four complete files, built against PORTFOLIO-BASELINE.md. Paste each whole into GitHub's web editor. Judge by eye; stitch-tuning follows.**
+
+## What went in, per page
+
+**All three case studies** now carry THE QUESTION and THE METHOD as full open sections (not accordions — your drafted texts read as sections, and sections survive print/PDF). One shared system: heading in the eyebrow capital grid (`.qm-heading`, identical CSS on all three pages — candidate for consolidation into tokens.css later), question line in display italic, method in body prose. Consistent placement: project → question → method → argument/evidence.
+
+**magic-lantern.html** — QUESTION and METHOD inserted after the title-reading; your method text verbatim except: Lefebvre date corrected to 1974, "photoshop" → "Photoshop", "Victorian Lantern Projectors" → lowercase, prose hyphens → em-dashes. Argument headings promoted h3 → h2 (fixes the outline skip); closing eyebrow now "Glass threads — what happened next"; poem explicitly left-aligned; nav reordered "Next: Regulated Instruments → · Botanica →".
+
+**consultation.html** — Old h2 and service-offer paragraph removed as marked. Section eyebrow now "The project: using arts methods to analyse data"; QUESTION inserted; your "Revealing Layers is an example..." sentence completed with "...an Access and Participation Plan **for** a small specialist Higher Educational institution" — note the "for" attaches to the *Plan*, not to your employment, so the insider/consultant question stays neutrally open. "Working with the ecosystem" h2 replaced by THE METHOD heading (the phrase is rehome-able if you miss it — say so and it returns as prose). Method text verbatim except the qualitative→**quantitative** flip in the final overlay clause and dash normalisation. Realisation paragraph kept inside the method flow per your draft order (my earlier relocation suggestion dropped). Butterfly erasure figure removed; its caption rehomed beneath the accretion header frame, visible through the pinned scroll (new `.co-accretion__caption`). Closing retitled "Next steps" with your text — **note: "Glass, removed" is gone as an eyebrow; the glass thread is now unnamed on this page.** Flagging rather than fixing: rehome candidate. Nav: "← Minor Deities · Next: Botanica →". The stale "five staged composites" JS comment corrected. The `.co-erasure` CSS kept (marked unused/available).
+
+**botanica.html** — Project section: eyebrow "The project: Botanica" (your instruction gave a double-colon title; I shortened the eyebrow since your new first paragraph carries the "exploring what gets lost..." phrase — veto if you want the long form). First paragraph replaced with your work-in-progress framing; second gains "In its current stage,". QUESTION inserted verbatim including "visualising/materialising" (your slash, left standing — the one from my earlier note you didn't take up, so it stays yours). METHOD is the settled edited text with your chosen closing line; the optional glass-containment clause omitted as you didn't adopt it. Argument numbered (i)(ii)(iii) with headings promoted to h2. Ghazal couplets left-aligned within the centred block (title/framing stay centred — adjust if wrong). "visit this link" → "open the participation page". Nav: "← Regulated Instruments · Participate →" — Botanica now ends facing forward, not sideways.
+
+**index.html** — Doors reordered Minor Deities / Regulated Instruments / Botanica, produced programmatically from the baseline so everything else is byte-identical. Nothing else touched: the landing paragraph, question relocation, diorama, and door images all await the landing-page session.
+
+## Decisions I made that you should check by eye
+
+1. QUESTION/METHOD placement — consecutive after the project section on every page. On Minor Deities this means the making story arrives *before* the argument; if you'd rather the argument breathe first, the two sections lift and move cleanly.
+2. The capital-grid heading is my reconstruction of the eyebrow spec (sans, 0.14em tracking, uppercase, weight 500) since I can't see tokens.css — if it sits a hair off the real eyebrows on the live page, one CSS tweak aligns it.
+3. The acetate parenthesis "(which also worked with my purpose)" stands as you wrote it — my promotion suggestion remains on the table, unactioned.
+4. Accent colours: question/method headings take magenta on Minor Deities (matching the argument numerals), olive on the other two.
+
+## Still open after this pass
+Glass-thread bridge clause in Minor Deities' closing (routes the journey through the consultation — your sentence) · landing paragraph (yours) · "Glass, removed" rehoming · Botanica question's slash · plate-caption framing sentence · mossarium line for "Worlds under glass" (optional) · ghazal dash pass · landing page rework (question placement, diorama prototype, door images) · process images.
