@@ -49,6 +49,8 @@
   body.ix-page { background: var(--near-black); }
 
   .ix-opening {
+    position: relative;
+    padding-bottom: 0;
     min-height: 92vh;
     display: flex;
     flex-direction: column;
@@ -80,16 +82,27 @@
     margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--text-xs);
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); opacity: 0.6;
   }
-.ix-dawn {
-  height: 34vh;
-  background: linear-gradient(
-    to bottom,
-    var(--near-black) 0%,
-    var(--deep-warm-grey) 30%,
-    #8A6F55 62%,
-    var(--cream) 100%
-  );
-}
+
+  /* DAWN BAND (tried, set aside — July 2026): a solid gradient section
+     between opening and statement read as cumbersome and broke the flow.
+     Replaced by the apparition spill on .ix-opening::after below. */
+
+  /* ---- apparition: the dark thins into daylight; light spills from the
+     scene rather than the page changing register ---- */
+  .ix-opening::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 18vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(245, 239, 228, 0) 0%,
+      rgba(245, 239, 228, 0.35) 55%,
+      var(--cream) 100%
+    );
+    pointer-events: none;
+  }
+
   /* ================= THE MIRROR SCENE ================= */
   /* Nudge these four by eye on the live page: they place the hotspot
      over the frame's glass. Percentages of the image's box. */
@@ -269,7 +282,7 @@
   }
 
   /* ---- The statement, on cream ---- */
-  .ix-statement { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); text-align: center; }
+  .ix-statement { background: var(--cream); color: var(--navy); padding: var(--space-4) var(--space-3) var(--space-6); text-align: center; }
   .ix-statement p {
     font-family: var(--font-display);
     font-size: clamp(1.3rem, 2.6vw, var(--text-lg));
