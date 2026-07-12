@@ -369,7 +369,7 @@
 
     <button class="mirror-invitation" id="mirrorZone" type="button" aria-haspopup="dialog">
       <span class="mirror-question" id="mirrorQuestion"></span>
-      <span class="mirror-invitation__action">You are invited to answer or ask something back →</span>
+      <span class="mirror-invitation__action">Answer →</span>
     </button>
 
     <p class="ix-opening__scroll-cue">Scroll</p>
@@ -511,7 +511,7 @@
         if (r.ok) {
           form.querySelectorAll("textarea, input[type=text], input[type=checkbox], button[type=submit]")
               .forEach(function (el) { el.disabled = true; });
-          status.textContent = "Received — kept under glass.";
+          status.textContent = "Thank you.";
           form.classList.add("is-complete");
           gift.hidden = false;
           gift.src = gift.dataset.src;
