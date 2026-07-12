@@ -122,6 +122,32 @@
   .ab-disclosure--section summary h2 { margin-bottom: 0; }
   .ab-disclosure--section .ab-disclosure__body { padding-top: 0.4em; }
 
+  .ab-gallery { background: var(--cream); }
+  .ab-gallery__intro { max-width: var(--measure); margin-bottom: var(--space-4); }
+  .ab-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    max-width: var(--measure-wide);
+    margin: 0 auto;
+    align-items: start;
+  }
+  .ab-work img {
+    width: 100%;
+    border-radius: var(--radius-slide);
+    box-shadow: 0 1rem 2.5rem rgba(0,0,0,0.16);
+  }
+  .ab-work figcaption {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--olive);
+    margin-top: var(--space-1);
+  }
+  @media (max-width: 760px) {
+    .ab-gallery__grid { grid-template-columns: 1fr; max-width: 28rem; }
+  }
+
   .ab-contact { background: var(--navy); color: var(--cream); text-align: center; }
   .ab-contact .cs-eyebrow { color: var(--sage); }
   .ab-contact__links { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
@@ -213,9 +239,32 @@
     </div>
   </section>
 
-  <!-- ============ 6. CONTACT ============ -->
+  <!-- ============ 6. SELECTED PUBLISHED WORK ============ -->
+  <section class="ab-section ab-gallery">
+    <div class="ab-inner ab-gallery__intro">
+      <span class="cs-eyebrow">Collage practice</span>
+      <h2>Selected published work</h2>
+      <p>Selected collages bringing found natural-history imagery, historical portraiture and extracted language into new relation.</p>
+    </div>
+    <div class="ab-gallery__grid">
+      <figure class="ab-work">
+        <img src="assets/images/about/published/countess-arundel-objects.jpg" alt="A collage on an antique book page: vivid birds, red flowers, a cage and a branch surround extracted words including delicate, hostile, original and radical transformation.">
+        <figcaption><em>The Countess Arundel Objects</em></figcaption>
+      </figure>
+      <figure class="ab-work">
+        <img src="assets/images/about/published/librarian.jpg" alt="A collage on an antique book page: a seated historical figure with a faceted head is surrounded by jewel-coloured birds and butterflies, with extracted descriptive labels.">
+        <figcaption><em>Librarian</em></figcaption>
+      </figure>
+      <figure class="ab-work">
+        <img src="assets/images/about/published/lady-mary-villiers-finds-her-voice.jpg" alt="A collage on an antique book page: Lady Mary Villiers stands beside a large coral-coloured parrot, a crystal and botanical fragments; extracted words describe a subtly romantic myth and allusion.">
+        <figcaption><em>Lady Mary Villiers Finds Her Voice</em></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 7. CONTACT ============ -->
   <section class="ab-section ab-contact">
-    <span class="cs-eyebrow">Get in touch</span>
+    <h2 class="cs-eyebrow">Get in touch</h2>
     <p style="max-width:var(--measure); margin:var(--space-2) auto 0;">For conversations about research, collaboration or commissions:</p>
     <p class="ab-contact__links">
       <a href="mailto:sarahjanecrowson@gmail.com">Email</a> ·

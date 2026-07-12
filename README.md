@@ -20,21 +20,32 @@ The three case studies documented here make one connected argument — that clas
 
 ## Transparency statement: AI collaboration
 
-This site was built in active collaboration with **Claude** (Anthropic), an AI assistant, across a series of working sessions. I want to be explicit about what that collaboration involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses. This approach was disclosed to the course tutor at the outset of the project.
+This site was built through active collaboration with two AI assistants at different stages: **Claude** (Anthropic) during the original design and build, and **Codex** (OpenAI) during a later accessibility, editorial-structure and visual-rhythm review. I want to be explicit about what those collaborations involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses. This approach was disclosed to the course tutor at the outset of the project.
 
 ### What Claude contributed
 
-- All HTML, CSS, and JavaScript was written by Claude, working from my direction
+- The original HTML, CSS, and JavaScript build was written by Claude, working from my direction
 - The design system architecture (shared token file, reusable components, scroll-effect utilities) was proposed and built by Claude
 - Placeholder draft text was written by Claude from my case study documents, as a starting point for my own editing
 - Debugging — including diagnosing why `position: sticky` was failing due to `overflow: hidden` on an ancestor element — was carried out by Claude through analysis of screen recordings I provided
 - In the later editorial stage, Claude performed "cold reads" of the site against its intended audiences (examiner, supervisor, prospective clients), produced snag lists, and carried agreed fixes into complete page files for me to review and commit
 
+### What Codex contributed
+
+- Audited the homepage, About page, participation page and all case studies for accessible heading structure, then implemented a single visible `h1` per page, consistent `h2` sections and properly nested `h3` subsections while retaining the existing visual design
+- Distinguished structural headings from eyebrows, poetic labels, captions and navigation text, and checked the resulting page outlines without CSS
+- Reordered the *Revealing Layers* project framing and question, and introduced concise method signposts across all three case studies to make the long-form arguments easier to scan
+- Proposed and implemented a photo-essay rhythm: breaking up the initial image run in *Minor Deities*, restoring the aligned collage-to-photograph dissolve in *Botanica*, incorporating earlier botanical studies as clearly labelled visual research, and presenting the plant images more compactly as a discovered series
+- Helped curate and implement the “Selected published work” section on the About page, using work and selections I supplied
+- Refined the landing-page orientation, project-card hierarchy and mirror interaction; simplified the response form; and integrated my spreadsheet-to-wildflower thank-you animation so that it begins only after a confirmed submission
+- Added a small number of bridge sentences, headings, captions and interface labels for clarity; I reviewed and approved these in conversation before or during implementation
+- Performed responsive and reduced-motion checks, verified image loading and heading counts, preserved the existing Formspree workflow, and prepared optimised web copies of newly added images without altering my source files
+
 ### What I contributed
 
 - All conceptual and curatorial decisions: what to include, what to leave out, how to sequence it
-- All final text on the site: I edited Claude's drafts directly in the code, or wrote from scratch, or provided copy through an editing document that Claude then placed into the markup
-- All design direction: palette, typography, the palimpsest scroll effect concept, the image selection and sequencing, the decision to use a horizontal strip rather than vertical scroll for the closing image chapter, the moth's visual character and flight path
+- Final editorial authority over all text: I edited AI drafts directly, wrote from scratch, supplied copy through editing documents, and accepted, revised or rejected later wording suggestions
+- All design direction and final decisions: palette, typography, interaction concepts, image selection, sequencing and the decision about which recommendations to implement
 - All source images and artwork
 - The poems, care-label captions, and poetic fragments throughout
 - All titles, and the editorial decisions of the later "drawer stage": renaming, re-sequencing, and the reading-across-pages that surfaced the site's connective systems
@@ -43,7 +54,9 @@ This site was built in active collaboration with **Claude** (Anthropic), an AI a
 
 We developed a shared working glossary (`GLOSSARY.md`) that maps the conceptual and poetic vocabulary of the practice to precise technical implementations — so that a word like "palimpsest" could carry both its theoretical meaning and its engineering meaning without collapsing either one. Design decisions and their rationale are recorded in `BRAND.md` and in working logs, rather than accumulated through silent iteration.
 
-The method was iterative in both directions. I directed by eye and feel, judged every effect on the live page rather than on description, provided screen recordings when something wasn't working, edited text directly in the markup, and — over the course of the project — re-learned how to work in HTML myself, making small changes directly in the GitHub editor. Later sessions settled into an explicit division of labour: I fetch and paste current files (the human holding the repository is the reliable source), Claude diffs, snags and rebuilds; some edits were made individually and separately, then reconciled. Claude acted as a collaborative developer and, later, a cold reader; I acted as director, poet, and editor.
+The method was iterative in both directions. I directed by eye and feel, judged every effect on the live page rather than on description, provided screen recordings and screenshots when something was not working, edited text directly in the markup, and — over the course of the project — re-learned how to work in HTML myself, making small changes directly in the GitHub editor.
+
+The collaboration also had distinct phases. Claude helped establish the site's architecture, interaction grammar and original implementation, then acted as a cold reader during the drawer-stage edit. In the later Codex pass, I supplied the complete current repository and additional artworks, animations and screenshots. Codex first inspected the existing patterns, proposed small and larger options, and implemented only the choices I approved. We repeatedly reviewed downloadable builds, adjusted wording and visual rhythm, and tested the result at desktop and mobile sizes. The AI systems acted as collaborative developers and critical readers; I remained the director, artist, poet, curator and final editor.
 
 ### Why this matters to the practice
 
@@ -59,6 +72,7 @@ The question of what AI can and cannot generate is not incidental to this work �
 - `case-studies/` — the three case study pages and the Botanica participation page
 - `assets/css/tokens.css` — the shared design system: colour, type scale, spacing, reusable components
 - `assets/images/` — photography and collage, organised per page
+- `assets/mirror-gift.html` — self-contained animated thank-you, loaded only after a successful mirror response
 - `GLOSSARY.md` — the shared vocabulary: poetic terms mapped to their technical implementations
 - `BRAND.md` — the identity decisions and their reasons: registers, grammar, conventions, governance
 - Working logs and page-edit documents, where committed, record session-by-session decisions
@@ -85,4 +99,4 @@ Browser support: all modern browsers. A `prefers-reduced-motion` fallback is imp
 
 > *Data is not a synonym for truth.* — Regulated Instruments
 
-> *Three bodies of work asking the same question of the photograph, the plant, and the spreadsheet.*
+> *Three connected projects asking what representation preserves, what it leaves out, and how people and living systems might speak back.*

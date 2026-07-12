@@ -125,47 +125,43 @@
     to { stroke-dashoffset: calc(var(--base) + 1981.73px); }
   }
 
-  /* ---- the hotspot over the glass ---- */
-  .mirror-zone {
-    position: absolute;
-    left: var(--mirror-left); top: var(--mirror-top);
-    width: var(--mirror-w); height: var(--mirror-h);
-    background: none; border: 0; padding: 0; margin: 0;
+  /* ---- the invitation: visible beneath the image rather than hidden
+     inside the mirror glass ---- */
+  .mirror-invitation {
+    width: min(92vw, 42rem);
+    background: rgba(245,239,228,0.04);
+    border: 1px solid rgba(245,239,228,0.18);
+    color: var(--cream);
+    padding: var(--space-2) var(--space-3);
+    margin-top: var(--space-3);
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
     border-radius: 2px;
+    text-align: center;
+    transition: background 0.25s ease, border-color 0.25s ease;
   }
-  .mirror-zone:focus-visible { outline: 1px solid rgba(245,239,228,0.5); outline-offset: 4px; }
-
-  /* mist stirring in the glass */
-  .mirror-zone::before {
-    content: "";
-    position: absolute; inset: -4%;
-    background: radial-gradient(ellipse at 50% 45%, rgba(245,239,228,0.16), rgba(245,239,228,0.0) 68%);
-    opacity: 0;
-    transition: opacity 1.4s ease;
-    pointer-events: none;
+  .mirror-invitation:hover,
+  .mirror-invitation:focus-visible {
+    background: rgba(245,239,228,0.08);
+    border-color: rgba(245,239,228,0.4);
   }
-  .mirror-zone:hover::before,
-  .mirror-zone:focus-visible::before { opacity: 1; }
-
-  /* the question, surfacing in the condensation */
+  .mirror-invitation__eyebrow,
+  .mirror-invitation__action {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
   .mirror-question {
-    position: relative;
     font-family: var(--font-display); font-style: italic;
-    font-size: clamp(0.95rem, 1.9vw, 1.35rem);
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
     line-height: 1.35;
     color: var(--cream);
-    max-width: 92%;
-    text-shadow: 0 1px 14px rgba(0,0,0,0.75);
-    opacity: 0;
-    filter: blur(10px);
-    letter-spacing: 0.06em;
-    transition: opacity 1.3s ease, filter 1.3s ease, letter-spacing 1.3s ease;
-  }
-  .mirror-zone:hover .mirror-question,
-  .mirror-zone:focus-visible .mirror-question {
-    opacity: 1; filter: blur(0); letter-spacing: 0.01em;
+    max-width: var(--measure);
   }
 
   /* ================= THE RESPONSE CARD ================= */
@@ -180,10 +176,11 @@
     background: var(--cream); color: var(--navy);
     max-width: 34rem; width: 100%;
     padding: var(--space-4) var(--space-3);
-    transform: rotate(-0.4deg);
     box-shadow: 0 2rem 5rem rgba(0,0,0,0.6);
-    clip-path: polygon(0% 1.6%, 4% 0.4%, 11% 1.3%, 22% 0.2%, 34% 1.5%, 47% 0.5%, 60% 1.4%, 73% 0.3%, 86% 1.2%, 96% 0.4%, 100% 1.8%, 100% 98.2%, 95% 99.6%, 84% 98.8%, 71% 99.7%, 57% 98.6%, 43% 99.5%, 29% 98.7%, 15% 99.6%, 5% 98.9%, 0% 99.8%);
+    border-radius: 3px;
     position: relative;
+    max-height: calc(100vh - (2 * var(--space-2)));
+    overflow-y: auto;
   }
   .mirror-card__close {
     position: absolute; top: 0.9rem; right: 1rem;
@@ -222,14 +219,7 @@
   .mirror-card textarea:focus, .mirror-card input[type="text"]:focus {
     outline: none; border-color: var(--thread, #A63A5E);
   }
-  .mirror-card__bot {
-    display: flex !important; align-items: center; gap: 0.5rem;
-    text-transform: none !important; letter-spacing: 0.02em !important;
-    font-family: var(--font-body) !important; font-size: var(--text-sm) !important;
-    opacity: 0.75;
-    margin: 0 0 var(--space-2) !important;
-  }
-  .mirror-card__bot input { accent-color: #A63A5E; }
+  .mirror-card__honeypot { display: none; }
   .mirror-card__send {
     font-family: var(--font-sans); font-size: var(--text-xs);
     letter-spacing: 0.12em; text-transform: uppercase;
@@ -242,6 +232,19 @@
     font-family: var(--font-display); font-style: italic;
     font-size: var(--text-sm); margin-top: var(--space-1); min-height: 1.4em;
   }
+  .mirror-form.is-complete label,
+  .mirror-form.is-complete textarea,
+  .mirror-form.is-complete input,
+  .mirror-form.is-complete .mirror-card__send { display: none; }
+  .mirror-gift-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 680 / 420;
+    border: 0;
+    margin-top: var(--space-2);
+    background: transparent;
+  }
+  .mirror-gift-frame[hidden] { display: none; }
 
   /* running stitch under the two choices */
   .stitch-rule {
@@ -253,7 +256,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .mirror-scene__thread path { animation: none; }
-    .mirror-zone::before, .mirror-question { transition: none; }
+    .mirror-invitation { transition: none; }
   }
 
   /* ---- The statement, on cream ---- */
@@ -300,6 +303,7 @@
     display: block; margin-bottom: var(--space-1); opacity: 0.75;
   }
   .ix-door__title { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.25; display: block; }
+  .ix-door__title-note { display: block; font-size: 0.62em; font-style: italic; margin-top: 0.2em; }
   .ix-door__sub { font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); display: block; margin-top: var(--space-1); opacity: 0.85; }
 
   /* Register per chapter */
@@ -358,15 +362,16 @@
            returns as material, not animation. Its CSS below stays dormant
            so the mechanism is ready when it does. -->
 
-      <button class="mirror-zone" id="mirrorZone" aria-haspopup="dialog"
-              aria-label="The mirror has a question for you">
-        <span class="mirror-question" id="mirrorQuestion" aria-hidden="true"></span>
-      </button>
-
       <figcaption class="ix-opening__caption">
         Botanica: installation photography follows the Hereford launch, September 2026.
       </figcaption>
     </figure>
+
+    <button class="mirror-invitation" id="mirrorZone" type="button" aria-haspopup="dialog">
+      <span class="mirror-invitation__eyebrow">The mirror asks</span>
+      <span class="mirror-question" id="mirrorQuestion"></span>
+      <span class="mirror-invitation__action">Answer or ask something back →</span>
+    </button>
 
     <p class="ix-opening__scroll-cue">Scroll</p>
   </section>
@@ -381,13 +386,13 @@
        (Reordered July 2026; landing paragraph to follow, in SJC voice.) ============ -->
   <section class="ix-work" id="work">
     <div class="ix-work__intro">
-      <span class="cs-eyebrow">Explore my work</span>
-      <p class="ix-work__line">Three bodies of work asking the same question of the photograph, the plant, and the spreadsheet.</p>
+      <h2 class="cs-eyebrow">Explore my work</h2>
+      <p class="ix-work__line">Three connected projects asking what representation preserves, what it leaves out, and how people and living systems might speak back.</p>
     </div>
     <div class="ix-doors">
       <a class="ix-door ix-door--ml" href="case-studies/magic-lantern.html">
-        <span class="ix-door__eyebrow">Critical spatial practice</span>
-        <span class="ix-door__title">Minor Deities</span>
+        <span class="ix-door__eyebrow">Critical spatial<br>practice</span>
+        <span class="ix-door__title">Minor<br>Deities</span>
         <span class="ix-door__sub">To be preserved is not a synonym for free.</span>
       </a>
       <a class="ix-door ix-door--co" href="case-studies/consultation.html">
@@ -397,7 +402,7 @@
       </a>
       <a class="ix-door ix-door--bo" href="case-studies/botanica.html">
         <span class="ix-door__eyebrow">Critical data visualisation</span>
-        <span class="ix-door__title">Botanica</span>
+        <span class="ix-door__title">Botanica<span class="ix-door__title-note">(Participate)</span></span>
         <span class="ix-door__sub">Is categorisation a synonym for containment?</span>
       </a>
     </div>
@@ -416,19 +421,20 @@
       <p class="mirror-card__eyebrow">The mirror asks</p>
       <p class="mirror-card__question" id="cardQuestion"></p>
       <div class="stitch-rule" aria-hidden="true"></div>
-      <form id="mirrorForm" novalidate>
+      <form class="mirror-form" id="mirrorForm" novalidate>
         <label for="mfAnswer">Answer it —</label>
         <textarea id="mfAnswer" name="answer" rows="4"></textarea>
         <label for="mfAskBack">— or ask something back</label>
         <input type="text" id="mfAskBack" name="ask_back">
-        <label class="mirror-card__bot">
-          <input type="checkbox" name="i_am_a_bot" value="yes"> I am a bot
-        </label>
+        <input class="mirror-card__honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="question" id="mfQuestion">
         <input type="hidden" name="source" value="index-mirror">
         <input type="hidden" name="_subject" value="Mirror — landing page response">
         <button class="mirror-card__send" type="submit">Send</button>
         <p class="mirror-card__status" id="mfStatus" aria-live="polite"></p>
+        <iframe class="mirror-gift-frame" id="mirrorGift"
+                title="Animated thank-you: spreadsheet numbers become wildflowers and a constellation"
+                aria-hidden="true" data-src="assets/mirror-gift.html" hidden></iframe>
       </form>
     </div>
   </div>
@@ -465,6 +471,7 @@
     var closeBtn = document.getElementById("cardClose");
     var form = document.getElementById("mirrorForm");
     var status = document.getElementById("mfStatus");
+    var gift = document.getElementById("mirrorGift");
 
     mirrorQ.textContent = question;
     cardQ.textContent = question;
@@ -506,6 +513,9 @@
           form.querySelectorAll("textarea, input[type=text], input[type=checkbox], button[type=submit]")
               .forEach(function (el) { el.disabled = true; });
           status.textContent = "Received — kept under glass.";
+          form.classList.add("is-complete");
+          gift.hidden = false;
+          gift.src = gift.dataset.src;
         } else {
           status.textContent = "The thread snapped — please try again.";
         }

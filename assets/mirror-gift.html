@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated thank-you</title>
+<style>
+  html, body { margin: 0; background: transparent; overflow: hidden; }
+  :root { --space-3: 2rem; }
+</style>
+</head>
+<body>
+<!-- ===== The gift: plays once as the thank-you appears, settles as constellation ===== -->
+<style>
+  .bp-gift { max-width: 560px; margin: var(--space-3) auto 0; }
+  .bp-gift svg { width: 100%; height: auto; display: block; }
+  .bp-gift .gg-num { font-family: ui-monospace, monospace; font-size: 13px; fill: #2B2B2B; text-anchor: middle; animation: ggnum 28s forwards; }
+  .bp-gift .gg-sheet { fill: #F5EFDF; animation: ggsky 28s forwards; }
+  .bp-gift .gg-grid { animation: gggrid 28s forwards; }
+  .bp-gift .gg-rowfill { fill: #EDE6D6; }
+  .bp-gift .gg-line { stroke: #C9BFA5; stroke-width: 0.5; }
+  .bp-gift .gg-ground { stroke: #A89B77; stroke-width: 1; }
+  .bp-gift .gg-conste { stroke: #E8C97A; stroke-width: 0.6; fill: none; opacity: 0; animation: ggconste 28s forwards; }
+  .bp-gift .gg-dot { fill: #E8C97A; opacity: 0; animation: ggconste 28s forwards; }
+  .bp-gift .gg-tw1 { animation: ggtw 3.4s 26s infinite; }
+  .bp-gift .gg-tw2 { animation: ggtw 4.1s 26s infinite; }
+  .bp-gift .gg-tw3 { animation: ggtw 2.9s 26s infinite; }
+  .bp-gift .gg-stem { fill: none; stroke-linecap: round; }
+  .bp-gift .gg-fall1 { animation: ggfall1 28s forwards; }
+  .bp-gift .gg-fall2 { animation: ggfall2 28s forwards; }
+  .bp-gift .gg-fall3 { animation: ggfall3 28s forwards; }
+  .bp-gift .gg-numf1 { animation: ggnumf1 28s forwards; }
+  .bp-gift .gg-numf2 { animation: ggnumf2 28s forwards; }
+  .bp-gift .gg-numf3 { animation: ggnumf3 28s forwards; }
+  .bp-gift .gg-seed1 { opacity: 0; animation: ggseed1 28s forwards; }
+  .bp-gift .gg-seed2 { opacity: 0; animation: ggseed2 28s forwards; }
+  .bp-gift .gg-seed3 { opacity: 0; animation: ggseed3 28s forwards; }
+  .bp-gift .gg-stem1 { stroke-dasharray: 170; stroke-dashoffset: 170; animation: ggstem1 28s forwards; }
+  .bp-gift .gg-stem2 { stroke-dasharray: 150; stroke-dashoffset: 150; animation: ggstem2 28s forwards; }
+  .bp-gift .gg-stem3 { stroke-dasharray: 34; stroke-dashoffset: 34; animation: ggstem3 28s forwards; }
+  .bp-gift .gg-grow { transform: scale(0); }
+  .bp-gift .gg-basal1 { animation: ggbasal1 28s forwards; }
+  .bp-gift .gg-bloom1 { animation: ggbloom1 28s forwards; }
+  .bp-gift .gg-leaf2 { animation: ggleaf2 28s forwards; }
+  .bp-gift .gg-bloom2 { animation: ggbloom2 28s forwards; }
+  .bp-gift .gg-whA { animation: ggwhA 28s forwards; }
+  .bp-gift .gg-whB { animation: ggwhB 28s forwards; }
+  .bp-gift .gg-whC { animation: ggwhC 28s forwards; }
+  .bp-gift .gg-whD { animation: ggwhD 28s forwards; }
+  .bp-gift .gg-whE { animation: ggwhE 28s forwards; }
+  .bp-gift .gg-wf1 { animation: ggwf1 28s forwards; }
+  .bp-gift .gg-wf2 { animation: ggwf2 28s forwards; }
+
+  @keyframes ggsky { 0%,74% { fill: #F5EFDF; } 92%,100% { fill: #221226; } }
+  @keyframes gggrid { 0%,74% { opacity: 1; } 92%,100% { opacity: 0.08; } }
+  @keyframes ggnum { 0%,10% { fill: #2B2B2B; opacity: 1; } 13%,33% { opacity: 0.7; } 37%,57% { opacity: 0.5; } 62%,84% { opacity: 0.28; } 92%,100% { fill: #E8C97A; opacity: 1; } }
+  @keyframes ggconste { 0%,90% { opacity: 0; } 100% { opacity: 0.55; } }
+  @keyframes ggtw { 0% { opacity: 1; } 50% { opacity: 0.45; } 100% { opacity: 1; } }
+  @keyframes ggfall1 { 0%,4% { transform: translate(0,0); } 6.5% { transform: translate(7px,120px); } 9% { transform: translate(-6px,230px); } 11%,100% { transform: translate(2px,308px); } }
+  @keyframes ggnumf1 { 0%,5% { opacity: 1; } 9%,100% { opacity: 0; } }
+  @keyframes ggseed1 { 0%,5% { opacity: 0; fill: #2B2B2B; } 7.5% { opacity: 1; fill: #46331F; } 11% { opacity: 1; fill: #6B4A2F; } 13% { opacity: 1; } 15%,100% { opacity: 0; fill: #6B4A2F; } }
+  @keyframes ggstem1 { 0%,13% { stroke-dashoffset: 170; } 25%,100% { stroke-dashoffset: 0; } }
+  @keyframes ggbasal1 { 0%,14% { transform: scale(0); } 21%,100% { transform: scale(1); } }
+  @keyframes ggbloom1 { 0%,22% { transform: scale(0); } 27% { transform: scale(1.1); } 29%,100% { transform: scale(1); } }
+  @keyframes ggfall2 { 0%,28% { transform: translate(0,0); } 30% { transform: translate(6px,105px); } 32.5% { transform: translate(-5px,205px); } 35%,100% { transform: translate(2px,276px); } }
+  @keyframes ggnumf2 { 0%,29% { opacity: 1; } 33%,100% { opacity: 0; } }
+  @keyframes ggseed2 { 0%,29% { opacity: 0; fill: #2B2B2B; } 31% { opacity: 1; fill: #46331F; } 35% { opacity: 1; fill: #6B4A2F; } 37% { opacity: 1; } 39%,100% { opacity: 0; fill: #6B4A2F; } }
+  @keyframes ggstem2 { 0%,37% { stroke-dashoffset: 150; } 46%,100% { stroke-dashoffset: 0; } }
+  @keyframes ggleaf2 { 0%,39% { transform: scale(0); } 45%,100% { transform: scale(1); } }
+  @keyframes ggbloom2 { 0%,45% { transform: scale(0); } 50% { transform: scale(1.1); } 52%,100% { transform: scale(1); } }
+  @keyframes ggfall3 { 0%,49% { transform: translate(0,0); } 51% { transform: translate(6px,95px); } 53.5% { transform: translate(-5px,180px); } 56%,100% { transform: translate(1px,244px); } }
+  @keyframes ggnumf3 { 0%,50% { opacity: 1; } 54%,100% { opacity: 0; } }
+  @keyframes ggseed3 { 0%,50% { opacity: 0; fill: #2B2B2B; } 52% { opacity: 1; fill: #46331F; } 56% { opacity: 1; fill: #6B4A2F; } 58% { opacity: 1; } 60%,100% { opacity: 0; fill: #6B4A2F; } }
+  @keyframes ggstem3 { 0%,58% { stroke-dashoffset: 34; } 63%,100% { stroke-dashoffset: 0; } }
+  @keyframes ggwhA { 0%,60% { transform: scale(0); } 66%,100% { transform: scale(1); } }
+  @keyframes ggwhB { 0%,64% { transform: scale(0); } 70%,100% { transform: scale(1); } }
+  @keyframes ggwhC { 0%,68% { transform: scale(0); } 74%,100% { transform: scale(1); } }
+  @keyframes ggwhD { 0%,72% { transform: scale(0); } 78%,100% { transform: scale(1); } }
+  @keyframes ggwhE { 0%,76% { transform: scale(0); } 82%,100% { transform: scale(1); } }
+  @keyframes ggwf1 { 0%,66% { transform: scale(0); } 70% { transform: scale(1.2); } 72%,100% { transform: scale(1); } }
+  @keyframes ggwf2 { 0%,78% { transform: scale(0); } 82% { transform: scale(1.2); } 84%,100% { transform: scale(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-gift * { animation: none !important; }
+    .bp-gift .gg-sheet { fill: #221226; }
+    .bp-gift .gg-grid { opacity: 0.08; }
+    .bp-gift .gg-num { fill: #E8C97A; opacity: 1; }
+    .bp-gift .gg-conste, .bp-gift .gg-dot { opacity: 0.55; }
+    .bp-gift .gg-stem { stroke-dashoffset: 0 !important; }
+    .bp-gift .gg-grow { transform: scale(1) !important; }
+    .bp-gift .gg-fall1, .bp-gift .gg-fall2, .bp-gift .gg-fall3 { display: none; }
+  }
+</style>
+<div class="bp-gift" aria-hidden="true">
+<svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+<rect class="gg-sheet" x="150" y="40" width="380" height="96" rx="4"/>
+<g class="gg-grid">
+  <rect class="gg-rowfill" x="152" y="44" width="376" height="26" rx="2"/>
+  <rect class="gg-rowfill" x="152" y="76" width="376" height="26" rx="2"/>
+  <rect class="gg-rowfill" x="152" y="108" width="376" height="26" rx="2"/>
+  <line class="gg-line" x1="150" y1="72" x2="530" y2="72"/>
+  <line class="gg-line" x1="150" y1="104" x2="530" y2="104"/>
+  <line class="gg-line" x1="245" y1="40" x2="245" y2="136"/>
+  <line class="gg-line" x1="340" y1="40" x2="340" y2="136"/>
+  <line class="gg-line" x1="435" y1="40" x2="435" y2="136"/>
+</g>
+<g class="gg-tw1"><text class="gg-num" x="190" y="62">12</text></g>
+<g class="gg-tw2"><text class="gg-num" x="390" y="62">27</text></g>
+<g class="gg-tw3"><text class="gg-num" x="480" y="62">5</text></g>
+<g class="gg-tw2"><text class="gg-num" x="210" y="94">41</text></g>
+<g class="gg-tw1"><text class="gg-num" x="470" y="94">8</text></g>
+<g class="gg-tw3"><text class="gg-num" x="300" y="126">17</text></g>
+<g class="gg-tw2"><text class="gg-num" x="500" y="126">33</text></g>
+<polyline class="gg-conste" points="190,58 210,90 300,122 390,58"/>
+<polyline class="gg-conste" points="390,58 470,90 480,58"/>
+<circle class="gg-dot" cx="260" cy="75" r="1.4"/>
+<circle class="gg-dot" cx="350" cy="60" r="1.4"/>
+<circle class="gg-dot" cx="430" cy="112" r="1.4"/>
+<g class="gg-fall1"><text class="gg-num gg-numf1" x="240" y="62" style="animation-name: ggnumf1;">6</text><ellipse class="gg-seed1" cx="240" cy="58" rx="4.5" ry="7.5"/></g>
+<g class="gg-fall2"><text class="gg-num gg-numf2" x="340" y="94" style="animation-name: ggnumf2;">3</text><ellipse class="gg-seed2" cx="340" cy="90" rx="4.5" ry="7.5"/></g>
+<g class="gg-fall3"><text class="gg-num gg-numf3" x="440" y="126" style="animation-name: ggnumf3;">9</text><ellipse class="gg-seed3" cx="440" cy="122" rx="4.5" ry="7.5"/></g>
+<line class="gg-ground" x1="80" y1="372" x2="600" y2="372"/>
+<path class="gg-stem gg-stem1" d="M242 372 C 235 322, 250 288, 241 240" stroke="#4A5D33" stroke-width="2.2"/>
+<g class="gg-grow gg-basal1" style="transform-origin: 242px 372px;">
+  <ellipse cx="222" cy="364" rx="20" ry="7" fill="#2E4A2E" transform="rotate(-18 222 364)"/>
+  <ellipse cx="262" cy="364" rx="20" ry="7" fill="#2E4A2E" transform="rotate(18 262 364)"/>
+  <ellipse cx="228" cy="356" rx="15" ry="5.5" fill="#3A5A38" transform="rotate(-30 228 356)"/>
+  <ellipse cx="256" cy="356" rx="15" ry="5.5" fill="#3A5A38" transform="rotate(30 256 356)"/>
+</g>
+<g class="gg-grow gg-bloom1" style="transform-origin: 241px 240px;">
+  <ellipse cx="241" cy="224" rx="4.5" ry="12" fill="#B03572"/>
+  <ellipse cx="228" cy="234" rx="4.5" ry="12" fill="#B03572" transform="rotate(-62 228 234)"/>
+  <ellipse cx="254" cy="234" rx="4.5" ry="12" fill="#B03572" transform="rotate(62 254 234)"/>
+  <ellipse cx="230" cy="245" rx="9" ry="6.5" fill="#D46A9F"/>
+  <ellipse cx="252" cy="245" rx="9" ry="6.5" fill="#D46A9F"/>
+  <ellipse cx="241" cy="252" rx="4" ry="6" fill="#7A1F4D"/>
+  <circle cx="241" cy="242" r="3" fill="#E8B84B"/>
+</g>
+<path class="gg-stem gg-stem2" d="M342 372 C 346 322, 336 292, 342 246" stroke="#6B7A3F" stroke-width="2"/>
+<g class="gg-grow gg-leaf2" style="transform-origin: 344px 322px;"><ellipse cx="358" cy="318" rx="14" ry="6" fill="#8A9A5B" transform="rotate(26 358 318)"/></g>
+<g class="gg-grow gg-leaf2" style="transform-origin: 340px 290px;"><ellipse cx="326" cy="286" rx="14" ry="6" fill="#8A9A5B" transform="rotate(-24 326 286)"/></g>
+<g class="gg-grow gg-bloom2" style="transform-origin: 342px 246px;">
+  <ellipse cx="342" cy="231" rx="5.5" ry="11" fill="#F5F1E3"/>
+  <ellipse cx="330" cy="241" rx="5.5" ry="11" fill="#F5F1E3" transform="rotate(-65 330 241)"/>
+  <ellipse cx="354" cy="241" rx="5.5" ry="11" fill="#F5F1E3" transform="rotate(65 354 241)"/>
+  <ellipse cx="334" cy="255" rx="5.5" ry="11" fill="#F5F1E3" transform="rotate(-130 334 255)"/>
+  <ellipse cx="350" cy="255" rx="5.5" ry="11" fill="#F5F1E3" transform="rotate(130 350 255)"/>
+  <circle cx="342" cy="243" r="5.5" fill="#E8B84B"/>
+</g>
+<path class="gg-stem gg-stem3" d="M441 372 L 443 346" stroke="#5B7A3F" stroke-width="1.8"/>
+<g class="gg-grow gg-whA" style="transform-origin: 442px 358px;">
+  <ellipse cx="442" cy="358" rx="13" ry="2.6" fill="#5B7A3F"/>
+  <ellipse cx="442" cy="358" rx="13" ry="2.6" fill="#5B7A3F" transform="rotate(60 442 358)"/>
+  <ellipse cx="442" cy="358" rx="13" ry="2.6" fill="#5B7A3F" transform="rotate(120 442 358)"/>
+</g>
+<g class="gg-grow gg-whB" style="transform-origin: 443px 348px;">
+  <ellipse cx="443" cy="348" rx="10" ry="2.2" fill="#6B8A4B"/>
+  <ellipse cx="443" cy="348" rx="10" ry="2.2" fill="#6B8A4B" transform="rotate(60 443 348)"/>
+  <ellipse cx="443" cy="348" rx="10" ry="2.2" fill="#6B8A4B" transform="rotate(120 443 348)"/>
+</g>
+<g class="gg-grow gg-whB" style="transform-origin: 414px 368px;">
+  <ellipse cx="414" cy="368" rx="9" ry="2" fill="#5B7A3F"/>
+  <ellipse cx="414" cy="368" rx="9" ry="2" fill="#5B7A3F" transform="rotate(60 414 368)"/>
+  <ellipse cx="414" cy="368" rx="9" ry="2" fill="#5B7A3F" transform="rotate(120 414 368)"/>
+</g>
+<g class="gg-grow gg-whB" style="transform-origin: 468px 368px;">
+  <ellipse cx="468" cy="368" rx="9" ry="2" fill="#5B7A3F"/>
+  <ellipse cx="468" cy="368" rx="9" ry="2" fill="#5B7A3F" transform="rotate(60 468 368)"/>
+  <ellipse cx="468" cy="368" rx="9" ry="2" fill="#5B7A3F" transform="rotate(120 468 368)"/>
+</g>
+<g class="gg-grow gg-whC" style="transform-origin: 388px 366px;">
+  <ellipse cx="388" cy="366" rx="10" ry="2.2" fill="#6B8A4B"/>
+  <ellipse cx="388" cy="366" rx="10" ry="2.2" fill="#6B8A4B" transform="rotate(60 388 366)"/>
+  <ellipse cx="388" cy="366" rx="10" ry="2.2" fill="#6B8A4B" transform="rotate(120 388 366)"/>
+</g>
+<g class="gg-grow gg-whC" style="transform-origin: 498px 366px;">
+  <ellipse cx="498" cy="366" rx="9" ry="2" fill="#5B7A3F"/>
+  <ellipse cx="498" cy="366" rx="9" ry="2" fill="#5B7A3F" transform="rotate(60 498 366)"/>
+  <ellipse cx="498" cy="366" rx="9" ry="2" fill="#5B7A3F" transform="rotate(120 498 366)"/>
+</g>
+<g class="gg-grow gg-whD" style="transform-origin: 356px 368px;">
+  <ellipse cx="356" cy="368" rx="8" ry="2" fill="#6B8A4B"/>
+  <ellipse cx="356" cy="368" rx="8" ry="2" fill="#6B8A4B" transform="rotate(60 356 368)"/>
+  <ellipse cx="356" cy="368" rx="8" ry="2" fill="#6B8A4B" transform="rotate(120 356 368)"/>
+</g>
+<g class="gg-grow gg-whD" style="transform-origin: 312px 366px;">
+  <ellipse cx="312" cy="366" rx="9" ry="2.2" fill="#5B7A3F"/>
+  <ellipse cx="312" cy="366" rx="9" ry="2.2" fill="#5B7A3F" transform="rotate(60 312 366)"/>
+  <ellipse cx="312" cy="366" rx="9" ry="2.2" fill="#5B7A3F" transform="rotate(120 312 366)"/>
+</g>
+<g class="gg-grow gg-whD" style="transform-origin: 528px 368px;">
+  <ellipse cx="528" cy="368" rx="8" ry="1.8" fill="#6B8A4B"/>
+  <ellipse cx="528" cy="368" rx="8" ry="1.8" fill="#6B8A4B" transform="rotate(60 528 368)"/>
+  <ellipse cx="528" cy="368" rx="8" ry="1.8" fill="#6B8A4B" transform="rotate(120 528 368)"/>
+</g>
+<g class="gg-grow gg-whE" style="transform-origin: 278px 368px;">
+  <ellipse cx="278" cy="368" rx="8" ry="1.8" fill="#5B7A3F"/>
+  <ellipse cx="278" cy="368" rx="8" ry="1.8" fill="#5B7A3F" transform="rotate(60 278 368)"/>
+  <ellipse cx="278" cy="368" rx="8" ry="1.8" fill="#5B7A3F" transform="rotate(120 278 368)"/>
+</g>
+<g class="gg-grow gg-whE" style="transform-origin: 198px 366px;">
+  <ellipse cx="198" cy="366" rx="9" ry="2" fill="#6B8A4B"/>
+  <ellipse cx="198" cy="366" rx="9" ry="2" fill="#6B8A4B" transform="rotate(60 198 366)"/>
+  <ellipse cx="198" cy="366" rx="9" ry="2" fill="#6B8A4B" transform="rotate(120 198 366)"/>
+</g>
+<g class="gg-grow gg-whE" style="transform-origin: 560px 366px;">
+  <ellipse cx="560" cy="366" rx="8" ry="1.8" fill="#5B7A3F"/>
+  <ellipse cx="560" cy="366" rx="8" ry="1.8" fill="#5B7A3F" transform="rotate(60 560 366)"/>
+  <ellipse cx="560" cy="366" rx="8" ry="1.8" fill="#5B7A3F" transform="rotate(120 560 366)"/>
+</g>
+<g class="gg-grow gg-wf1" style="transform-origin: 443px 340px;">
+  <circle cx="437" cy="340" r="2.2" fill="#FAF7EC"/>
+  <circle cx="449" cy="338" r="2.2" fill="#FAF7EC"/>
+  <circle cx="443" cy="333" r="2.2" fill="#FAF7EC"/>
+  <circle cx="431" cy="334" r="1.8" fill="#FAF7EC"/>
+  <circle cx="454" cy="343" r="1.8" fill="#FAF7EC"/>
+</g>
+<g class="gg-grow gg-wf2" style="transform-origin: 312px 360px;">
+  <circle cx="308" cy="360" r="1.8" fill="#FAF7EC"/>
+  <circle cx="316" cy="358" r="1.8" fill="#FAF7EC"/>
+  <circle cx="312" cy="354" r="1.8" fill="#FAF7EC"/>
+</g>
+<g class="gg-grow gg-wf2" style="transform-origin: 198px 360px;">
+  <circle cx="194" cy="360" r="1.8" fill="#FAF7EC"/>
+  <circle cx="202" cy="358" r="1.8" fill="#FAF7EC"/>
+</g>
+</svg>
+</div>
+</body>
+</html>
