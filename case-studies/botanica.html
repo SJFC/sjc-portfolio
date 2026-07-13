@@ -40,9 +40,9 @@
     letter-spacing: 0.1em; text-transform: uppercase;
   }
 
-  /* ---- Opening: MATERIALISING ----
-     The constructed portrait collage dissolves into its aligned
-     documentary photograph: representation thins, conditions remain. ---- */
+  /* ---- Opening: ORCHID ENCOUNTER ----
+     A close view comes slowly into focus, then yields to the whole flower:
+     encounter precedes naming and classification. ---- */
   .bo-materialise__runway {
     height: 320vh;
     position: relative;
@@ -72,9 +72,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.04);
+    will-change: filter, opacity, transform;
   }
-  .bo-materialise__photo { z-index: 1; }
-  .bo-materialise__collage { z-index: 2; will-change: opacity; }
+  .bo-materialise__whole {
+    z-index: 1;
+    filter: blur(12px);
+    transform: scale(1.1);
+  }
+  .bo-materialise__interior {
+    z-index: 2;
+    filter: blur(18px);
+  }
   .bo-materialise__caption {
     max-width: var(--measure);
     margin: var(--space-2) auto 0;
@@ -97,7 +106,8 @@
     .bo-materialise__runway { height: auto; padding: var(--space-5) 0; }
     .bo-materialise__sticky { position: relative; height: auto; }
     .bo-materialise__frame { width: min(88vw, 36rem); }
-    .bo-materialise__collage { display: none; }
+    .bo-materialise__interior { display: none; }
+    .bo-materialise__whole { filter: none; transform: none; }
   }
 
   /* ---- Opening header: still, first — orientation before motion,
@@ -316,25 +326,27 @@
     <p class="bo-title-poem__standfirst">Is categorisation a synonym for containment?</p>
   </header>
 
-  <!-- ============ 2. MATERIALISING — now the first thing scrolling
-       brings you into, not the landing state ============ -->
+  <!-- ============ 2. ORCHID ENCOUNTER — an abstract interior resolves,
+       then opens out to the whole flower ============ -->
   <section class="bo-materialise">
     <div class="bo-materialise__runway" id="bo-mat-runway">
       <div class="bo-materialise__sticky">
         <div class="bo-materialise__frame">
-          <img class="bo-materialise__photo" src="../assets/images/botanica/terrarium-jar.jpg"
-               alt="A living pilot installation: green plants grow from a Victorian sewing box lined with magenta silk, crossing a paper label and a red thread.">
-          <img class="bo-materialise__collage" id="bo-mat-collage" src="../assets/images/botanica/writing-bureau-portrait-collage.jpg"
+          <img class="bo-materialise__whole" id="bo-mat-whole"
+               src="../assets/images/botanica/orchids/orchid-whole.jpg"
+               alt="A deep magenta orchid, seen whole after an intimate view of its patterned interior.">
+          <img class="bo-materialise__interior" id="bo-mat-interior"
+               src="../assets/images/botanica/orchids/orchid-interior.jpg"
                alt="" aria-hidden="true">
         </div>
-        <p class="bo-materialise__caption">The representation thins; the living conditions remain.</p>
+        <p class="bo-materialise__caption">Before the name, an encounter.</p>
         <p class="bo-materialise__scroll-cue">Scroll</p>
       </div>
     </div>
   </section>
 
   <!-- ============ 3. THE PROJECT ============ -->
-  <section class="bo-title-poem cs-section reveal">
+  <section class="bo-title-poem cs-section reveal" id="bo-project">
     <div class="cs-inner"><h2 class="cs-eyebrow">The project: Botanica</h2></div>
     <div class="cs-inner">
       <p><strong>Botanica</strong> is a work in progress. The images here are from a small, living pilot installation exploring what gets lost when complex, relational lives are organised into categories.</p>
@@ -578,11 +590,12 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
 
-    // MATERIALISING: the constructed layer thins until the aligned
-    // documentary photograph remains.
+    // ORCHID ENCOUNTER: an intimate, initially blurred interior resolves
+    // before yielding to the whole flower.
     const matRunway = document.getElementById('bo-mat-runway');
-    const matCollage = document.getElementById('bo-mat-collage');
-    const MAT_DWELL = 0.25; // final quarter of the runway holds the photograph alone
+    const matInterior = document.getElementById('bo-mat-interior');
+    const matWhole = document.getElementById('bo-mat-whole');
+    const MAT_DWELL = 0.2; // the ending holds the whole flower in focus
     let matTicking = false;
     function updateMaterialise() {
       const rect = matRunway.getBoundingClientRect();
@@ -590,8 +603,21 @@
       const distance = total * (1 - MAT_DWELL);
       let p = distance > 0 ? (-rect.top) / distance : 1;
       p = Math.min(Math.max(p, 0), 1);
-      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-      matCollage.style.opacity = 1 - eased;
+
+      // First allow the close view to become fully legible.
+      const focusProgress = Math.min(p / 0.42, 1);
+      const focusEase = 1 - Math.pow(1 - focusProgress, 3);
+      matInterior.style.filter = `blur(${18 * (1 - focusEase)}px)`;
+      matInterior.style.transform = `scale(${1.04 - 0.04 * focusEase})`;
+
+      // Then open out from orchid interior to orchid as a whole.
+      const revealProgress = Math.min(Math.max((p - 0.48) / 0.42, 0), 1);
+      const revealEase = revealProgress < 0.5
+        ? 2 * revealProgress * revealProgress
+        : 1 - Math.pow(-2 * revealProgress + 2, 2) / 2;
+      matInterior.style.opacity = 1 - revealEase;
+      matWhole.style.filter = `blur(${12 * (1 - revealEase)}px)`;
+      matWhole.style.transform = `scale(${1.1 - 0.1 * revealEase})`;
       matTicking = false;
     }
     window.addEventListener('scroll', () => {
