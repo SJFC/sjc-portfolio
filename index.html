@@ -81,11 +81,11 @@
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-grey); opacity: 0.6;
   }
 
-  /* OPENING → STATEMENT TRANSITION (open, July 2026): two softening
-     approaches tried and set aside — a dawn-band gradient section
-     (cumbersome, broke the flow) and an apparition light-spill on
-     ::after (didn't work visually). The hard cut stands while an
-     animation is sought. */
+  /* OPENING → STATEMENT TRANSITION (resolved, July 2026): a dawn-band
+     gradient section and an apparition light-spill on ::after were both
+     tried and set aside — the seam is now a text palimpsest instead: see
+     .ix-statement below. The register change is performed by the words,
+     not by the gap between two colours. */
 
   /* ================= THE MIRROR SCENE ================= */
   /* Nudge these four by eye on the live page: they place the hotspot
@@ -265,16 +265,44 @@
     .mirror-invitation { transition: none; }
   }
 
-  /* ---- The statement, on cream: two sentences, two breaths ---- */
-  .ix-statement { background: var(--cream); color: var(--navy); padding: var(--space-6) var(--space-3); text-align: center; }
-  .ix-statement p {
+  /* ---- The statement, on cream: a text palimpsest. The plain-language
+     sentence meets the reader first; scrolling dissolves it into the full
+     research statement — the register change performed rather than cut.
+     Without JS, or with reduced motion, only the full statement shows;
+     screen readers hear only the full statement either way. ---- */
+  .ix-statement { background: var(--cream); color: var(--navy); }
+  .ix-statement__hold { height: 220vh; }   /* scroll runway — tune by eye */
+  .ix-statement__stage {
+    position: sticky; top: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: var(--space-4) var(--space-3);
+    text-align: center;
+  }
+  .ix-statement__layers { display: grid; }
+  .ix-statement__layer {
+    grid-area: 1 / 1;              /* both texts share the same cell */
+    margin: 0 auto;
+    max-width: var(--measure-wide);
+  }
+  .ix-statement__layer p {
     font-family: var(--font-display);
     font-size: clamp(1.3rem, 2.6vw, var(--text-lg));
     line-height: 1.6;
-    max-width: var(--measure-wide);
-    margin: 0 auto;
+    margin: 0;
   }
-  .ix-statement p + p { margin-top: var(--space-2); }
+  .ix-statement__layer p + p { margin-top: var(--space-2); }
+  .ix-statement__layer--after { opacity: 0; }
+  /* JS sets opacity and blur inline as the reader scrolls */
+
+  /* fallback: no runway, full statement only */
+  .ix-statement:not(.is-palimpsest) .ix-statement__hold { height: auto; }
+  .ix-statement:not(.is-palimpsest) .ix-statement__stage {
+    position: static; min-height: 0; padding: var(--space-6) var(--space-3);
+  }
+  .ix-statement:not(.is-palimpsest) .ix-statement__layer--before { display: none; }
+  .ix-statement:not(.is-palimpsest) .ix-statement__layer--after { opacity: 1; }
 
   /* ---- Three doors, each in its chapter's register ---- */
   .ix-work { background: var(--near-black); padding: var(--space-6) var(--space-3); }
@@ -381,10 +409,22 @@
 
     <p class="ix-opening__scroll-cue">Scroll</p>
   </section>
-  <!-- ============ 2. THE STATEMENT ============ -->
+
+  <!-- ============ 2. THE STATEMENT — a text palimpsest ============ -->
   <section class="ix-statement">
-    <p>I use practice-as-research and data physicalisation to create poetic, participatory interventions within complex institutional systems.</p>
-    <p>By bridging material art and critical theory, my work listens to the lives ghosted by datasets and algorithms—making representation more accessible, situated and humane.</p>
+    <div class="ix-statement__hold">
+      <div class="ix-statement__stage">
+        <div class="ix-statement__layers">
+          <div class="ix-statement__layer ix-statement__layer--before" aria-hidden="true">
+            <p>I design poetic, participatory ways for organisations to communicate complex information, listen to the lives ghosted by data, and make representation more accessible, situated and humane.</p>
+          </div>
+          <div class="ix-statement__layer ix-statement__layer--after">
+            <p>I use practice-as-research and data physicalisation to create poetic, participatory interventions within complex institutional systems.</p>
+            <p>By bridging material art and critical theory, my work listens to the lives ghosted by datasets and algorithms—making representation more accessible, situated and humane.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ 3. THREE DOORS - reading order Minor Deities,
@@ -444,6 +484,39 @@
       </form>
     </div>
   </div>
+
+  <script>
+  /* ---- the statement palimpsest: crossfade driven by scroll ---- */
+  (function () {
+    var section = document.querySelector(".ix-statement");
+    if (!section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var hold = section.querySelector(".ix-statement__hold");
+    var before = section.querySelector(".ix-statement__layer--before");
+    var after = section.querySelector(".ix-statement__layer--after");
+    section.classList.add("is-palimpsest");
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var rect = hold.getBoundingClientRect();
+      var runway = rect.height - window.innerHeight;
+      if (runway <= 0) return;
+      var t = Math.min(1, Math.max(0, -rect.top / runway));
+      /* hold the first text, cross between 0.25 and 0.75, hold the second */
+      var x = Math.min(1, Math.max(0, (t - 0.25) / 0.5));
+      before.style.opacity = String(1 - x);
+      before.style.filter = "blur(" + (x * 2.5).toFixed(2) + "px)";
+      after.style.opacity = String(x);
+      after.style.filter = "blur(" + ((1 - x) * 2.5).toFixed(2) + "px)";
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  })();
+  </script>
 
   <script>
   (function () {
