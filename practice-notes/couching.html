@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stitching criticality into conversations: threads, held in place — Sarah-Jane Crowson</title>
+<meta name="description" content="A critical technical practice case study: thirteen human–AI dialogues analysed, coded and materialised as couching — the conversation held in place as stitches, on screen and in thread.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+
+  /* Standalone case study register: unbleached linen with magenta and
+     verdigris — beside the triad, not within it. Three threads:
+     MEASUREMENT (what volume cannot see about judgement and direction),
+     STITCH (couching as notation — the conversation laid, both hands
+     binding), and GLASS (under it, in it, removed — and here, between).
+     2026-07-19 · v2: rebuilt to the shared case-study format.
+     2026-07-19 · v3: reframed as exploratory; authorship claim
+     corrected by SJC; notation credited to the machine.
+     2026-07-20 · v4: SJC's final text set in. Machine applied
+     mechanical corrections only: "machine learning turn" → "term";
+     ChatGPT spelling made consistent; "Initially…initial" doubling
+     smoothed; "The Argument"/"The Output:" → sentence case per house
+     style; "re-directing" → "redirecting" to match the key;
+     "data humanist and material physicalisation" patched to
+     "data humanism and material physicalisation" — SJC TO VERIFY.
+     Stats grid retired: the ratio now lives in the method prose and
+     the grid would duplicate it (reversible). "Critical questioning
+     the models" section reserved below, awaiting SJC's content.
+     Supersession narrative currently out, pending SJC's decision —
+     it lives in the codebook's revision log either way. */
+
+  /* 2026-07-19 · Ground: unbleached linen, set locally like Botanica's
+     aubergine — the cloth's own ground, deliberately not a shared token.
+     Judged by eye on the live page before it stands. */
+  body.cu-page { background: #F1E9DA; }
+
+  /* 2026-07-19 · The two hands: maker = --magenta (the silk lining — the
+     maker's thread literally comes from the box); machine = verdigris,
+     local, not shared. The dormant thread-silk #A63A5E was NOT woken:
+     reserved for the Singer iteration by prior decision. Laid thread =
+     --warm-grey in the notation; the maker's cloth answered with
+     braided silver — the maker's decision at the needle stands as the
+     material's interpretation of the notation. */
+  .cu-page { --verdigris: #3F6B5E; }
+
+  .cu-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #F1E9DA;
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+  }
+  .cu-opening__title {
+    font-size: clamp(2.2rem, 5vw, var(--text-2xl));
+    color: var(--navy);
+    margin-bottom: var(--space-2);
+  }
+  .cu-opening__title em { color: var(--magenta); font-style: italic; }
+  .cu-opening__standfirst {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--olive);
+    max-width: var(--measure);
+    margin: 0 auto;
+  }
+  .cu-opening-figure {
+    max-width: none;
+    margin: 0;
+    background: #F1E9DA;
+  }
+  .cu-opening-figure img {
+    display: block;
+    width: 100%;
+    height: min(72vh, 760px);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .cu-opening-figure figcaption {
+    margin: 0;
+    padding: var(--space-2) var(--space-3) var(--space-3);
+  }
+
+  .cu-section-heading { font-size: var(--text-lg); color: var(--olive); margin-bottom: var(--space-2); }
+  .cs-section .cs-inner p + p { margin-top: 1.2em; }
+  .cu-project-question .qm-heading { margin-top: var(--space-4); }
+
+  /* ---- THE QUESTION / THE METHOD — the shared capital-title grid,
+     inherited unchanged from the case-study set. ---- */
+  .qm-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--olive);
+    margin: 0 0 var(--space-2);
+  }
+  .qm-question {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-md);
+    line-height: 1.5;
+    max-width: var(--measure);
+  }
+
+  /* ---- THE BINDING ----
+     This page's single motion argument (one per page, taught once).
+     The laid thread — the conversation — draws first; then eleven
+     stitch clusters bind it in true turn order. Fires once, on
+     entering view. Reduced motion: shown fully bound — a resolved
+     cloth, a full experience, not a degraded one.
+     Named-effects rule: "the binding" entered in GLOSSARY.md,
+     anchored to .cu-sampler.is-bound. */
+  .cu-sampler-section { text-align: center; }
+  .cu-sampler { width: 100%; max-width: var(--measure-wide); margin: 0 auto; display: block; }
+  .cu-sampler .cu-laid {
+    stroke-dasharray: 560;
+    stroke-dashoffset: 560;
+    transition: stroke-dashoffset 1.4s ease-out;
+  }
+  .cu-sampler .cu-stitch {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    transition-delay: calc(1.2s + var(--turn) * 0.28s);
+  }
+  .cu-sampler.is-bound .cu-laid { stroke-dashoffset: 0; }
+  .cu-sampler.is-bound .cu-stitch { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .cu-sampler .cu-laid { stroke-dashoffset: 0; transition: none; }
+    .cu-sampler .cu-stitch { opacity: 1; transition: none; }
+  }
+  .cu-sampler-caption {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--warm-grey);
+    max-width: var(--measure);
+    margin: var(--space-2) auto 0;
+  }
+  .cu-key {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-top: var(--space-2);
+  }
+
+  /* Image slots, matching the consultation page's placeholder grammar. */
+  .cu-placeholder {
+    aspect-ratio: 16 / 10;
+    max-width: var(--measure-wide);
+    margin: var(--space-4) auto 0;
+    border: 1px dashed var(--warm-grey);
+    border-radius: var(--radius-slide);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    background: rgba(155, 142, 130, 0.06);
+  }
+  .cu-figure { max-width: var(--measure-wide); margin: var(--space-4) auto 0; }
+  .cu-figure img { width: 100%; height: auto; border-radius: var(--radius-slide); box-shadow: 0 1rem 2.5rem rgba(28, 43, 58, 0.25); }
+  .cu-figure figcaption {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--warm-grey);
+    text-align: center;
+    margin-top: var(--space-2);
+  }
+  .cu-detail-figure img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* The closing beat every case study on this site has. */
+  .cu-glass { background: #F1E9DA; }
+  .cu-closing__credit {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  .cu-closing__next { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
+  .cu-closing__next a { color: var(--olive); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+</style>
+</head>
+<body class="cu-page">
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+    <div class="site-nav__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ============ 1. TITLE — still, first: orientation before motion ============ -->
+  <header class="cu-opening">
+    <span class="cs-eyebrow">Critical technical practice</span>
+    <h1 class="cu-opening__title">Stitching criticality into conversations: <em>threads, held in place</em></h1>
+    <p class="cu-opening__standfirst">Agreement is not a synonym for dialogue.</p>
+  </header>
+
+  <figure class="cu-figure cu-opening-figure reveal">
+    <img src="../assets/images/couching/opening.jpg" alt="A small embroidery hoop held among houseplants in window light. A braided silver thread crosses translucent white linen, secured by alternating magenta and green stitches.">
+    <figcaption>The sampler in place: a line held across translucent cloth.</figcaption>
+  </figure>
+
+  <!-- ============ 2. THE PROJECT + THE QUESTION ============ -->
+  <section class="cs-section cu-project-question reveal">
+    <div class="cs-inner">
+      <h2 class="cs-eyebrow">The project: a short experiment on AI/human working methods</h2>
+      <p>This case study focuses on one small strand of my wider AI-supported portfolio process: a material analysis of thirteen dialogues with Claude, used to explore how critical human/AI exchange might be visualised and reflected upon.</p>
+      <p>In constructing this portfolio I have worked in dialogue with a number of AI models, moving from ChatGPT to Claude to Codex to support ideation, drafting and coding the site.</p>
+      <p>My working AI practice uses the models not as interchangeable tools being benchmarked, but as differently positioned collaborators within a human-directed process. I assign them roles according to their tendencies and my use-patterns, then retain responsibility for synthesis, judgement and decision-making.</p>
+      <p>I was curious to discover how this working practice might be materialised, and also make the making process more transparent, particularly given the external context of academic usage of AI occasionally being shrouded in mystery.</p>
+      <p>This case study is an attempt to look inside the &lsquo;black box&rsquo; using journaling, note-taking, data humanism and material physicalisation.</p>
+
+      <h2 class="qm-heading">The question</h2>
+      <p class="qm-question">How might the kind of abstract, textual dialogue used between creative practitioner and machine be visually, materially represented to support understanding and reflection of AI/human interactions?</p>
+
+      <figure class="cu-figure cu-detail-figure">
+        <img src="../assets/images/couching/detail.jpg" alt="Extreme close-up of the sampler: a braided silver laid thread crosses open-weave white linen, held by green straight and crossed stitches and magenta straight, slanted and crossed stitches.">
+        <figcaption>The notation at stitch level: straight, slanted and crossed responses holding the laid thread.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 3. THE METHOD ============ -->
+  <section class="cs-section reveal" style="background:#EDE6D6;">
+    <div class="cs-inner">
+      <h2 class="qm-heading">The method</h2>
+
+      <h3 class="cs-subheading">Finding a metaphor</h3>
+      <p>Across thirteen dialogues, Claude produced approximately eleven words for every one I typed. This ratio is descriptively interesting but analytically limited: it measures volume rather than judgement, direction, or conceptual labour.</p>
+      <p>Claude suggested couching — an embroidery technique which echoes data humanism annotation techniques — as a material way to represent the types of interaction in a short, contained conversation. This echoes Parker&rsquo;s exploration of how embroidery shaped feminine identity through history and aligns with critical data feminism.</p>
+
+      <h3 class="cs-subheading">Coding the turns</h3>
+      <p>Claude used a template analysis (King, 2004) to develop an initial way to code the conversation. This was refined using Nystrand&rsquo;s work on &lsquo;uptake&rsquo; as a model for critical conversations. Turn count (the machine learning term for how many user prompts and machine responses are present in a conversation) was rejected as too linear a model to be useful, and instead a typology of &lsquo;response types&rsquo; was built based on the conversation, which privileged critical disagreement over agreement as a method to generate useful results.</p>
+      <p>Claude generated material, introduced intellectual triangulation and pushed back at key points, while I designed and steered the dialogue through purposeful prompting: testing, challenging, triangulating, revising and deciding through a process model I have developed and refined in collaboration with ChatGPT.</p>
+
+      <h3 class="cs-subheading">Creating material notation</h3>
+      <p>Based on this typology, the conversation was visually depicted using diagrammatic annotation, which was then translated to embroidery — physical &lsquo;couching&rsquo; of the thread of the conversation, each &lsquo;turn&rsquo; marked by the notation system.</p>
+
+      <h2 class="qm-heading" style="margin-top: var(--space-4);">The argument</h2>
+      <p>Physicalising the data through a material, embroidered metaphor speaks to ideas of transformation, dialogue and critical data practice. It visualises human/AI interaction in an embodied and digital form, &lsquo;coding&rsquo; the conversation both conceptually and physically.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. THE OUTPUT — the binding: this page's single
+       motion argument. Geometry is real: the eleven turns of the
+       conversation in which the method itself was negotiated, at true
+       sequential position, coded and recoded. ============ -->
+  <section class="cs-section cu-sampler-section reveal">
+    <div class="cs-inner cs-inner--wide">
+      <span class="cs-eyebrow">The output</span>
+      <h2 class="cu-section-heading">The sampler: thread thirteen</h2>
+
+      <!-- [machine gen diagram] -->
+      <svg class="cu-sampler" viewBox="0 0 680 170" role="img" aria-labelledby="cu-svg-title cu-svg-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="cu-svg-title">Thread thirteen, couched</title>
+        <desc id="cu-svg-desc">A single laid thread — the conversation — runs left to right through eleven turns. Every turn binds it as a couching stitch: straight stitches for generative turns, slanted for evaluative, crossed for redirective. The maker's stitches are magenta, drawn from the silk lining; the machine's are verdigris. A magenta knot anchors the opening turn. No turn is a tack: every stitch turns the line.</desc>
+        <path class="cu-laid" d="M64 90 L620 90" fill="none" stroke="#9B8E82" stroke-width="2.5" stroke-linecap="round"/>
+        <circle class="cu-stitch" style="--turn:0" cx="60" cy="90" r="4" fill="#7B1750"/>
+        <g class="cu-stitch" style="--turn:1" stroke="#3F6B5E" stroke-width="2" stroke-linecap="round">
+          <line x1="116" y1="76" x2="116" y2="104"/>
+        </g>
+        <g class="cu-stitch" style="--turn:2" stroke="#7B1750" stroke-width="2" stroke-linecap="round">
+          <line x1="172" y1="76" x2="172" y2="104"/>
+          <line x1="163" y1="78" x2="177" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:3" stroke="#3F6B5E" stroke-width="2" stroke-linecap="round">
+          <line x1="228" y1="76" x2="228" y2="104"/>
+          <line x1="235" y1="78" x2="249" y2="102"/>
+          <line x1="249" y1="78" x2="235" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:4" stroke="#7B1750" stroke-width="2" stroke-linecap="round">
+          <line x1="284" y1="76" x2="284" y2="104"/>
+          <line x1="291" y1="78" x2="305" y2="102"/>
+          <line x1="305" y1="78" x2="291" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:5" stroke="#3F6B5E" stroke-width="2" stroke-linecap="round">
+          <line x1="340" y1="76" x2="340" y2="104"/>
+        </g>
+        <g class="cu-stitch" style="--turn:6" stroke="#7B1750" stroke-width="2" stroke-linecap="round">
+          <line x1="396" y1="76" x2="396" y2="104"/>
+          <line x1="387" y1="78" x2="401" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:7" stroke="#3F6B5E" stroke-width="2" stroke-linecap="round">
+          <line x1="452" y1="76" x2="452" y2="104"/>
+          <line x1="459" y1="78" x2="473" y2="102"/>
+          <line x1="473" y1="78" x2="459" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:8" stroke="#7B1750" stroke-width="2" stroke-linecap="round">
+          <line x1="501" y1="78" x2="515" y2="102"/>
+          <line x1="508" y1="78" x2="522" y2="102"/>
+          <line x1="522" y1="78" x2="508" y2="102"/>
+        </g>
+        <g class="cu-stitch" style="--turn:9" stroke="#3F6B5E" stroke-width="2" stroke-linecap="round">
+          <line x1="564" y1="76" x2="564" y2="104"/>
+        </g>
+        <g class="cu-stitch" style="--turn:10" stroke="#7B1750" stroke-width="2" stroke-linecap="round">
+          <line x1="616" y1="78" x2="630" y2="102"/>
+        </g>
+      </svg>
+
+      <p class="cu-key">Straight — generative · slant — evaluative · cross — redirective · magenta — maker · verdigris — machine</p>
+
+      <!-- [embroidery image] — replace src when the photograph is
+           chosen; alt text drafted from the sewn object, SJC to
+           correct. -->
+      <figure class="cu-figure">
+        <img src="../assets/images/couching/sampler.jpg" alt="A complete embroidery sampler in a wooden hoop on a wooden table. A silver thread crosses white linen, held by alternating magenta and green stitches, with loose thread continuing beyond the hoop.">
+        <figcaption>The sampler, in thread: the conversation couched by hand — done by eye, and holding.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 5. THE REFLECTION ============ -->
+  <section class="cs-section reveal">
+    <div class="cs-inner">
+      <span class="cs-eyebrow">The reflection</span>
+      <h2 class="cu-section-heading">Dialogic conditions</h2>
+      <p>The conversation patterns showed that both the model and the user evaluated and redirected this short conversation — the user evaluating more frequently than the model, and both user and model critically redirecting the process. This suggests that the AI/user interaction can become more critical in dialogue than the standard tropes of user/machine suggest, when given dialogic conditions which specifically model critical dialogue and questioning.</p>
+    </div>
+  </section>
+
+  <!-- ============ 6. CRITICAL QUESTIONING THE MODELS — reserved.
+       SJC to supply content; section commented out until then.
+
+  <section class="cs-section reveal">
+    <div class="cs-inner">
+      <span class="cs-eyebrow">Critical questioning the models</span>
+      <p>…</p>
+    </div>
+  </section>
+  ============ -->
+
+  <!-- ============ 7. GLASS, BETWEEN — the closing beat. The fourth
+       relationship: made through glass, existing where glass is not.
+       A fifth case study must find a fifth. ============ -->
+  <section class="cs-section cu-glass reveal">
+    <div class="cs-inner">
+      <h2 class="cs-eyebrow">Glass, between</h2>
+      <p>Minor Deities ends under glass; Botanica holds worlds in it; the consultation sets it down. This work was made through glass — every stitch agreed across a screen before any thread was cut — and the cloth exists where the glass is not. A couching stitch holds without closing: the thread stays visible, and can always be unpicked. Classification without changed conditions is containment, not care. Held is not the same as contained; the difference is whether the line can still be seen.</p>
+      <p class="cu-closing__credit">Notation suggested by machine · notation redesigned, codes decided, text written and cloth sewn by the maker · site coded by machine</p>
+      <p class="cu-closing__next"><a href="../index.html#work">← All work</a></p>
+    </div>
+  </section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // THE BINDING — fires once, when the sampler enters view: the laid
+  // thread draws, then the eleven stitches bind in true turn order.
+  // This page's single motion argument. Reduced motion handled in CSS.
+  const sampler = document.querySelector('.cu-sampler');
+  if (sampler) {
+    if ('IntersectionObserver' in window) {
+      const bindObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            sampler.classList.add('is-bound');
+            bindObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      bindObserver.observe(sampler);
+    } else {
+      sampler.classList.add('is-bound');
+    }
+  }
+</script>
+
+</body>
+</html>
