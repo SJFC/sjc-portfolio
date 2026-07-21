@@ -362,7 +362,21 @@
   .cu-closing__next { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
   .cu-closing__next a { color: var(--olive); text-decoration: none; border-bottom: 1px solid currentColor; }
 
+  /* Quiet maker's mark. Kept local until the same footer is added to
+     tokens.css for every page. */
+  .site-footer {
+    padding: var(--space-3);
+    border-top: 1px solid rgba(155, 142, 130, 0.25);
+    color: var(--warm-grey);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .site-footer p { margin: 0; }
+
 </style>
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body class="cu-page">
 
@@ -711,6 +725,10 @@
     </div>
   </section>
 
+  <footer class="site-footer">
+    <p>&copy; Sarah-Jane Crowson · 2026</p>
+  </footer>
+
 <script>
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
@@ -742,9 +760,6 @@
       sampler.classList.add('is-bound');
     }
   }
-      <footer class="site-footer">
-  <p>&copy; Sarah-Jane Crowson · 2026</p>
-</footer>
 </script>
 
 </body>
