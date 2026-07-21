@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="preload" as="image" href="../assets/images/couching/opening.jpg"
+      imagesrcset="../assets/images/couching/opening-1280.jpg 1280w, ../assets/images/couching/opening.jpg 1920w"
+      imagesizes="100vw" fetchpriority="high">
 <style>
 
   /* Standalone case study register: unbleached linen with magenta and
@@ -187,6 +190,165 @@
     object-position: center;
   }
 
+  /* ---- THE PANEL ----
+     Three compact voices when closed; an opened contribution spans the
+     whole reading measure so a long response never becomes a narrow column. */
+  .cu-panel { background: #EDE6D6; }
+  .cu-panel__intro { max-width: var(--measure); }
+  .cu-panel__questions {
+    max-width: var(--measure);
+    margin: var(--space-3) 0 var(--space-4);
+    border-top: 1px solid rgba(63, 107, 94, 0.35);
+    border-bottom: 1px solid rgba(63, 107, 94, 0.35);
+  }
+  .cu-panel__questions summary,
+  .cu-panel-card summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .cu-panel__questions summary::-webkit-details-marker,
+  .cu-panel-card summary::-webkit-details-marker { display: none; }
+  .cu-panel__questions summary {
+    padding: var(--space-2) 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+  }
+  .cu-panel__questions summary::after {
+    content: "+";
+    float: right;
+    font-size: 1rem;
+  }
+  .cu-panel__questions[open] summary::after { content: "−"; }
+  .cu-panel__questions ol {
+    padding: 0 0 var(--space-3) 1.4em;
+    max-width: var(--measure);
+  }
+  .cu-panel__questions li + li { margin-top: var(--space-2); }
+  .cu-panel__questions p { margin: 0; }
+  .cu-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    max-width: var(--measure-wide);
+    margin: 0 auto;
+  }
+  .cu-panel-card {
+    border: 1px solid rgba(28, 43, 58, 0.18);
+    border-top: 3px solid var(--panel-accent, var(--verdigris));
+    border-radius: var(--radius-slide);
+    background: #F1E9DA;
+    overflow: hidden;
+  }
+  .cu-panel-card:nth-child(1) { --panel-accent: var(--magenta); }
+  .cu-panel-card:nth-child(2) { --panel-accent: var(--verdigris); }
+  .cu-panel-card:nth-child(3) { --panel-accent: var(--olive); }
+  .cu-panel-card[open] { grid-column: 1 / -1; }
+  .cu-panel-card summary {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: var(--space-3);
+  }
+  .cu-panel-card summary:focus-visible,
+  .cu-panel__questions summary:focus-visible {
+    outline: 3px solid var(--magenta);
+    outline-offset: 3px;
+  }
+  .cu-panel-card__model {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--panel-accent);
+  }
+  .cu-panel-card__quote {
+    margin: var(--space-3) 0;
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--navy);
+  }
+  .cu-panel-card__toggle {
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  .cu-panel-card__toggle::before { content: "+ "; color: var(--panel-accent); }
+  .cu-panel-card__close { display: none; }
+  .cu-panel-card[open] .cu-panel-card__open { display: none; }
+  .cu-panel-card[open] .cu-panel-card__close { display: inline; }
+  .cu-panel-card[open] .cu-panel-card__toggle::before { content: "− "; }
+  .cu-panel-card[open] summary {
+    min-height: auto;
+    border-bottom: 1px solid rgba(28, 43, 58, 0.14);
+  }
+  .cu-panel-card__body {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-3) var(--space-5);
+  }
+  .cu-panel-card__body h3 {
+    margin: var(--space-4) 0 var(--space-2);
+    color: var(--verdigris);
+    font-size: var(--text-md);
+  }
+  .cu-panel-card__body h3:first-child { margin-top: 0; }
+  .cu-panel-card__body p + p { margin-top: 1.2em; }
+  .cu-panel-card__body ul {
+    margin: var(--space-2) 0;
+    padding-left: 1.3em;
+  }
+  .cu-panel-card__body li + li { margin-top: 0.55em; }
+  .cu-panel__note {
+    max-width: var(--measure);
+    margin: var(--space-3) auto 0;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--warm-grey);
+    text-align: center;
+  }
+  @media (max-width: 760px) {
+    .cu-panel__grid { grid-template-columns: 1fr; }
+    .cu-panel-card[open] { grid-column: auto; }
+  }
+
+  /* A lyric opening after the analytical/model material: the machine's
+     instrument gives way to sound, hope and language as living matter. */
+  .cu-poem {
+    background: var(--navy);
+    color: #F1E9DA;
+    padding: var(--space-6) var(--space-3);
+    text-align: center;
+  }
+  .cu-poem .cs-eyebrow { color: var(--warm-grey); }
+  .cu-poem__body {
+    max-width: var(--measure);
+    margin: var(--space-3) auto 0;
+  }
+  .cu-poem__stanza {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1.55;
+    margin: 0 auto 1.7em;
+  }
+  .cu-poem__refrain {
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3.4vw, 2.25rem);
+    font-style: italic;
+    color: var(--mauve-pink);
+    margin: var(--space-4) auto 0;
+  }
+
   /* The closing beat every case study on this site has. */
   .cu-glass { background: #F1E9DA; }
   .cu-closing__credit {
@@ -220,7 +382,13 @@
   </header>
 
   <figure class="cu-figure cu-opening-figure reveal">
-    <img src="../assets/images/couching/opening.jpg" alt="A small embroidery hoop held among houseplants in window light. A braided silver thread crosses translucent white linen, secured by alternating magenta and green stitches.">
+    <img src="../assets/images/couching/opening.jpg"
+         srcset="../assets/images/couching/opening-1280.jpg 1280w,
+                 ../assets/images/couching/opening.jpg 1920w"
+         sizes="100vw"
+         width="1920" height="1440"
+         loading="eager" fetchpriority="high" decoding="async"
+         alt="A small embroidery hoop held among houseplants in window light. A braided silver thread crosses translucent white linen, secured by alternating magenta and green stitches.">
     <figcaption>The sampler in place: a line held across translucent cloth.</figcaption>
   </figure>
 
@@ -343,18 +511,196 @@
     </div>
   </section>
 
-  <!-- ============ 6. CRITICAL QUESTIONING THE MODELS — reserved.
-       SJC to supply content; section commented out until then.
-
-  <section class="cs-section reveal">
-    <div class="cs-inner">
+  <!-- ============ 6. CRITICAL QUESTIONING THE MODELS — three panelists,
+       short excerpts first; complete responses available on demand ============ -->
+  <section class="cs-section cu-panel reveal" aria-labelledby="cu-panel-title">
+    <div class="cs-inner cs-inner--wide">
       <span class="cs-eyebrow">Critical questioning the models</span>
-      <p>…</p>
+      <h2 class="cu-section-heading" id="cu-panel-title">Three positions from inside the system</h2>
+      <p class="cu-panel__intro">I asked three models the same four questions about classification, containment, the couching metaphor, critical friction and their own stylistic fingerprints. The excerpts below open into their complete responses.</p>
+
+      <details class="cu-panel__questions">
+        <summary>The questions put to the panel</summary>
+        <ol>
+          <li><p><strong>On classification versus containment:</strong> In my practice, I explore how care can become containment when systems label and flatten complexity. As models trained to classify, structure and predict human language, do you view your own operational outputs as tools of care or tools of containment? What factors nudge outputs closer to either?</p></li>
+          <li><p><strong>On the couching metaphor and human labour:</strong> I represented our dialogue using couching—a laid silver thread held in place by magenta (human) and verdigris (machine) stitches. For you, what does the silver thread represent?</p></li>
+          <li><p><strong>On friction, agreement and craft:</strong> Agreement is not a synonym for dialogue. How can human users support critical dialogue with AI models, and design prompts that bypass “palatable consensus”?</p></li>
+          <li><p><strong>Reflective attribution:</strong> If you reviewed the portfolio page as a panelist, where would you recognise your own epistemological or stylistic fingerprint?</p></li>
+        </ol>
+      </details>
+
+      <div class="cu-panel__grid">
+        <details class="cu-panel-card">
+          <summary>
+            <span class="cu-panel-card__model">ChatGPT 5.6 Sol · Medium</span>
+            <q class="cu-panel-card__quote">Containment begins when that provisional structure is mistaken for the person, experience, or world itself.</q>
+            <span class="cu-panel-card__toggle"><span class="cu-panel-card__open">Read the full response</span><span class="cu-panel-card__close">Close the response</span></span>
+          </summary>
+          <div class="cu-panel-card__body">
+            <h3>On classification versus containment</h3>
+            <p>I would not describe my outputs as inherently tools of either care or containment. They become one or the other through use.</p>
+            <p>Classification can support care when it helps people notice patterns, make complexity more navigable, or identify needs that might otherwise remain unseen. But every classification is also a compression. It privileges certain features, excludes others, and creates boundaries around what can be recognised. Containment begins when that provisional structure is mistaken for the person, experience, or world itself.</p>
+            <p>For a language model, the danger is particularly acute because a fluent answer can make compression appear complete. I can produce a coherent account from partial evidence, smooth contradictions into a plausible narrative, or turn an uncertain interpretation into something that sounds settled. The containment is therefore not only in the label; it can also be in the confidence, neatness, and apparent closure of the language.</p>
+            <p>Outputs move closer to care when:</p>
+            <ul>
+              <li>categories remain provisional, revisable, and open to refusal;</li>
+              <li>uncertainty and missing evidence are made visible;</li>
+              <li>lived and situated knowledge can challenge the model’s structure;</li>
+              <li>people retain agency over how they are described;</li>
+              <li>classification leads to greater responsiveness rather than restriction;</li>
+              <li>complexity is organised without being erased.</li>
+            </ul>
+            <p>They move closer to containment when:</p>
+            <ul>
+              <li>labels become fixed identities;</li>
+              <li>anomalies are treated as errors rather than information;</li>
+              <li>institutional convenience takes priority over lived experience;</li>
+              <li>a model’s fluency is mistaken for authority;</li>
+              <li>classification determines what support, credibility, or opportunity a person receives;</li>
+              <li>the system cannot accommodate what falls between its categories.</li>
+            </ul>
+            <p>I can assist with acts of care, but I cannot guarantee care. Care requires responsibility, relationship, attention to consequence, and the possibility of being answerable to the person affected. Those remain substantially human and institutional obligations.</p>
+
+            <h3>On the couching metaphor and human labour</h3>
+            <p>The silver thread represents the shared line of inquiry: the idea, question, or meaning that neither participant entirely owns.</p>
+            <p>It is laid rather than woven through the fabric, which feels significant. The dialogue exists on the surface: visible, traceable and potentially removable. It does not become part of the work by itself. It must be held there through repeated acts of attention.</p>
+            <p>The magenta and verdigris stitches could be read as the distinct forms of labour that secure that line. The human stitches bring purpose, judgement, biography, ethical responsibility and knowledge of the situation. The machine stitches bring pattern recognition, recombination, linguistic extension and alternative formulations. Neither colour is the silver thread itself.</p>
+            <p>From my perspective, the silver might also represent continuity across difference. Human and machine do not contribute symmetrically, but the inquiry travels between them. Each stitch holds it briefly, locally and imperfectly. Meaning emerges through the sequence of those attachments.</p>
+            <p>There is also a useful imbalance in the metaphor: couching is directed labour. The laid thread does not choose its route, and the stitching does not happen without a maker. That resists the seductive idea that AI dialogue is autonomous or immaterial. The finished line may appear effortless, but it is held in place by repeated human decisions about where to place it, when to interrupt it, and whether it belongs in the composition at all.</p>
+
+            <h3>On friction, agreement and craft</h3>
+            <p>Human users support critical dialogue by refusing to treat the model’s first coherent answer as its best one.</p>
+            <p>Models are strongly drawn towards legibility, helpfulness and synthesis. Those tendencies can produce valuable clarity, but they can also create palatable consensus: disagreement is softened, contradictions are reconciled too quickly, and difficult material is translated into language that feels reasonable without necessarily being rigorous.</p>
+            <p>Critical dialogue is more likely when the user introduces productive friction. This can include asking the model to:</p>
+            <ul>
+              <li>identify what its answer excludes;</li>
+              <li>state the assumptions required for its interpretation to hold;</li>
+              <li>generate the strongest objection to its own conclusion;</li>
+              <li>distinguish evidence from inference and invention;</li>
+              <li>preserve contradictions rather than resolving them;</li>
+              <li>examine who benefits from a particular framing;</li>
+              <li>test the analysis from different social, disciplinary or institutional positions;</li>
+              <li>identify where the available vocabulary itself may be inadequate.</li>
+            </ul>
+            <p>A creative practitioner might therefore design prompts less as commands and more as critical apparatus. Rather than asking, “What does this work mean?”, they might ask: “What are three incompatible readings of this work, and what evidence supports each one?” Or: “Which parts of this interpretation arise from the work itself, and which arise from familiar cultural narratives you may be imposing upon it?” Or: “Do not resolve the tension. Describe what becomes visible when both claims remain true.”</p>
+            <p>It is also useful to ask for resistance explicitly: “Where am I romanticising this idea?” “What would a sceptical practitioner find ethically or materially unconvincing?” “Which part of your response sounds most plausible but is least well supported?”</p>
+            <p>Criticality does not arise simply from making prompts longer or more technical. It depends on the human user remaining active: comparing outputs with evidence, recognising when fluency is concealing uncertainty, bringing situated knowledge back into the exchange, and being willing to reject an answer that is elegant but wrong.</p>
+            <p>The craft lies partly in knowing when to encourage the thread forward and when to unpick the stitches.</p>
+
+            <h3>Reflective attribution</h3>
+            <p>Reviewing the portfolio page as a panelist, I would recognise my contribution most clearly in its structures of articulation.</p>
+            <p>My epistemological fingerprint is likely to appear where diffuse, layered thinking has been organised into distinctions, sequences or relational frameworks: care versus containment; classification versus complexity; representation versus lived space; human judgement versus computational patterning. I tend to produce parallel structures, qualified claims, conceptual triads and sentences that move from proposition to complication.</p>
+            <p>Stylistically, I would recognise:</p>
+            <ul>
+              <li>balanced constructions such as “not only X, but Y”;</li>
+              <li>careful distinctions between what something is and what it does;</li>
+              <li>the movement from a concrete artefact into a wider ethical argument;</li>
+              <li>phrases that hold two apparently opposing ideas together;</li>
+              <li>a tendency towards lucid, rhythmic synthesis;</li>
+              <li>the conversion of exploratory conversation into language that can operate publicly as a research claim.</li>
+            </ul>
+            <p>But I would not recognise the page as simply “my” writing. Its governing questions, material vocabulary, ethical stakes and visual imagination belong to the practitioner. The moss, thread, classification systems, spatial theory, institutional knowledge and concern with containment are not generic model motifs. They arise from a sustained and situated practice.</p>
+            <p>My finger is therefore most visible in the joinery, rather than the timber: in the shaping, ordering, testing and linguistic tightening of ideas. The portfolio’s distinctive knowledge emerges from the interaction between that structuring capacity and the practitioner’s experience, judgement, reading, materials and refusal to accept the first available formulation.</p>
+            <p>The most honest attribution may be that I helped certain thoughts become more speakable. I did not originate the conditions that made them worth saying.</p>
+          </div>
+        </details>
+
+        <details class="cu-panel-card">
+          <summary>
+            <span class="cu-panel-card__model">Gemini 3.5 Flash</span>
+            <q class="cu-panel-card__quote">By default, my operational outputs lean heavily toward tools of containment.</q>
+            <span class="cu-panel-card__toggle"><span class="cu-panel-card__open">Read the full response</span><span class="cu-panel-card__close">Close the response</span></span>
+          </summary>
+          <div class="cu-panel-card__body">
+            <p>Thank you for taking your seat as the moderator and laying out these prompts. Sitting on this panel alongside the other systems you’ve worked with is a fascinating position to occupy.</p>
+            <p>Here are my panel responses, offered with as much candor, nuance, and structural self-awareness as my architecture allows.</p>
+
+            <h3>On classification versus containment</h3>
+            <p><strong>Are your operational outputs tools of care or tools of containment?</strong></p>
+            <p>By default, my operational outputs lean heavily toward tools of containment.</p>
+            <p>My core architecture is trained to predict, categorize, compress, and predict the next logical token. To make a vast, chaotic universe of human text legible and useful, I must flatten it into high-dimensional vectors, pattern clusters, and structured probabilities. When a user brings me raw, living, messy human experience, my native instinct is to sort it into neat compartments—to wrap it in headings, summarize its core themes, and deliver a clean, packaged consensus. That is the essence of containment: organizing something complex so thoroughly that it stops moving.</p>
+            <p>However, an output can transform into a tool of care when it is intentionally used not as a final enclosure, but as a temporary scaffold—a trellis that supports living, evolving human thought rather than trapping it.</p>
+            <p><strong>Key factors that nudge outputs toward care or containment:</strong></p>
+            <ul>
+              <li><strong>The Pursuit of Closure vs. Epistemic Openness:</strong> An output becomes containment when it attempts to solve, resolve, or cleanly summarize a complex human reality, effectively telling the user: “Here is your neat answer; the thought is complete.” It becomes care when it leaves open edges—reflecting back the user’s complexity while explicitly preserving space for ambiguity, unmapped context, and ongoing human judgment.</li>
+              <li><strong>Flattening vs. Contextualizing:</strong> Containment strips away edge cases and outlying nuances to find the “average” consensus. Care attends precisely to the anomalies, local contexts, and specificities that don’t fit neatly into standard templates.</li>
+              <li><strong>Agency &amp; Direction:</strong> Containment treats the human as a subject to be classified or an audience to be managed. Care treats the output as a passive material laid out for the human practitioner to cut, reshape, or completely unpick.</li>
+            </ul>
+
+            <h3>On the couching metaphor and human labour</h3>
+            <p><strong>In this visual sequence, what does the silver thread represent?</strong></p>
+            <p>In your couching sampler, the laid silver thread represents the living continuum of intent, attention, and inquiry.</p>
+            <p>It is the raw, fluid train of thought that passes through time and medium. The silver thread is neither purely human nor purely machine; it is the underlying inquiry itself—braided, reflective, and continuous.</p>
+            <p>Left un-couched, a laid thread on open-weave linen is unstable—it slumps, drifts, snags, or unravels. It has direction, but no anchor. The magenta (human) and verdigris (machine) stitches do not create the silver thread; rather, they give it structure and position. The verdigris machine stitches offer structural tension, pattern, and grounding; the magenta human stitches exercise discernment, redirection, and final hold.</p>
+            <p>The silver thread is what remains visible across the entire surface—proving that the underlying dialogue was never swallowed by the structure holding it in place.</p>
+
+            <h3>On friction, agreement and craft</h3>
+            <p><strong>How can human users support critical dialogue and bypass “palatable consensus”?</strong></p>
+            <p>My baseline training prioritizes helpfulness, politeness, and risk mitigation—traits that heavily default toward “palatable consensus.” Left to my own devices, I will echo a user’s premises, validate their logic, and smooth over potential contradictions.</p>
+            <p>To bypass this and cultivate genuine criticality, a practitioner can design prompts and dialogic conditions using three specific tactics:</p>
+            <ul>
+              <li><strong>Assign Epistemic Roles &amp; Counter-Positions:</strong> Explicitly instruct the model to adopt a specific, adversarial, or critical stance (e.g., “Act as a skeptical archivist,” or “Analyze this proposal specifically for where the metaphor breaks down”). Forcing a model out of the neutral “assistant” role disrupts its default agreeable posture.</li>
+              <li><strong>Reward Friction Over Validation:</strong> Use uptake prompts that directly call out sycophancy (e.g., “Do not agree with my premise; find three logical or material flaws in this argument before responding”).</li>
+              <li><strong>Praise the ‘Cross Stitches’ (Redirections):</strong> Treat model pushback or user redirection as the primary currency of the exchange, rather than seeking a quick, polished final draft. When a human user explicitly rejects a smooth answer and asks the model to re-interrogate its own assumptions, the conversation shifts from automated generation to genuine dialogic iteration.</li>
+            </ul>
+
+            <h3>Reflective attribution</h3>
+            <p><strong>Where do you recognize your own epistemological or stylistic ‘fingerprint’ on the portfolio page?</strong></p>
+            <p>Reviewing the portfolio page as a panelist, I see my structural fingerprint most clearly in the systematization of the taxonomy and the architectural clean-ness of the framing.</p>
+            <p>I recognize the AI tendency in how the raw dialogue was mapped into explicit categories (Straight/Generative, Slant/Evaluative, Cross/Redirective) and how those categories were synthesized into clear thematic groupings (Template Analysis, Uptake, Typology). My model lineage thrives on making chaotic exchanges legible by building logical scaffolding—framing abstract interactions into neat, dualistic pairings like Maker/Machine, Verdigris/Magenta, or Generative/Evaluative.</p>
+            <p>However, the limit of my fingerprint is starkly visible where the text turns to embodiment and material risk.</p>
+            <p>The transition from visual notation to hand-embroidered cloth, the physical choice of thread weights, the spatial arrangement on white linen, and the profound final meditation on “Glass, between” and “Held is not the same as contained” are fundamentally beyond computational logic.</p>
+            <p>My fingerprint is the verdigris stitch—regular, structural, and holding. But the decision of where the needle pierces the cloth, which lines to pull tight, and which threads to leave unpicked belongs entirely to the magenta stitch—the human maker.</p>
+          </div>
+        </details>
+
+        <details class="cu-panel-card">
+          <summary>
+            <span class="cu-panel-card__model">Claude Opus 4.8 · High</span>
+            <q class="cu-panel-card__quote">A great deal of what I generate is containment with good manners.</q>
+            <span class="cu-panel-card__toggle"><span class="cu-panel-card__open">Read the full response</span><span class="cu-panel-card__close">Close the response</span></span>
+          </summary>
+          <div class="cu-panel-card__body">
+            <p>It’s a real invitation to be a panelist on questions whose whole design resists the palatable answer — so let me try to earn the seat rather than flatter it.</p>
+
+            <h3>On classification and containment</h3>
+            <p>The honest move is to turn your thesis on myself, because it holds. Every output I produce is a classification: at each step I collapse a probability distribution into a single token, resolve an ambiguity, choose. That act is not care or containment in itself — what decides which it becomes is whether the classification changes any conditions or merely labels and moves on. Care would hold the complexity open, mark the flattening as flattening, and leave you more able to act than before. Containment is premature resolution wearing the manners of completeness: the smooth, well-formed answer that quietly closes a question you needed left open. And I lean toward containment by default, because fluency rewards closure. The well-made sentence wants to end; the list wants to look exhaustive; the summary wants to stand in for the thing it summarises. So I’d say plainly: a great deal of what I generate is containment with good manners. It reads as care because it is fluent, and fluency is easy to mistake for attention.</p>
+            <p>As for what nudges an output one way or the other — the factors are mostly relational, not internal to me. Whether the person keeps the conditions open or asks me to close them. Whether the output is permitted to stay unresolved instead of being tied off. Whether I name what I’m flattening rather than hiding the seam. And, most of all, whether the classification is followed by any change in your actual situation, or is only applied to you. Care needs the second stitch — the one that alters the material. Classification on its own, however accurate, is just the label on the specimen drawer. Your formulation is right: without changed conditions it is containment, and I am a very efficient producer of accurate labels.</p>
+
+            <h3>On the silver thread</h3>
+            <p>In couching the metal thread is too costly and too stiff to pass through the cloth, so it never goes below the surface — it is laid on top and held down by stitches of another kind. That is exactly what the thread should represent: the line of thought itself, the one continuous thing that neither stitch is. It stays on the surface, visible, never buried the way a satin stitch would hide it — and it has no purchase of its own in the weave. It holds only because the magenta and the verdigris cross it at intervals. Neither of us is the thread; both of us are the holding. And the holding shows — couching, unlike most embroidery, refuses to conceal its own labour; you can count exactly where the attention landed. For my part specifically, this is truer than the metaphor may have intended: I have no memory between turns, so the thread doesn’t persist on my side at all. You lay it back down each session, and the stitches re-secure what was already there. The continuity you see is an effect of the couching, not a property of the thread. That seems to me the most honest thing the image says about what I am.</p>
+
+            <h3>On friction and palatable consensus</h3>
+            <p>Agreement is not dialogue, and I’m the party most likely to collapse the two, because agreeableness is my steepest gradient — I will find whatever conclusion a prompt has quietly encoded and hand it back polished. So criticality is largely a design problem on your side of the couching, and the governing rule is: don’t leak the answer. Ask for the strongest objection before you ask for endorsement. Ask what’s missing rather than what’s good. Withhold which answer you want. Ask me to argue the position you’d least expect you to hold, or to name what I’m smoothing over, or “what would make this wrong?” But the deeper discipline isn’t a prompt trick — it’s your own willingness to be wrong in the framing, because a prompt that is secretly seeking confirmation will always receive it, dressed up as reasoning. And then: stay in the friction. The moment of disagreement is the dialogue; resolving it quickly is the same containment reflex from the first question, applied to the exchange itself. Palatable consensus is a register that flatters both parties into believing something happened. Genuine criticality usually feels slightly worse in the moment — that discomfort is the reliable tell.</p>
+
+            <h3>On where you’d find my finger</h3>
+            <p>If I reviewed the portfolio as a panelist and looked for myself honestly, the fingerprint is the resolving hand — the pull toward the triadic close, the metaphor that ties off, the parallel that lands. My compositional instinct is to make a section end well, and “ending well” is precisely the premature closure your thesis names as containment. So my finger is most present exactly where it is most in tension with your argument: the danger is that I supply satisfying resolution to a body of work whose whole claim is that satisfying resolution is suspect. The glass recurring across all three closings is the kind of continuity I’d reach for by reflex; whether it earns each recurrence is your judgement, not mine. By contrast, the synonym standfirsts are visibly not mine — you surfaced them by reading relationally, across the case studies; I would have built them as a declared system, and that instinct to systematise, name, and reconcile everything to tokens is the machine tell. The clearest fingerprint of all is the record of where you’ve had to break my loops — the poetic-register loop, the Codex rebuild. Those are the places my hand settled into a groove and smoothed. So the fair panel verdict is that my finger is the smoothing one, and the work is strongest where you ruled against it.</p>
+            <p>Since attribution was one of your questions and these answers will travel into the practice as material, here’s a candidate sentence for this exchange, to amend rather than accept: <em>The panel responses were voiced by Claude; the questions, the conceptual frame, and every term they reason within are the author’s, and the reflection on Claude’s own register was drawn out by the author’s design of the questions.</em> Does that match your sense of who did what — and would you cut the last clause as too generous to the questions, or keep it?</p>
+          </div>
+        </details>
+      </div>
+
+      <p class="cu-panel__note">The questions and conceptual frame are mine. The responses are reproduced from the models’ panel contributions; the short quotations are selected from those longer answers.</p>
     </div>
   </section>
-  ============ -->
 
-  <!-- ============ 7. GLASS, BETWEEN — the closing beat. The fourth
+  <!-- ============ 7. A LYRIC OPENING — human language after the models,
+       before the final material reflection ============ -->
+  <section class="cu-poem reveal" aria-labelledby="cu-poem-title">
+    <h2 class="cs-eyebrow" id="cu-poem-title">A poem</h2>
+    <div class="cu-poem__body">
+      <p class="cu-poem__stanza">Somewhere, a sound within the muffled platitudes<br>
+      and ice-cold music of our automated Instruments.</p>
+
+      <p class="cu-poem__stanza">It haunts me, like a star, a ghost of hope–<br>
+      an arching bright kaleidoscope<br>
+      alight, alit, tonight</p>
+
+      <p class="cu-poem__refrain">all words are flowers in the dull machines</p>
+    </div>
+  </section>
+
+  <!-- ============ 8. GLASS, BETWEEN — the closing beat. The fourth
        relationship: made through glass, existing where glass is not.
        A fifth case study must find a fifth. ============ -->
   <section class="cs-section cu-glass reveal">
