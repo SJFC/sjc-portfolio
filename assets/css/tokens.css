@@ -398,3 +398,16 @@ button:focus-visible {
   .text-focus__sticky { position: relative; height: auto; }
   .text-focus__line { filter: none !important; opacity: 1 !important; letter-spacing: 0.02em !important; }
 }
+.site-footer {
+  padding: var(--space-3);
+  border-top: 1px solid rgba(155, 142, 130, 0.25);
+  color: var(--warm-grey);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
