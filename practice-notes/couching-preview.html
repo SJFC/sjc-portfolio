@@ -362,7 +362,21 @@
   .cu-closing__next { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
   .cu-closing__next a { color: var(--olive); text-decoration: none; border-bottom: 1px solid currentColor; }
 
+  /* Quiet maker's mark. Kept local until the same footer is added to
+     tokens.css for every page. */
+  .site-footer {
+    padding: var(--space-3);
+    border-top: 1px solid rgba(155, 142, 130, 0.25);
+    color: var(--warm-grey);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .site-footer p { margin: 0; }
+
 </style>
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body class="cu-page">
 
@@ -687,7 +701,7 @@
   <!-- ============ 7. A LYRIC OPENING — human language after the models,
        before the final material reflection ============ -->
   <section class="cu-poem reveal" aria-labelledby="cu-poem-title">
-    <h2 class="cs-eyebrow" id="cu-poem-title">A poem</h2>
+    <h2 class="cs-eyebrow" id="cu-poem-title">fragment</h2>
     <div class="cu-poem__body">
       <p class="cu-poem__stanza">Somewhere, a sound within the muffled platitudes<br>
       and ice-cold music of our automated Instruments.</p>
@@ -707,10 +721,13 @@
     <div class="cs-inner">
       <h2 class="cs-eyebrow">Glass, between</h2>
       <p>This experiment was, of course, was made through glass: the computer screen, before being translated into material practice. The silver couching thread represents a line of ideas, and conversation, embroidered in place by textual cues from model and user. But unlike glass, the thread isn’t moving slowly - it’s more mutable, can be pulled or tweaked or added to, accumulating different meanings, but also, often without meaning to do so, re-enforcing wider structures - the embroidery as artefact, record, work, a reflection on materiality, a reflection on critical femininity and how we encode meanings in text, object and machine, as well as what we encode.</p>
-      <p class="cu-closing__credit">Notation suggested by machine · notation redesigned, codes decided, text written and cloth sewn by the maker · site coded by machine</p>
       <p class="cu-closing__next"><a href="../index.html#work">← All work</a></p>
     </div>
   </section>
+
+  <footer class="site-footer">
+    <p>&copy; Sarah-Jane Crowson · 2026</p>
+  </footer>
 
 <script>
   const revealEls = document.querySelectorAll('.reveal');
@@ -743,9 +760,6 @@
       sampler.classList.add('is-bound');
     }
   }
-      <footer class="site-footer">
-  <p>&copy; Sarah-Jane Crowson · 2026</p>
-</footer>
 </script>
 
 </body>
