@@ -234,6 +234,23 @@
     padding: 0.8rem 1.6rem;
   }
   .mirror-card__send:hover, .mirror-card__send:focus-visible { background: #2A3A52; }
+  .mirror-card .mirror-card__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    line-height: 1.45;
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: 0.72;
+    margin: 0 0 var(--space-2);
+  }
+  .mirror-card__consent input {
+    flex: 0 0 auto;
+    margin: 0.18rem 0 0;
+  }
+  .mirror-card__consent a { color: inherit; }
   .mirror-card__status {
     font-family: var(--font-display); font-style: italic;
     font-size: var(--text-sm); margin-top: var(--space-1); min-height: 1.4em;
@@ -478,6 +495,10 @@
         <input type="hidden" name="question" id="mfQuestion">
         <input type="hidden" name="source" value="index-mirror">
         <input type="hidden" name="_subject" value="Mirror — landing page response">
+        <label class="mirror-card__consent">
+          <input type="checkbox" name="consent" value="yes">
+          <span>I’m happy for non-identifying excerpts from what I’ve written to be used in the artwork or its documentation. <a href="how-your-response-is-used.html">How your response will be used</a>.</span>
+        </label>
         <button class="mirror-card__send" type="submit">Send</button>
         <p class="mirror-card__status" id="mfStatus" aria-live="polite"></p>
         <iframe class="mirror-gift-frame" id="mirrorGift"
@@ -582,6 +603,10 @@
       var askBack = form.ask_back.value.trim();
       if (!answer && !askBack) {
         status.textContent = "The mirror waits — write something in either space.";
+        return;
+      }
+      if (!form.consent.checked) {
+        status.textContent = "Please confirm how your response may be used before sending.";
         return;
       }
       status.textContent = "Sending…";
