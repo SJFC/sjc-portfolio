@@ -1,6 +1,6 @@
 # Sarah-Jane Crowson — Portfolio Site
 
-A bespoke static website documenting the practice of Sarah-Jane Crowson, poet, artist and practitioner-researcher. Built as a postgraduate portfolio submission for the MDES 10 module at the University of Sunderland.
+A bespoke static website documenting the practice of Sarah-Jane Crowson, poet, artist and practitioner-researcher. It brings together three connected bodies of work across critical spatial practice, critical data visualisation and participatory consultation.
 
 Live at: https://sjfc.github.io/sjc-portfolio/
 
@@ -8,7 +8,7 @@ Live at: https://sjfc.github.io/sjc-portfolio/
 
 ## About this site
 
-This site was built as a deliberate artistic and academic object, not only as a container for work. The design system, scroll behaviours, and visual language were developed in parallel with — and in response to — the practice it documents. The site is intended to be *entered* rather than encountered: text-light, image-beautiful, with interactions that carry conceptual weight rather than merely organising content.
+This site was built as a deliberate artistic object, not only as a container for work. The design system, scroll behaviours, and visual language were developed in parallel with — and in response to — the practice it documents. The site is intended to be *entered* rather than encountered: text-light, image-beautiful, with interactions that carry conceptual weight rather than merely organising content.
 
 The three case studies documented here make one connected argument — that classification without changed conditions is containment, not care — asked of three different materials: the photograph, the plant, and the spreadsheet.
 
@@ -20,7 +20,7 @@ The three case studies documented here make one connected argument — that clas
 
 ## Transparency statement: AI collaboration
 
-This site was built through active collaboration with two AI assistants at different stages: **Claude** (Anthropic) during the original design and build, and **Codex** (OpenAI) during a later accessibility, editorial-structure and visual-rhythm review. I want to be explicit about what those collaborations involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses. This approach was disclosed to the course tutor at the outset of the project.
+This site was built through active collaboration with two AI assistants at different stages: **Claude** (Anthropic) during the original design and build, and **Codex** (OpenAI) during a later accessibility, editorial-structure and visual-rhythm review. I want to be explicit about what those collaborations involved, because transparency about AI use is both an ethical obligation and, in the context of this practice, a subject the work itself addresses.
 
 ### What Claude contributed
 
@@ -28,7 +28,7 @@ This site was built through active collaboration with two AI assistants at diffe
 - The design system architecture (shared token file, reusable components, scroll-effect utilities) was proposed and built by Claude
 - Placeholder draft text was written by Claude from my case study documents, as a starting point for my own editing
 - Debugging — including diagnosing why `position: sticky` was failing due to `overflow: hidden` on an ancestor element — was carried out by Claude through analysis of screen recordings I provided
-- In the later editorial stage, Claude performed "cold reads" of the site against its intended audiences (examiner, supervisor, prospective clients), produced snag lists, and carried agreed fixes into complete page files for me to review and commit
+- In the later editorial stage, Claude performed "cold reads" of the site for prospective collaborators and clients, produced snag lists, and carried agreed fixes into complete page files for me to review and commit
 
 ### What Codex contributed
 
@@ -68,6 +68,7 @@ The question of what AI can and cannot generate is not incidental to this work �
 
 - `index.html` — landing page: the mirror, the statement, three doors
 - `about.html` — the person, in daylight; contact
+- `how-your-response-is-used.html` — participation, privacy and response-retention information
 - `404.html` — a residual space (served automatically by GitHub Pages for any missing address)
 - `case-studies/` — the three case study pages and the Botanica participation page
 - `assets/css/tokens.css` — the shared design system: colour, type scale, spacing, reusable components
@@ -88,6 +89,14 @@ The design system lives in `assets/css/tokens.css`. All colour values, type scal
 The landing-page mirror and the Botanica participation page post responses via Formspree. Each page carries a meta description; the landing page carries the site's machine-readable layer (Open Graph and JSON-LD structured data). On any future migration from GitHub Pages, the four absolute URLs noted in the `index.html` head comment are the only lines that change.
 
 Browser support: all modern browsers. A `prefers-reduced-motion` fallback is implemented for all scroll-driven animations — users with this setting enabled see static, fully resolved versions of every animated element, as a complete experience rather than a degraded one.
+
+---
+
+## Participation and privacy
+
+The landing-page mirror and the Botanica participation page invite voluntary responses as part of the artworks. The forms use Formspree, and the site is hosted through GitHub Pages. Original submissions are retained by the artist for one week and then deleted; non-identifying excerpts may be retained for use in the artwork or its documentation where the participant has given permission.
+
+See [How your response will be used](https://sjfc.github.io/sjc-portfolio/how-your-response-is-used.html) for the full participation and privacy statement.
 
 ---
 
