@@ -41,9 +41,7 @@ This site was built through active collaboration with two AI assistants at diffe
 - Added a small number of bridge sentences, headings, captions and interface labels for clarity; I reviewed and approved these in conversation before or during implementation
 - Performed responsive and reduced-motion checks, verified image loading and heading counts, preserved the existing Formspree workflow, and prepared optimised web copies of newly added images without altering my source files
 - Researched and explained the current UK privacy-law position on website analytics, drawing on ICO guidance to distinguish proportionate aggregate measurement from identifying, profiling or tracking visitors
-- Engaged in critical dialogue about what the evaluation genuinely needed to establish, helping reframe a wish to know who was visiting as a narrower question about comparative attention across different strands of the practice
 - Identified GoatCounter as the most appropriate ethical and technical response to that question, then implemented aggregate page-path measurement, excluded non-content pages, expanded the privacy notice with a clear account of purpose and an opt-out, and introduced a quiet site-wide 2026 colophon
-- Researched privacy-preserving analytics options and proposed GoatCounter as a proportionate ethical and technical response, then implemented the chosen aggregate page-path measurement, excluded non-content pages, expanded the privacy notice with a clear account of purpose and an opt-out, and introduced a quiet site-wide 2026 colophon
 
 ### What I contributed
 
