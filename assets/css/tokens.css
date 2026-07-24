@@ -123,6 +123,20 @@ button:focus-visible {
 .site-nav__links a { text-decoration: none; opacity: 0.85; transition: opacity 0.2s ease; }
 .site-nav__links a:hover { opacity: 1; }
 
+/* ---- Site-wide maker's mark: a quiet colophon after the page's own
+   closing register, consistent across the public portfolio. ---- */
+.site-colophon {
+  padding: var(--space-3);
+  background: var(--cream);
+  color: var(--warm-grey);
+  border-top: 1px solid rgba(28, 43, 58, 0.08);
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+}
+.site-colophon p { margin: 0; }
+
 /* ============================================================
    GHOST BOTANICAL / FOSSIL SUBSTRATE LAYER
    Present across pages, quietened on case study pages.
