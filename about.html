@@ -148,10 +148,87 @@
     .ab-gallery__grid { grid-template-columns: 1fr; max-width: 28rem; }
   }
 
-  .ab-contact { background: var(--navy); color: var(--cream); text-align: center; }
-  .ab-contact .cs-eyebrow { color: var(--sage); }
-  .ab-contact__links { margin-top: var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm); }
-  .ab-contact__links a { color: var(--slide-amber); text-decoration: none; border-bottom: 1px solid currentColor; margin: 0 0.6em; }
+  /* ---- Contact: the invitation becomes a set of legible doors.
+     The heading and framing remain visible; each way of working can be
+     opened independently, without requiring JavaScript. ---- */
+  .ab-contact { background: #EDE6D6; color: var(--navy); }
+  .ab-contact__inner { max-width: var(--measure); margin: 0 auto; }
+  .ab-contact .cs-eyebrow { color: var(--olive); }
+  .ab-contact__title {
+    color: var(--navy);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+  .ab-contact__standfirst {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-style: italic;
+    color: var(--olive);
+    margin-bottom: var(--space-3);
+  }
+
+  .ab-contact__accordion {
+    margin-top: var(--space-4);
+    border-top: 1px solid color-mix(in srgb, var(--navy) 18%, transparent);
+  }
+  .ab-contact__item {
+    border-bottom: 1px solid color-mix(in srgb, var(--navy) 18%, transparent);
+  }
+  .ab-contact__item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.15em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .ab-contact__item summary::-webkit-details-marker { display: none; }
+  .ab-contact__item summary::after {
+    content: "+";
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--olive);
+    transition: color 0.25s ease;
+  }
+  .ab-contact__item[open] summary::after {
+    content: "\2013";
+    color: var(--magenta);
+  }
+  .ab-contact__item summary:hover::after { color: var(--magenta); }
+  .ab-contact__item summary:focus-visible {
+    outline: 2px solid var(--magenta);
+    outline-offset: 4px;
+  }
+  .ab-contact__name {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--navy);
+    font-size: var(--text-md);
+  }
+  .ab-contact__body {
+    padding: 0 2.5rem 1.6em 0;
+    color: var(--navy);
+  }
+  .ab-contact__body p + p { margin-top: 1.2em; }
+  .ab-contact__links {
+    margin-top: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-align: center;
+  }
+  .ab-contact__links a {
+    color: var(--magenta);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    margin: 0 0.6em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ab-contact__item summary::after { transition: none; }
+  }
 
 </style>
 </head>
@@ -262,15 +339,68 @@
     </div>
   </section>
 
-  <!-- ============ 7. CONTACT ============ -->
+  <!-- ============ 7. CONTACT — four doors into the conversation ============ -->
   <section class="ab-section ab-contact">
-    <h2 class="cs-eyebrow">Get in touch</h2>
-    <p style="max-width:var(--measure); margin:var(--space-2) auto 0;">For conversations about research, collaboration or commissions:</p>
-    <p class="ab-contact__links">
-      <a href="mailto:sarahjanecrowson@gmail.com">Email</a> ·
-      <a href="https://www.linkedin.com/in/sarah-jane-crowson-01886174/">LinkedIn</a> ·
-      <a href="https://github.com/SJFC">GitHub</a>
-    </p>
+    <div class="ab-contact__inner">
+      <span class="cs-eyebrow">Get in touch</span>
+      <h2 class="ab-contact__title">For conversations about research, collaboration, commissions or consultancy</h2>
+      <p class="ab-contact__standfirst">Nothing here is a fixed offer. Working with me begins with conversation and follows a dialogic, bespoke process.</p>
+
+      <div class="ab-contact__accordion">
+        <details class="ab-contact__item">
+          <summary>
+            <span class="ab-contact__name">Collaboration</span>
+          </summary>
+          <div class="ab-contact__body">
+            <p>If your interests and mine are already circling similar ground — spatial and material practice, critical data feminism, participatory methods, data humanism, AI ethics or the politics of classification — the conversation is about what we might discover together, rather than what you would like me to produce.</p>
+            <p>This kind of work is exploratory, relational and sometimes fragile. It will not necessarily have a fixed shape at the outset. It might become co-authored writing, a shared methodology, a grant application, a contribution to something you or I are already building, or something neither of us can name yet.</p>
+            <p>What matters is that the process is honest, transparent and dialogic.</p>
+          </div>
+        </details>
+
+        <details class="ab-contact__item">
+          <summary>
+            <span class="ab-contact__name">Commissions</span>
+          </summary>
+          <div class="ab-contact__body">
+            <p>A commission also begins with a conversation, after which I will develop a clear brief and costing.</p>
+            <p>You will usually have a reasonably clear sense of what you want made and why: perhaps an artefact, installation, written work or visual work drawing on the practice you have seen on this site. The initial conversation explores whether the project is a good fit for how I work, what it would take to make it well, and the terms on which we might proceed.</p>
+            <p>This is closer to a conventional working relationship than a research collaboration: there is a deliverable, a timeframe and a fee to agree. The making itself still draws on the same critical, participatory and material methods as the rest of my practice.</p>
+          </div>
+        </details>
+
+        <details class="ab-contact__item">
+          <summary>
+            <span class="ab-contact__name">Consultancy</span>
+          </summary>
+          <div class="ab-contact__body">
+            <p>My consultancy work uses arts-based, participatory and human-centred methods to help institutions and organisations understand what they need to decide, change or build.</p>
+            <p>I contextualise findings within relevant external data, research and policy, using them to inform strategy, shape actions and policies, or design the architecture of a process. Projects will usually combine material and digital methods and, where relevant, may also include workshops exploring ethical and critical approaches to AI.</p>
+            <p>You will normally come with a clear purpose, a broad direction of travel and an idea of the outcomes you need. I will then develop a detailed brief, costing and action plan with you, including agreed measures of success, evaluation and regular progress reporting.</p>
+          </div>
+        </details>
+
+        <details class="ab-contact__item">
+          <summary>
+            <span class="ab-contact__name">How this works</span>
+          </summary>
+          <div class="ab-contact__body">
+            <p>Each of these begins with an unpaid, no-obligation scoping conversation.</p>
+            <p>Its purpose is to establish which of the three doors above we are standing in front of. Sometimes that is obvious; sometimes the project is a blend; occasionally it turns out to be none of them.</p>
+            <p>We will talk about what you need, what I would need to know or have access to in order to do the work well, roughly what it might involve in time and cost, and whether the right conditions exist on both sides.</p>
+            <p>Nothing is committed to during this conversation.</p>
+            <p>My higher-education role at Hereford College of Arts would require me to declare a conflict of interest if I worked independently with current students. My access to graduate data creates similar complexities during the first three years following graduation. For that reason, I don't undertake this kind of work with either current students or graduates within the first three years of graduation.</p>
+            <p>After that period, approaches are considered on the same basis as those from other independent practitioners.</p>
+          </div>
+        </details>
+      </div>
+
+      <p class="ab-contact__links">
+        <a href="mailto:sarahjanecrowson@gmail.com">Email</a> ·
+        <a href="https://www.linkedin.com/in/sarah-jane-crowson-01886174/">LinkedIn</a> ·
+        <a href="https://github.com/SJFC">GitHub</a>
+      </p>
+    </div>
   </section>
 
 </body>
