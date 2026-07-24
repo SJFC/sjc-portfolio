@@ -40,6 +40,10 @@ This site was built through active collaboration with two AI assistants at diffe
 - Refined the landing-page orientation, project-card hierarchy and mirror interaction; simplified the response form; and integrated my spreadsheet-to-wildflower thank-you animation so that it begins only after a confirmed submission
 - Added a small number of bridge sentences, headings, captions and interface labels for clarity; I reviewed and approved these in conversation before or during implementation
 - Performed responsive and reduced-motion checks, verified image loading and heading counts, preserved the existing Formspree workflow, and prepared optimised web copies of newly added images without altering my source files
+- Researched and explained the current UK privacy-law position on website analytics, drawing on ICO guidance to distinguish proportionate aggregate measurement from identifying, profiling or tracking visitors
+- Engaged in critical dialogue about what the evaluation genuinely needed to establish, helping reframe a wish to know who was visiting as a narrower question about comparative attention across different strands of the practice
+- Identified GoatCounter as the most appropriate ethical and technical response to that question, then implemented aggregate page-path measurement, excluded non-content pages, expanded the privacy notice with a clear account of purpose and an opt-out, and introduced a quiet site-wide 2026 colophon
+- Researched privacy-preserving analytics options and proposed GoatCounter as a proportionate ethical and technical response, then implemented the chosen aggregate page-path measurement, excluded non-content pages, expanded the privacy notice with a clear account of purpose and an opt-out, and introduced a quiet site-wide 2026 colophon
 
 ### What I contributed
 
@@ -49,6 +53,8 @@ This site was built through active collaboration with two AI assistants at diffe
 - All source images and artwork
 - The poems, care-label captions, and poetic fragments throughout
 - All titles, and the editorial decisions of the later "drawer stage": renaming, re-sequencing, and the reading-across-pages that surfaced the site's connective systems
+- Defined the evaluative purpose of analytics as understanding which strands of the practice were attracting sustained interest, bringing early qualitative feedback from reviewers into the discussion
+- Followed and critically considered the privacy research, rejected Google Analytics as disproportionate to that purpose, selected GoatCounter, and made the final editorial decisions about the scope of measurement, the privacy notice and the language used to explain both
 
 ### How we worked
 
@@ -56,7 +62,8 @@ We developed a shared working glossary (`GLOSSARY.md`) that maps the conceptual 
 
 The method was iterative in both directions. I directed by eye and feel, judged every effect on the live page rather than on description, provided screen recordings and screenshots when something was not working, edited text directly in the markup, and — over the course of the project — re-learned how to work in HTML myself, making small changes directly in the GitHub editor.
 
-The collaboration also had distinct phases. Claude helped establish the site's architecture, interaction grammar and original implementation, then acted as a cold reader during the drawer-stage edit. In the later Codex pass, I supplied the complete current repository and additional artworks, animations and screenshots. Codex first inspected the existing patterns, proposed small and larger options, and implemented only the choices I approved. We repeatedly reviewed downloadable builds, adjusted wording and visual rhythm, and tested the result at desktop and mobile sizes. The AI systems acted as collaborative developers and critical readers; I remained the director, artist, poet, curator and final editor.
+The collaboration also had distinct phases. Claude helped establish the site's architecture, interaction grammar and original implementation, then acted as a cold reader during the drawer-stage edit. In the later Codex pass, I supplied the complete current repository and additional artworks, animations and screenshots. Codex first inspected the existing patterns, proposed small and larger options, and implemented only the choices I approved. We repeatedly reviewed downloadable builds, adjusted wording and visual rhythm, and tested the result at desktop and mobile sizes. Later, our dialogue extended beyond implementation into the ethics of evaluation: we considered what evidence would be meaningful, what data would be excessive, and how the method itself could embody the data-humanist principles articulated by the work. The AI systems acted as collaborative developers and critical readers; I remained the director, artist, poet, curator and final editor.
+The collaboration also had distinct phases. Claude helped establish the site's architecture, interaction grammar and original implementation, then acted as a cold reader during the drawer-stage edit. In the later Codex pass, I supplied the complete current repository and additional artworks, animations and screenshots. Codex first inspected the existing patterns, proposed small and larger options, and implemented only the choices I approved. We repeatedly reviewed downloadable builds, adjusted wording and visual rhythm, and tested the result at desktop and mobile sizes. Later, our dialogue extended beyond implementation into the ethics of evaluation: Codex researched the legal and technical context and proposed options; I considered that research alongside feedback from readers, rejected Google Analytics, chose the narrower GoatCounter approach and retained final editorial authority. Together we considered what evidence would be meaningful, what data would be excessive, and how the method itself could embody the data-humanist principles articulated by the work. The AI systems acted as collaborative developers and critical readers; I remained the director, artist, poet, curator and final editor.
 
 ### Why this matters to the practice
 
@@ -68,7 +75,7 @@ The question of what AI can and cannot generate is not incidental to this work �
 
 - `index.html` — landing page: the mirror, the statement, three doors
 - `about.html` — the person, in daylight; contact
-- `how-your-response-is-used.html` — participation, privacy and response-retention information
+- `how-your-response-is-used.html` — participation, anonymous analytics, privacy and response-retention information
 - `404.html` — a residual space (served automatically by GitHub Pages for any missing address)
 - `case-studies/` — the three case study pages and the Botanica participation page
 - `assets/css/tokens.css` — the shared design system: colour, type scale, spacing, reusable components
@@ -86,7 +93,7 @@ Built with plain HTML, CSS, and vanilla JavaScript — no framework, no build st
 
 The design system lives in `assets/css/tokens.css`. All colour values, type scale, spacing, and reusable component styles are defined there and referenced across pages, so any design-system change propagates site-wide rather than needing to be made per page. Each case study sets its own colour register locally on top of the shared tokens (see `BRAND.md`).
 
-The landing-page mirror and the Botanica participation page post responses via Formspree. Each page carries a meta description; the landing page carries the site's machine-readable layer (Open Graph and JSON-LD structured data). On any future migration from GitHub Pages, the four absolute URLs noted in the `index.html` head comment are the only lines that change.
+The landing-page mirror and the Botanica participation page post responses via Formspree. Public content pages use GoatCounter for privacy-minimal aggregate page-path measurement; the animation, development preview and error page are deliberately excluded. Each page carries a meta description; the landing page carries the site's machine-readable layer (Open Graph and JSON-LD structured data). On any future migration from GitHub Pages, the four absolute URLs noted in the `index.html` head comment are the only lines that change.
 
 Browser support: all modern browsers. A `prefers-reduced-motion` fallback is implemented for all scroll-driven animations — users with this setting enabled see static, fully resolved versions of every animated element, as a complete experience rather than a degraded one.
 
@@ -96,7 +103,9 @@ Browser support: all modern browsers. A `prefers-reduced-motion` fallback is imp
 
 The landing-page mirror and the Botanica participation page invite voluntary responses as part of the artworks. The forms use Formspree, and the site is hosted through GitHub Pages. Original submissions are retained by the artist for one week and then deleted; non-identifying excerpts may be retained for use in the artwork or its documentation where the participant has given permission.
 
-See [How your response will be used](https://sjfc.github.io/sjc-portfolio/how-your-response-is-used.html) for the full participation and privacy statement.
+GoatCounter is used to compare aggregate visits to different strands of the practice. It does not place analytics cookies or persistent tracking identifiers in visitors' browsers, and individual pageview collection is not enabled. The measurement is used to understand which parts of the practice are being read, not to identify or profile readers; visitors can opt out through the privacy page.
+
+See [Participation, privacy and analytics](https://sjfc.github.io/sjc-portfolio/how-your-response-is-used.html) for the full statement.
 
 ---
 
