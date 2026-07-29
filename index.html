@@ -347,6 +347,11 @@
     flex-direction: column;
     justify-content: flex-end;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ---- apparition hover (added July 2026): needed for the ghost
+       thumbnail to sit inside the door's own rounded corners rather
+       than spilling outside it ---- */
+    position: relative;
+    overflow: hidden;
   }
   .ix-door:hover, .ix-door:focus-visible { transform: translateY(-4px); box-shadow: 0 1.5rem 3rem rgba(0,0,0,0.5); }
   .ix-door__eyebrow {
@@ -376,6 +381,37 @@
 
   @media (max-width: 760px) { .ix-doors { grid-template-columns: 1fr; } .ix-door { min-height: 0; } }
 
+  /* ---- Door apparition (added July 2026): a small image, native to
+     each case study, that materialises near the cursor on hover — the
+     square's own artefact surfacing behind the title rather than a
+     generic decorative flourish. Never loaded until first hover; off
+     entirely under prefers-reduced-motion. See build note above
+     .ix-doors for why overflow/position moved onto .ix-door. ---- */
+  .ix-door__apparition {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
+    mask-image: radial-gradient(circle, black 50%, transparent 100%);
+    will-change: opacity, transform;
+  }
+  .ix-door__eyebrow, .ix-door__title, .ix-door__sub { position: relative; z-index: 2; }
+  .ix-door.is-apparition-active .ix-door__apparition { opacity: 0.85; }
+  .ix-door--ml .ix-door__apparition { filter: brightness(1.15) contrast(1.05); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ix-door__apparition { display: none; }
+  }
+
   /* ---- Footer beat ---- */
   .ix-footer {
     background: var(--near-black); color: var(--warm-grey);
@@ -383,6 +419,19 @@
     font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.08em;
   }
   .ix-footer a { color: var(--slide-gold); }
+
+  /* ---- Footer link hierarchy (added July 2026): Privacy is boilerplate,
+     not content — it should be findable, not competing with the AI
+     practice-notes sentence for the same gold-underline attention. ---- */
+  .ix-practice-note { margin-bottom: var(--space-4); }
+  .ix-footer__privacy { margin-top: var(--space-1); }
+  .ix-footer__privacy a {
+    color: var(--warm-grey);
+    opacity: 0.6;
+    text-decoration-color: rgba(245,239,228,0.3);
+  }
+  .ix-footer__privacy a:hover,
+  .ix-footer__privacy a:focus-visible { opacity: 0.9; }
 
 </style>
 </head>
@@ -445,24 +494,25 @@
 
   <!-- ============ 3. THREE DOORS - reading order Minor Deities,
        Regulated Instruments, Botanica: the reflective journey, legible.
-       (Reordered July 2026; landing paragraph to follow, in SJC voice.) ============ -->
+       (Reordered July 2026; landing paragraph to follow, in SJC voice.)
+       Apparition images added July 2026 — see data-apparition. ============ -->
   <section class="ix-work" id="work">
     <div class="ix-work__intro">
       <h2 class="cs-eyebrow">Explore my work</h2>
       <p class="ix-work__line">Three connected projects asking what representation preserves, what it leaves out, and how people and living systems might speak back.</p>
     </div>
     <div class="ix-doors">
-      <a class="ix-door ix-door--ml" href="case-studies/magic-lantern.html">
+      <a class="ix-door ix-door--ml" href="case-studies/magic-lantern.html" data-apparition="assets/images/landing/apparitions/minor-deities.png">
         <span class="ix-door__eyebrow">Critical spatial<br>practice</span>
         <span class="ix-door__title">Minor<br>Deities</span>
         <span class="ix-door__sub">To be preserved is not a synonym for free.</span>
       </a>
-      <a class="ix-door ix-door--co" href="case-studies/consultation.html">
+      <a class="ix-door ix-door--co" href="case-studies/consultation.html" data-apparition="assets/images/landing/apparitions/regulated-instruments.png">
         <span class="ix-door__eyebrow">Participatory consultations</span>
         <span class="ix-door__title">Regulated Instruments</span>
         <span class="ix-door__sub">Data is not a synonym for truth.</span>
       </a>
-      <a class="ix-door ix-door--bo" href="case-studies/botanica.html">
+      <a class="ix-door ix-door--bo" href="case-studies/botanica.html" data-apparition="assets/images/landing/apparitions/botanica.jpg">
         <span class="ix-door__eyebrow">Critical data visualisation</span>
         <span class="ix-door__title">Botanica<span class="ix-door__title-note">(growing)</span></span>
         <span class="ix-door__sub">Is categorisation a synonym for containment?</span>
@@ -476,7 +526,7 @@
     <p class="ix-practice-note">
   I also keep <a href="practice-notes/couching.html">practice notes on working critically and creatively with AI models</a>.
 </p>
-    <p><a href="how-your-response-is-used.html">Privacy</a></p>
+    <p class="ix-footer__privacy"><a href="how-your-response-is-used.html">Privacy</a></p>
   </section>
 
   <!-- ============ THE RESPONSE CARD ============ -->
@@ -628,6 +678,44 @@
         }
       }).catch(function () {
         status.textContent = "The thread snapped — please try again.";
+      });
+    });
+  })();
+  </script>
+
+  <!-- ---- Door apparition (added July 2026): materialises each case
+       study's own artefact near the cursor on hover. Images are never
+       requested until the first mousemove over a given door, so there
+       is no load-time cost for visitors who never hover — most mobile
+       traffic, by design, since there is no touch equivalent here. ---- -->
+  <script>
+  (function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    document.querySelectorAll(".ix-door[data-apparition]").forEach(function (door) {
+      var src = door.getAttribute("data-apparition");
+      var ghost = document.createElement("span");
+      ghost.className = "ix-door__apparition";
+      ghost.setAttribute("aria-hidden", "true");
+      door.appendChild(ghost);
+
+      var loaded = false;
+      function ensureLoaded() {
+        if (loaded) return;
+        ghost.style.backgroundImage = "url(" + src + ")";
+        loaded = true;
+      }
+
+      door.addEventListener("mousemove", function (e) {
+        ensureLoaded();
+        var rect = door.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        ghost.style.transform = "translate(" + (x - 80) + "px, " + (y - 80) + "px)";
+        door.classList.add("is-apparition-active");
+      });
+      door.addEventListener("mouseleave", function () {
+        door.classList.remove("is-apparition-active");
       });
     });
   })();
