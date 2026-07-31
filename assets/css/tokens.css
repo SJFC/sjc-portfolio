@@ -107,7 +107,7 @@ button:focus-visible {
   z-index: 100;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+ align-items: baseline;
   padding: var(--space-2) var(--space-3);
   font-family: var(--font-sans);
   font-size: var(--text-xs);
