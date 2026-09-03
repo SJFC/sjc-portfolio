@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Botanica: A Data Humanist Question — Sarah-Jane Crowson</title>
-<meta name="description" content="Botanica: a living installation in a Victorian sewing box, asking what gets lost when complex, relational lives are organised into categories. Launching at h.Art Hereford, September 2026.">
+<meta name="description" content="Botanica is a critical data materialisation and practice-as-research installation using living plants, a Victorian sewing box and a bureau to question how classification shapes care.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <style>
 
@@ -187,6 +187,47 @@
   }
 
   .bo-studies { background: #EDE6D6; }
+
+  .bo-installation { background: #EDE6D6; }
+  .bo-installation__intro {
+    max-width: var(--measure);
+    margin: 0 auto var(--space-4);
+  }
+  .bo-installation__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    max-width: var(--measure-wide);
+    margin: 0 auto;
+  }
+  .bo-installation__figure {
+    margin: 0;
+  }
+  .bo-installation__figure--wide {
+    grid-column: 1 / -1;
+  }
+  .bo-installation__figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 46rem;
+    object-fit: cover;
+    border-radius: var(--radius-slide);
+    box-shadow: 0 1.2rem 3rem rgba(0,0,0,0.18);
+  }
+  .bo-installation__figure figcaption {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--olive);
+    margin-top: var(--space-1);
+  }
+  @media (max-width: 44rem) {
+    .bo-installation__grid { grid-template-columns: 1fr; }
+    .bo-installation__figure--wide { grid-column: auto; }
+    .bo-installation__figure img { height: auto; }
+  }
+
   .bo-study {
     max-width: 30rem;
     margin: var(--space-4) auto;
@@ -408,7 +449,7 @@
   </nav>
 
   <header class="bo-opening">
-    <span class="cs-eyebrow">Critical data visualisation</span>
+    <span class="cs-eyebrow">Critical data materialisation · practice-as-research</span>
     <h1 class="bo-title-poem__title">Botanica: <em>a data humanist question</em></h1>
     <p class="bo-title-poem__standfirst">Is categorisation a synonym for containment?</p>
   </header>
@@ -432,9 +473,12 @@
     </div>
     <div class="cs-inner">
       <div class="case-study-intro">
-      <p><strong>Botanica</strong> is a work in progress. The images here are from a small, living pilot installation exploring what gets lost when complex, relational lives are organised into categories.</p>
-      <p>In its current stage, a Victorian sewing box sits at the centre of Botanica: a set of compartments lined in magenta silk, built to separate and order thread, pins, buttons, much as some social categories were ordered at the time the box was made. But here, the compartments are filled with living plants, and the categories begin to strain. A root reaches tendrils past its partition. A stem spills out of its allotted space. A fern begins to unfurl then dries out.</p>
-      <p>The box still organises. But the shape of the contents have changed, and can no longer fully care or contain the complexity of what it holds.</p>
+      <p><strong>Botanica</strong> is a critical data materialisation developed through practice-as-research. Its living plants, inherited furniture, poetic labels and acts of care make classification materially present, allowing the installation itself to test what gets lost when complex, relational lives are organised into categories.</p>
+      <p>A Victorian sewing box was made to sort and separate threads, pins and buttons. A bureau was made to organise papers and provide a space in which to conduct business. Here, both hold living plants instead. Each plant is labelled with its name and a care label.</p>
+      <p>The labels are accurate, though accuracy, too, relies on particular structures of noticing. The prescribed forms of care will be given, as far as the material conditions allow. And yet the plants may diverge. One orchid may thrive; another may drop its flowers.</p>
+      <p>A box is a single atmosphere. A single organising principle. What lives within it is not.</p>
+      <p>This is a question about data. Institutions classify us in order to care for us, and that classification does real work. But a category can flatten the situated, material differences that determine whether an individual actually thrives.</p>
+      <p><strong><em>How would you like to be represented? Scan to add your answer.</em></strong></p>
     </div>
 
     <!--
@@ -444,12 +488,32 @@
       <figcaption>The installation, whole — before the close readings begin.</figcaption>
     </figure>
     -->
+    </div>
   </section>
 
   <section class="bo-qm cs-section reveal">
     <div class="cs-inner">
       <h2 class="qm-heading">The question</h2>
       <p class="qm-question">How can material, participatory forms of data help educational organisations 'know' their students more fully — and could it widen the evidence policy draws on, beyond what algorithms already count?</p>
+    </div>
+  </section>
+
+  <section class="bo-installation cs-section reveal" aria-labelledby="installation-photography-heading">
+    <div class="cs-inner cs-inner--wide">
+      <div class="bo-installation__intro">
+        <h2 class="cs-eyebrow" id="installation-photography-heading">The installation</h2>
+        <p>Installed as a living critical data materialisation, <em>Botanica</em> brings the organising structures of the sewing box and bureau into contact with plants whose needs and responses remain particular.</p>
+      </div>
+
+      <div class="bo-installation__grid">
+        <figure class="bo-installation__figure bo-installation__figure--wide">
+          <img src="../assets/images/botanica/installation/botanica-installation-victorian-bureau-full-view.jpg"
+               alt="Full view of the Botanica installation: an open Victorian bureau covered with moss and ivy, supporting a planted magenta-lined sewing box, a glass terrarium and a white orchid in a tall glass vessel beneath the wall text."
+               loading="lazy">
+          <figcaption><em>Botanica</em>, installation view.</figcaption>
+        </figure>
+
+      </div>
     </div>
   </section>
 
@@ -468,11 +532,11 @@
     <div class="cs-inner">
       <h2 class="qm-heading">The method</h2>
 
-      <h3 class="cs-subheading">Building the living pilot</h3>
-      <p>I am developing Botanica in my studio, where a series of plants of different varieties nestle together, rather than in their preferred conditions or ecosystems in the rest of my flat. Each plant I have chosen to use has different requirements and characteristics — I have used poetry to personify each plant through the use of labels which both classify the plant 'as' a plant according to the conditions it requires and hint at personification, framing the different types of care each plant needs as elements which might apply to humans, too.</p>
+      <h3 class="cs-subheading">Building the living installation</h3>
+      <p><em>Botanica</em> is developed through practice-as-research: making, observing and caring are not illustrations added after the research, but methods through which the inquiry proceeds. Plants with different requirements and characteristics nestle together rather than remaining in their preferred conditions or ecosystems. Poetic care labels both classify each plant according to the conditions it requires and suggest qualities that might apply to human lives, too.</p>
 
       <h3 class="cs-subheading">Care as part of the method</h3>
-      <p>The pilot installation already enacts its metaphor by showing signs of tension. Although I want the installation to be 'live' and for audiences to see what happens over a period of time to plants placed into categorisation boxes, there are also material and ecological issues of care. Therefore plants are regularly moved 'out' of their box and into spaces more conducive to their care needs. This suggests one finding: bringing different living things together into a box and labelling them with needs does not mean they will thrive, despite the promises of careful order the box suggests.</p>
+      <p>The living installation enacts its metaphor by showing signs of tension over time. There are material and ecological responsibilities within the method: plants are moved out of the organising structures when their wellbeing requires conditions the installation cannot provide. This produces a finding through practice: bringing different living things together, placing them in categories and accurately labelling their needs does not mean they will thrive, despite the promise of careful order.</p>
 
       <figure class="bo-study">
         <img src="../assets/images/botanica/studies/endearments-are-promissory-notes.jpg" alt="A dark botanical collage of purple and cream flowers with small surreal figures; the central words read of all the velvet sureties, my love my heart my love.">
@@ -480,14 +544,14 @@
       </figure>
 
       <h3 class="cs-subheading">What the plants revealed</h3>
-      <p>During the pilot, a heatwave risked the health of sweet woodruff — a forest plant, vulnerable precisely because it had been moved out of its relational ecosystem. I have also found it difficult to keep moss alive in a flat. To support more sustainable visual metaphors I have experimented with creating terrariums, and will create a mossarium as part of the final installation. Here the structured environment and scientific constraints — the glass — support rather than hinder survival. And even when given equal care, following identical instructions, plants choose their own pathways: one orchid has lost its flowers during the pilot; another has thrived. This adds complexity the metaphor must hold — the installation is still telling me what it knows about data, questioning what consitutes care.</p>
+      <p>A heatwave risked the health of sweet woodruff — a forest plant, vulnerable precisely because it had been moved out of its relational ecosystem. Moss, too, proved difficult to keep alive outside the conditions it requires. Experiments with terrariums and a mossarium test a different possibility: here the structured environment and scientific constraints of the glass can support rather than hinder survival. And even when given equal care, following identical instructions, plants choose their own pathways: one orchid drops its flowers; another thrives. This is knowledge produced through the material practice itself. The installation continues to tell me what it knows about data, questioning what constitutes care.</p>
 
       <figure class="bo-study">
         <img src="../assets/images/botanica/studies/forgetting-leaves-trails.jpg" alt="A dark collage of blue forget-me-nots with butterflies and a faint historical figure; the separated words read Forgetting leaves trails.">
         <figcaption><em>Forgetting leaves trails</em> — what a record preserves, and what it loses in translation.</figcaption>
       </figure>
 
-      <p class="cs-hinge">The installation's problems, and what becomes more visible or invisible is not separate from its metaphor; it is part of the extended metaphor, the findings.</p>
+      <p class="cs-hinge">The installation's problems — and what becomes more visible or invisible through them — are not separate from its metaphor. They are part of the method and the findings.</p>
     </div>
   </section>
 
@@ -505,7 +569,7 @@
     <div class="bo-argument__item">
       <span class="bo-argument__number">(ii)</span>
       <h3>The theory: data as ecological and relational</h3>
-      <p>Informed by Lefebvre, Massey and Soja, <em>Botanica</em> creates a materially produced representational space in which identity can remain relational, multiple and unfinished. As a form of critical spatial practice and data materialism, it returns abstracted accounts of lived experience to matter, lived space and place, disrupting the idea that institutional data offers a complete account.</p>
+      <p>Informed by Lefebvre, Massey and Soja, <em>Botanica</em> creates a materially produced representational space in which identity can remain relational, multiple and unfinished. As a critical data materialisation, a form of critical spatial practice and an instance of practice-as-research, it returns abstracted accounts of lived experience to matter, lived space and place, disrupting the idea that institutional data offers a complete account.</p>
       <p>Rather than treating data as fixed, flat or extractive, <em>Botanica</em> asks what happens when data is visualised as ecological instead — situated, fragile, adaptive and dependent on particular environments. A data point then behaves less like an entry in a spreadsheet and more like the living thing it represents: it needs particular conditions to be understood accurately, and it can be harmed by the wrong environment even while carrying an accurate care label.</p>
     </div>
 
@@ -662,8 +726,8 @@
 
   <section class="cs-section reveal" style="background:var(--cream);">
     <div class="cs-inner">
-      <h2 class="cs-eyebrow">Future work</h2>
-      <p>Botanica is in development ahead of its launch at h.Art in Hereford in September 2026. This page will grow with it: final photography and confirmed label text are still to come.</p>
+      <h2 class="cs-eyebrow">The work continues</h2>
+      <p><em>Botanica</em> remains a living work. The plants' changing responses, the material limits of the installation and participants' answers to its central question continue to produce the research rather than simply document a finished conclusion.</p>
       <p class="bo-closing__next"><a href="consultation.html">← Regulated Instruments</a> · <a href="botanica-participate.html">Participate →</a></p>
     </div>
   </section>
