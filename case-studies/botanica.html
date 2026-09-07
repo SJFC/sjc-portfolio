@@ -209,11 +209,13 @@
   .bo-installation__figure img {
     display: block;
     width: 100%;
-    height: 100%;
-    max-height: 46rem;
-    object-fit: cover;
+    height: auto;
     border-radius: var(--radius-slide);
     box-shadow: 0 1.2rem 3rem rgba(0,0,0,0.18);
+  }
+  .bo-installation__figure--wide {
+    width: min(100%, 38rem);
+    justify-self: center;
   }
   .bo-installation__figure figcaption {
     font-family: var(--font-display);
@@ -505,10 +507,22 @@
 
       <div class="bo-installation__grid">
         <figure class="bo-installation__figure bo-installation__figure--wide">
-          <img src="../assets/images/botanica/installation/botanica-installation-victorian-bureau-full-view.jpg"
-               alt="Full view of the Botanica installation: an open Victorian bureau covered with moss and ivy, supporting a planted magenta-lined sewing box, a glass terrarium and a white orchid in a tall glass vessel beneath the wall text."
-               loading="lazy">
-          <figcaption><em>Botanica</em>, installation view.</figcaption>
+          <img src="../assets/images/botanica/installation/botanica-finished-full-view.jpg"
+               alt="The completed Botanica installation: an open wooden bureau carpeted with moss and trailing ivy, with a planted magenta-lined sewing box, glass terrarium and white orchid arranged above."
+               width="1600" height="2000" loading="lazy">
+          <figcaption><em>Botanica</em>, completed installation.</figcaption>
+        </figure>
+        <figure class="bo-installation__figure">
+          <img src="../assets/images/botanica/installation/botanica-finished-bureau-detail.jpg"
+               alt="Detail of the bureau: ivy grows from a divided magenta-lined tray across moss, beneath planted compartments, poetic labels and the invitation to participate."
+               width="2000" height="1500" loading="lazy">
+          <figcaption>The bureau — moss, ivy and an invitation to respond.</figcaption>
+        </figure>
+        <figure class="bo-installation__figure">
+          <img src="../assets/images/botanica/installation/botanica-finished-sewing-box-detail.jpg"
+               alt="Plants and poetic labels fill the magenta-lined sewing box, flanked by a palm terrarium and a white orchid in glass, with red thread connecting the arrangement."
+               width="2000" height="1500" loading="lazy">
+          <figcaption>The sewing box — living plants, poetic labels and thread.</figcaption>
         </figure>
 
       </div>
