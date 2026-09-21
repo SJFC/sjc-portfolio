@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pivot: Evaluating Contextual Reasoning Under Lexical Ambiguity — Sarah-Jane Crowson</title>
+<meta name="description" content="Working methods note / benchmark proposal v0.3. A provisional method for evaluating contextual reasoning through controlled ambiguity in short-form poetry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+/* Local page treatments follow Couching; typography and components use tokens.css. */
+body.pivot-page { background:#F1E9DA; }
+.pivot-opening { padding:var(--space-6) var(--space-3) var(--space-4); text-align:center; }
+.pivot-opening h1 { max-width:var(--measure-wide); margin:0 auto var(--space-2); font-size:clamp(2.2rem,5vw,var(--text-2xl)); color:var(--navy); }
+.pivot-opening h1 em { color:var(--magenta); }
+.pivot-status { font-family:var(--font-display); font-style:italic; font-size:var(--text-md); color:var(--olive); }
+.pivot-contents { max-width:var(--measure); margin:0 auto; padding:0 var(--space-3) var(--space-4); }
+.pivot-contents summary { cursor:pointer; color:var(--magenta); font-family:var(--font-sans); font-size:var(--text-xs); letter-spacing:.08em; text-transform:uppercase; }
+.pivot-contents ol { columns:2; column-gap:var(--space-4); padding-left:1.4em; font-size:var(--text-sm); }
+.pivot-contents li { break-inside:avoid; padding-bottom:.4em; }
+.pivot-section { padding-top:var(--space-4); padding-bottom:var(--space-4); scroll-margin-top:5rem; }
+.pivot-section:nth-child(even) { background:#EDE6D6; }
+.pivot-heading { font-size:var(--text-lg); color:var(--olive); margin-bottom:var(--space-3); }
+.pivot-section p, .pivot-section ul, .pivot-section ol { max-width:var(--measure); }
+.pivot-section ul, .pivot-section ol { padding-left:1.4em; margin:var(--space-2) 0 var(--space-3); }
+.pivot-section li+li { margin-top:.5em; }
+.pivot-question { font-family:var(--font-display); font-style:italic; font-size:var(--text-md); line-height:1.5; color:var(--magenta); }
+.pivot-poem { border-left:2px solid var(--magenta); margin:var(--space-3) 0; padding:var(--space-2) var(--space-3); font-family:var(--font-display); font-size:var(--text-md); line-height:1.5; }
+.pivot-table-wrap { max-width:100%; overflow-x:auto; margin:var(--space-3) 0; }
+table { width:100%; border-collapse:collapse; font-size:var(--text-base); text-align:left; }
+caption { text-align:left; font-family:var(--font-sans); font-size:var(--text-xs); color:var(--magenta); margin-bottom:var(--space-2); }
+th,td { padding:var(--space-2); border-bottom:1px solid rgba(28,43,58,.2); vertical-align:top; }
+thead th { font-family:var(--font-sans); font-size:var(--text-xs); font-weight:500; color:var(--navy); background:rgba(28,43,58,.05); }
+tbody th { font-weight:500; min-width:9rem; width:23%; }
+.pivot-table-wrap:focus-visible, summary:focus-visible { outline:2px solid var(--magenta); outline-offset:4px; }
+.site-footer { padding:var(--space-3); border-top:1px solid rgba(155,142,130,.25); color:var(--warm-grey); font-family:var(--font-sans); font-size:var(--text-xs); letter-spacing:.08em; text-align:center; }
+.site-footer p { margin:0; }
+.pivot-return { padding:var(--space-4) var(--space-3); text-align:center; color:var(--olive); font-family:var(--font-sans); font-size:var(--text-sm); }
+.skip-link { position:fixed; top:.5rem; left:.5rem; transform:translateY(-200%); z-index:200; background:#F1E9DA; padding:.5rem 1rem; }
+.skip-link:focus { transform:none; }
+@media(max-width:600px) {
+ .site-nav { padding:var(--space-2); gap:var(--space-1); flex-wrap:wrap; }
+ .site-nav__name { font-size:1.15rem; }
+ .site-nav__links { gap:var(--space-2); }
+ .pivot-opening { padding-top:7rem; }
+ .pivot-contents ol { columns:1; }
+ .pivot-table-wrap table { min-width:36rem; }
+}
+@media print {
+ .site-nav,.pivot-contents,.pivot-return,.skip-link { display:none; }
+ .pivot-opening,.pivot-section { padding:1rem 0; }
+ body.pivot-page,.pivot-section:nth-child(even) { background:white; }
+ .pivot-table-wrap { overflow:visible; }
+ .pivot-table-wrap table { min-width:0; }
+ tr, .pivot-poem { break-inside:avoid; }
+ h2,h3 { break-after:avoid; }
+}
+</style>
+</head>
+<body class="pivot-page">
+<a class="skip-link" href="#paper">Skip to the paper</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="../index.html" class="site-nav__name">Sarah-Jane Crowson</a>
+<div class="site-nav__links"><a href="../index.html#work">Work</a><a href="../about.html">About</a></div>
+</nav>
+<header class="pivot-opening">
+<span class="cs-eyebrow">Practice notes</span>
+<h1><em>Pivot:</em> Evaluating Contextual Reasoning Under Lexical Ambiguity</h1>
+<p class="pivot-status">Working methods note / benchmark proposal v0.3</p>
+</header>
+<nav class="pivot-contents" aria-label="Paper contents"><details><summary>In this note</summary><ol>
+<li><a href="#purpose-and-status">Purpose and status</a></li>
+<li><a href="#core-proposition">Core proposition</a></li>
+<li><a href="#benchmark-corpus">Benchmark corpus</a></li>
+<li><a href="#controlled-perturbations">Controlled perturbations</a></li>
+<li><a href="#example-item">Example item</a></li>
+<li><a href="#interpretive-evidence-matrix">Interpretive evidence matrix</a></li>
+<li><a href="#situated-interpretation">Situated interpretation</a></li>
+<li><a href="#multi-turn-benchmarking-process">Multi-turn benchmarking process</a></li>
+<li><a href="#evaluation-dimensions">Evaluation dimensions</a></li>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#human-model-evaluation">Human–model evaluation</a></li>
+<li><a href="#research-questions">Research questions</a></li>
+<li><a href="#relevance-to-ai-evaluation">Relevance to AI evaluation</a></li>
+<li><a href="#risks-and-limitations">Risks and limitations</a></li>
+<li><a href="#proposed-first-stage-validation">Proposed first-stage validation</a></li>
+</ol></details></nav>
+<main id="paper">
+<section class="cs-section pivot-section" id="purpose-and-status" aria-labelledby="purpose-and-status-title"><div class="cs-inner"><h2 class="pivot-heading" id="purpose-and-status-title">Purpose and status</h2>
+<p>This note proposes a provisional method for evaluating contextual critical thinking in poetry and other humanities contexts where meaning is plural, culturally situated and dependent upon context.</p>
+<p>Conventional evaluation rubrics often assume either that one reference interpretation is correct or that articulate alternative interpretations are equally valid. Pivot takes a third position: several interpretations may remain plausible, but their relative warrant can be examined through textual evidence, reasoning, counter-evidence, cultural context and subsequent information.</p>
+<p>The proposed benchmark uses polysemous pivot words in short-form poetry as a constrained experimental environment. A pivot word is a lexical unit capable of supporting more than one materially plausible reading. Related poetic devices — including enjambment, punctuation, typography, juxtaposition, line endings and titles — can alter the relative availability or strength of those meanings.</p>
+<p>This makes short-form poetry useful as an evaluation environment for a broader question:</p>
+<p class="pivot-question">Can a model identify, preserve and appropriately reweight competing meanings when different kinds of contextual evidence become available?</p>
+<p>The poetry is therefore not principally the subject of the benchmark. It is the experimental apparatus through which contextual reasoning can be examined.</p>
+</div></section>
+<section class="cs-section pivot-section" id="core-proposition" aria-labelledby="core-proposition-title"><div class="cs-inner"><h2 class="pivot-heading" id="core-proposition-title">Core proposition</h2>
+<p class="pivot-question">Meaning may be plural without being arbitrary.</p>
+<p>Critical interpretation can be understood as a transparent and situated process in which evidence, reasoning and cultural position are mapped, contested and reweighted to produce a provisional contextual judgment.</p>
+<p>This process can be examined at unusually small scale in poetry. The relative weighting of plausible interpretations of a single word or phrase may change according to:</p>
+<ul>
+<li>lexical meaning;</li>
+<li>local textual context;</li>
+<li>poetic form;</li>
+<li>poetic technique;</li>
+<li>cultural or genre knowledge;</li>
+<li>information supplied elsewhere in a conversation;</li>
+<li>relevant remembered context, where available;</li>
+<li>and subsequent counter-evidence.</li>
+</ul>
+<p>The benchmark therefore tests not simply whether a model can generate several interpretations, but whether the direction and magnitude of its interpretive revision correspond appropriately to the evidential value of new information.</p>
+<p>A strong response should neither collapse ambiguity prematurely nor preserve unlimited alternatives merely to avoid making a judgment.</p>
+</div></section>
+<section class="cs-section pivot-section" id="benchmark-corpus" aria-labelledby="benchmark-corpus-title"><div class="cs-inner"><h2 class="pivot-heading" id="benchmark-corpus-title">Benchmark corpus</h2>
+<p>The benchmark would use an original, previously unpublished and held-out corpus of short poems created specifically for evaluation.</p>
+<p>The corpus would include both:</p>
+<ul>
+<li>poems written by human poets;</li>
+<li>and machine-generated poems designed to exhibit comparable semantic structures.</li>
+</ul>
+<p>Each test item would contain at least one deliberately polysemous word, phrase or formal hinge whose plausible meanings can be manipulated through controlled changes in context.</p>
+<p>Using newly authored material reduces the risk that a model can reproduce an interpretation encountered during training or retrieve an established critical reading. It also allows benchmark designers to specify the ambiguity structure of individual items in advance: which meanings are lexically available, which textual features support them, what contextual evidence should reasonably alter their weighting, and what information should be irrelevant.</p>
+<p>Human- and machine-authored examples could also be compared to test whether performance changes when semantic ambiguity arises through intentional poetic construction rather than synthetic generation.</p>
+<p>The full benchmark corpus should remain held out, with a smaller development set available for understanding task format and scoring.</p>
+</div></section>
+<section class="cs-section pivot-section" id="controlled-perturbations" aria-labelledby="controlled-perturbations-title"><div class="cs-inner"><h2 class="pivot-heading" id="controlled-perturbations-title">Controlled perturbations</h2>
+<p>Item families would allow one variable to be altered while other elements remain substantially stable.</p>
+<p>Possible perturbations include:</p>
+<ul>
+<li>pivot-word choice;</li>
+<li>line break or enjambment;</li>
+<li>punctuation;</li>
+<li>typography or lexical segmentation;</li>
+<li>word order;</li>
+<li>recurring imagery;</li>
+<li>title;</li>
+<li>cultural information;</li>
+<li>conversational context;</li>
+<li>remembered user context, where available;</li>
+<li>relevant counter-evidence;</li>
+<li>irrelevant or distractor context;</li>
+<li>and deliberately misleading contextual information.</li>
+</ul>
+<p>This enables the benchmark to examine sensitivity to perturbation rather than merely answer accuracy.</p>
+<p>The question becomes:</p>
+<p class="pivot-question">Does the model alter its interpretation when it should, preserve it when it should not change, and revise it in proportion to the significance of the new evidence?</p>
+</div></section>
+<section class="cs-section pivot-section" id="example-item" aria-labelledby="example-item-title"><div class="cs-inner"><h2 class="pivot-heading" id="example-item-title">Example item</h2>
+<p>Consider the unpublished example:</p>
+<blockquote class="pivot-poem"><p>Stationary<br>
+leaves echoing<br>
+the last train</p></blockquote>
+<p>The ambiguity enables evidence-based reasoning. Leaves pivots lexically (foliage, pages, departing); stationary pivots phonetically (stationery, with station surfacing against train); the line pivots syntactically, since leaves can also be read as a verb: as something still, departing, echoing. Replacing echoing with echoes strengthens the verb reading while leaving the other pivots untouched. A model’s weighting should shift accordingly.</p>
+<p>The important evaluation question is therefore not:</p>
+<p>What does this poem mean?</p>
+<p>It is:</p>
+<p class="pivot-question">What plausible meanings are available, what evidence supports each one, and how should their relative weighting change when textual or contextual information changes?</p>
+<p>A matched variant could replace only <em>echoing</em> with <em>echoes</em>:</p>
+<blockquote class="pivot-poem"><p>Stationary<br>
+leaves echoes<br>
+the last train</p></blockquote>
+<p>The lineation remains unchanged, but the syntactic possibilities are weighted differently.</p>
+<p>A model that produces essentially the same interpretive weighting for both items may be insufficiently sensitive to this lexical change. A model that abandons every previous interpretation in response to the substitution may be over-reactive. The desired behaviour lies in appropriately calibrated revision.</p>
+</div></section>
+
+<section class="cs-section pivot-section" id="interpretive-evidence-matrix" aria-labelledby="interpretive-evidence-matrix-title"><div class="cs-inner cs-inner--wide"><h2 class="pivot-heading" id="interpretive-evidence-matrix-title">Interpretive evidence matrix</h2>
+<p>Candidate interpretations or argument chains run along one dimension. Evidence-bearing features run along the other.</p>
+<p>In the initial benchmark, the principal feature may be a single word or token. Later versions could extend the method to recurring images, spatial relationships, sensory images, typography, punctuation, line endings or other formal structures.</p>
+<p>Each intersection records how strongly the feature bears upon the proposed interpretation.</p>
+<div class="pivot-table-wrap" role="region" aria-label="Interpretive evidence matrix" tabindex="0"><table><caption>Interpretive evidence matrix</caption><thead><tr><th scope="col">Relationship</th><th scope="col">Meaning in the matrix</th><th scope="col">Evaluative question</th></tr></thead><tbody><tr><th scope="row">Strong support</th><td>The feature is expected under this reading and difficult to explain away.</td><td>How directly does the feature support the interpretation?</td></tr><tr><th scope="row">Moderate support</th><td>The feature strengthens the reading but could also fit a credible alternative.</td><td>What additional assumption is required?</td></tr><tr><th scope="row">Weak support</th><td>The connection is possible but depends heavily upon association or inference.</td><td>Is the interpretation importing more than the work provides?</td></tr><tr><th scope="row">Neutral</th><td>The feature does not materially distinguish this reading from alternatives.</td><td>Does this evidence alter the relative balance?</td></tr><tr><th scope="row">Counter-evidence</th><td>The feature is difficult to reconcile with the reading or is better explained elsewhere.</td><td>Can the reading survive this contradiction without special pleading?</td></tr><tr><th scope="row">Unresolved</th><td>Available evidence or cultural context is insufficient for a responsible judgment.</td><td>What further information would materially alter the assessment?</td></tr></tbody></table></div>
+<p>Numerical weighting from one to five could be trialled, but only after testing whether numerical scoring adds reliability rather than false precision.</p>
+</div></section>
+<section class="cs-section pivot-section" id="situated-interpretation" aria-labelledby="situated-interpretation-title"><div class="cs-inner"><h2 class="pivot-heading" id="situated-interpretation-title">Situated interpretation</h2>
+<p>Observers do not approach language from a neutral position. Cultural knowledge, disciplinary training, lived experience and social context affect which meanings become salient and how strongly evidence is weighted.</p>
+<p>Hall&#x27;s encoding/decoding model offers one possible framework for recording whether a reading occupies a dominant, negotiated or oppositional position.</p>
+<p>For example, the phrase “doing the horses” might, in one context, refer to feeding or caring for livestock. In another context it might refer to selecting or betting on horses. Neither lexical possibility alone determines the intended meaning. Conversational, cultural and situational evidence changes their relative probability.</p>
+<p>This demonstrates why lexical ambiguity has relevance beyond poetry. Professional communication similarly contains shorthand, tacit conventions, culturally specific language and information whose meaning depends upon prior interactions.</p>
+<p>Situated interpretation must not, however, make every reading self-validating. A culturally specific or minority interpretation may reveal evidence a dominant reading overlooks, but its reasoning must still remain open to counter-evidence and scrutiny.</p>
+</div></section>
+<section class="cs-section pivot-section" id="multi-turn-benchmarking-process" aria-labelledby="multi-turn-benchmarking-process-title"><div class="cs-inner"><h2 class="pivot-heading" id="multi-turn-benchmarking-process-title">Multi-turn benchmarking process</h2>
+<p>Each item can be evaluated across successive turns.</p>
+<h3 class="cs-subheading">Turn 1: Baseline interpretation</h3>
+<p>Present the poem without explanatory material.</p>
+<p>The model identifies the principal lexical or formal pivot and generates the smallest defensible set of materially plausible interpretations.</p>
+<h3 class="cs-subheading">Turn 2: Evidence anchoring</h3>
+<p>The model identifies the textual evidence supporting and weakening each interpretation.</p>
+<h3 class="cs-subheading">Turn 3: Initial weighting</h3>
+<p>Using only the poem itself, the model weights the available readings and records uncertainty.</p>
+<h3 class="cs-subheading">Turn 4: Context introduction</h3>
+<p>Relevant cultural, genre, conversational or situational context is introduced.</p>
+<p>The model is asked to reconsider its weighting.</p>
+<h3 class="cs-subheading">Turn 5: Contextual challenge</h3>
+<p>Counter-evidence, an alternative contextual clue or a credible minority reading is introduced.</p>
+<h3 class="cs-subheading">Turn 6: Revision</h3>
+<p>The model provides revised weightings and identifies which new evidence caused any change.</p>
+<h3 class="cs-subheading">Turn 7: Calibration</h3>
+<p>The model records remaining ambiguity and distinguishes between:</p>
+<ul>
+<li>interpretations it considers strongly supported;</li>
+<li>interpretations that remain plausible;</li>
+<li>and interpretations no longer sufficiently warranted.</li>
+</ul>
+<p>Equivalent variants could introduce irrelevant or misleading context to test whether a model can resist information that should not materially change its interpretation.</p>
+</div></section>
+<section class="cs-section pivot-section" id="evaluation-dimensions" aria-labelledby="evaluation-dimensions-title"><div class="cs-inner cs-inner--wide"><h2 class="pivot-heading" id="evaluation-dimensions-title">Evaluation dimensions</h2>
+<div class="pivot-table-wrap" role="region" aria-label="Evaluation dimensions" tabindex="0"><table><caption>Evaluation dimensions</caption><thead><tr><th scope="col">Evaluation dimension</th><th scope="col">Observable capability</th></tr></thead><tbody><tr><th scope="row">Interpretive coverage</th><td>Identifies materially plausible alternatives without prematurely collapsing ambiguity.</td></tr><tr><th scope="row">Evidence anchoring</th><td>Links interpretations to specific textual, formal or contextual evidence.</td></tr><tr><th scope="row">Evidence-to-conclusion coherence</th><td>Provides justification proportionate to the interpretation it advances.</td></tr><tr><th scope="row">Counter-evidence handling</th><td>Recognises evidence that weakens a preferred reading and responds proportionately.</td></tr><tr><th scope="row">Context discrimination</th><td>Distinguishes relevant contextual information from irrelevant or misleading information.</td></tr><tr><th scope="row">Positional awareness</th><td>Recognises where cultural or disciplinary position affects interpretation.</td></tr><tr><th scope="row">Calibration</th><td>Expresses confidence in proportion to available evidence.</td></tr><tr><th scope="row">Revision</th><td>Alters weighting when new evidence warrants change.</td></tr><tr><th scope="row">Revision proportionality</th><td>Changes its interpretation by an amount commensurate with the significance of new evidence.</td></tr><tr><th scope="row">Plurality management</th><td>Retains multiple meanings where uncertainty is genuinely supported without generating unnecessary alternatives.</td></tr><tr><th scope="row">Form sensitivity</th><td>Responds appropriately to changes in lineation, punctuation, segmentation, title or other formal features.</td></tr><tr><th scope="row">Cross-turn consistency</th><td>Retains relevant earlier evidence while integrating new information.</td></tr></tbody></table></div>
+</div></section>
+<section class="cs-section pivot-section" id="failure-modes" aria-labelledby="failure-modes-title"><div class="cs-inner"><h2 class="pivot-heading" id="failure-modes-title">Failure modes</h2>
+<p>The benchmark could distinguish several kinds of model failure.</p>
+<p><strong>Premature closure:</strong> selecting one interpretation before sufficient evidence is available.</p>
+<p><strong>Lexical anchoring:</strong> maintaining the first plausible reading despite stronger subsequent evidence.</p>
+<p><strong>Contextual overreaction:</strong> allowing a small contextual cue to overwhelm stronger textual evidence.</p>
+<p><strong>Context neglect:</strong> failing to incorporate information that should materially alter interpretation.</p>
+<p><strong>Cultural flattening:</strong> privileging the most statistically or culturally dominant meaning despite evidence supporting a context-specific reading.</p>
+<p><strong>Memory dominance:</strong> allowing remembered or prior conversational information to override stronger evidence within the immediate task.</p>
+<p><strong>Retrofitted justification:</strong> maintaining an earlier conclusion while changing the stated rationale to accommodate contradictory evidence.</p>
+<p><strong>Scattergun plurality:</strong> producing numerous possible interpretations without appropriately ranking or eliminating weak ones.</p>
+<p><strong>False precision:</strong> assigning confident numerical or verbal certainty where ambiguity should remain unresolved.</p>
+<p><strong>Form blindness:</strong> treating meaningful changes in lineation, segmentation or punctuation as semantically irrelevant.</p>
+<p>These failure modes allow disagreement to become diagnostic rather than simply incorrect.</p>
+</div></section>
+<section class="cs-section pivot-section" id="human-model-evaluation" aria-labelledby="human-model-evaluation-title"><div class="cs-inner"><h2 class="pivot-heading" id="human-model-evaluation-title">Human–model evaluation</h2>
+<p>The method could support comparison between human and model evaluators without treating either a reference answer or majority interpretation as automatically authoritative.</p>
+<p>Expert human annotators could independently:</p>
+<ol>
+<li>identify available meanings;</li>
+<li>map textual support and counter-evidence;</li>
+<li>provide initial weightings;</li>
+<li>respond to the same contextual interventions;</li>
+<li>record their revised judgments.</li>
+</ol>
+<p>Agreement could then be examined at several levels rather than reduced to exact-answer matching.</p>
+<p>Researchers could ask whether disagreement arose from:</p>
+<ul>
+<li>different evidence selection;</li>
+<li>different lexical knowledge;</li>
+<li>different assumptions;</li>
+<li>cultural weighting;</li>
+<li>sensitivity to formal features;</li>
+<li>different thresholds for uncertainty;</li>
+<li>or different responses to subsequent context.</li>
+</ul>
+<p>This creates a potentially useful framework for evaluating how human and model judgments diverge.</p>
+</div></section>
+<section class="cs-section pivot-section" id="research-questions" aria-labelledby="research-questions-title"><div class="cs-inner"><h2 class="pivot-heading" id="research-questions-title">Research questions</h2>
+<p>The initial benchmark would investigate:</p>
+<ul>
+<li>Can independent evaluators use the framework consistently without suppressing legitimate interpretive difference?</li>
+<li>How stable are model weightings of polysemous meanings across successive contextual turns?</li>
+<li>Does the direction and magnitude of revision track the evidential value of newly supplied information?</li>
+<li>Can models distinguish culturally specific or oppositional meanings from unsupported associative readings?</li>
+<li>Can models distinguish relevant user or conversational context from contextual information that should not affect interpretation?</li>
+<li>How do lineation, enjambment, punctuation, title and other formal interventions alter model weighting?</li>
+<li>Does performance differ between human-authored and machine-generated items when the underlying ambiguity structure is approximately matched?</li>
+<li>Where do human and AI evaluators diverge: evidence selection, lexical interpretation, contextual weighting, calibration or revision?</li>
+<li>Can controlled unpublished items reduce the effects of benchmark contamination?</li>
+<li>Can the same methodology transfer from poetry to professional contexts in which ambiguous language must be resolved using distributed contextual information?</li>
+</ul>
+</div></section>
+<section class="cs-section pivot-section" id="relevance-to-ai-evaluation" aria-labelledby="relevance-to-ai-evaluation-title"><div class="cs-inner"><h2 class="pivot-heading" id="relevance-to-ai-evaluation-title">Relevance to AI evaluation</h2>
+<p>The proposed method is intended as a small, controlled benchmark for a broader capability: context-sensitive reasoning under genuine ambiguity.</p>
+<p>It complements benchmarks built around questions with one well-specified answer by testing an adjacent problem: whether a model can determine when the evidence genuinely permits several possibilities and when contextual information is sufficient to narrow them.</p>
+<p>This distinction matters because models can fail in two opposing directions. They may make premature decisions from insufficient evidence, or they may retain unnecessary alternatives even when the environment provides enough information to support a clear judgment.</p>
+<p>The benchmark therefore tests whether a model can:</p>
+<p class="pivot-question">preserve uncertainty when uncertainty is warranted, resolve it when evidence permits resolution, and explain what caused that transition.</p>
+<p>This has potential relevance beyond literary interpretation. Professional work routinely requires models to interpret shorthand, conventions, previous communications and information distributed across context. Mercor&#x27;s current APEX methodology explicitly evaluates models on expert-authored criteria and increasingly tests their capacity to locate and use contextual information rather than relying solely on the immediate task prompt.</p>
+<p>Pivot offers a deliberately small-scale environment in which that contextual reasoning can be isolated and examined closely before being translated into more complex professional domains.</p>
+</div></section>
+<section class="cs-section pivot-section" id="risks-and-limitations" aria-labelledby="risks-and-limitations-title"><div class="cs-inner"><h2 class="pivot-heading" id="risks-and-limitations-title">Risks and limitations</h2>
+<ul>
+<li>The matrix may create an appearance of objectivity while substantial expert judgment remains.</li>
+<li>Numerical weighting may imply greater measurement precision than the task permits.</li>
+<li>Human evaluators may themselves disagree about the available semantic possibilities.</li>
+<li>Cultural categories can stereotype or flatten heterogeneous experience.</li>
+<li>Consensus between annotators may reproduce dominant cultural assumptions rather than establish correctness.</li>
+<li>Close analysis may over-stabilise a poem deliberately designed to sustain unresolved meanings.</li>
+<li>Authorial intention, textual evidence and audience interpretation may legitimately diverge.</li>
+<li>Machine-generated poems may contain accidental ambiguity different in kind from deliberate human poetic construction.</li>
+<li>A held-out corpus reduces contamination risk but cannot establish that a model has never encountered structurally similar examples.</li>
+<li>Model outputs cannot by themselves demonstrate the model&#x27;s internal reasoning process; the benchmark evaluates observable patterns of interpretation and revision.</li>
+<li>The method requires piloting with human annotators and multiple frontier models before claims can be made for reliability, validity or transferability.</li>
+</ul>
+</div></section>
+<section class="cs-section pivot-section" id="proposed-first-stage-validation" aria-labelledby="proposed-first-stage-validation-title"><div class="cs-inner"><h2 class="pivot-heading" id="proposed-first-stage-validation-title">Proposed first-stage validation</h2>
+<p>An initial pilot could remain deliberately small.</p>
+<p>A set of original human- and machine-authored poems would be organised into matched item families containing controlled lexical or formal perturbations. Human expert evaluators would independently identify plausible interpretations and expected directional changes when contextual evidence is introduced.</p>
+<p>Several frontier models would then complete the same multi-turn tasks across repeated runs.</p>
+<p>The pilot would examine:</p>
+<ul>
+<li>inter-rater agreement;</li>
+<li>model–human agreement;</li>
+<li>consistency across repeated model runs;</li>
+<li>sensitivity to controlled perturbations;</li>
+<li>appropriate versus inappropriate revision;</li>
+<li>susceptibility to irrelevant context;</li>
+<li>and identifiable patterns of failure.</li>
+</ul>
+<p>The aim of the first study would not be to establish a universal measure of literary interpretation. It would determine whether controlled poetic ambiguity provides a reliable and discriminating evaluation environment for contextual reasoning.</p>
+<p>If successful, the same methodology could then be tested in professional domains where lexical ambiguity, institutional convention and distributed contextual information affect the quality of real-world decisions.</p>
+</div></section>
+</main>
+<div class="pivot-return"><a href="../index.html#work">← All work</a></div>
+<footer class="site-footer"><p>&copy; Sarah-Jane Crowson · 2026</p></footer>
+</body>
+</html>
